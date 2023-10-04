@@ -1,12 +1,12 @@
 "use client"
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import React from 'react'
 
 
 
 
 const Restaurants = () => {
-  const { t, i18n } = useTranslation();
+
 
   return (
    
