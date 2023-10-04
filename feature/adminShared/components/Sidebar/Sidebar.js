@@ -6,7 +6,7 @@ import arrow from "../../../../feature/adminFolders/assets/image/menu/arrow-back
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations"
+
 
 
 // export const getStaticProps = async ({locale})=>({

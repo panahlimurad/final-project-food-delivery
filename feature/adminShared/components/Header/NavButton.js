@@ -1,20 +1,11 @@
 import React from "react";
 import AddIcon from '@mui/icons-material/Add';
-
-import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 import { useTranslation } from "next-i18next";
-
-
-export const getStaticProps = async ({locale})=>({
-  props:{
-      ...(await serverSideTranslations(locale, ["common"]))
-  }
-})
 
 
 
 const NavButton = ({openAddModal}) => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation("common");
   
   return (
   <>
