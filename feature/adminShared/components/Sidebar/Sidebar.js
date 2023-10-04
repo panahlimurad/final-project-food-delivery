@@ -5,7 +5,7 @@ import footerLogo from "../../../../feature/adminFolders/assets/image/footer/foo
 import arrow from "../../../../feature/adminFolders/assets/image/menu/arrow-back.svg";
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslation } from "next-i18next";
+// import { useTranslation } from "next-i18next";
 
 
 
@@ -20,7 +20,7 @@ import { useTranslation } from "next-i18next";
 
 const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
 
-  const { t } = useTranslation("common");
+  // const { t } = useTranslation("common");
 
 //   function removeFromLocalStorage() {
 //     localStorage.removeItem("userData");
@@ -75,7 +75,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
                   data-testid="DashboardIcon">
                   <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"></path>
                 </svg>
-                {t("common:Dashboard")}
+                Dashboard
               </div>
             </Link>
           </li>
@@ -95,7 +95,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
                   data-testid="ProductionQuantityLimitsIcon">
                   <path d="M13 10h-2V8h2v2zm0-4h-2V1h2v5zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-8.9-5h7.45c.75 0 1.41-.41 1.75-1.03L21 4.96 19.25 4l-3.7 7H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2z"></path>
                 </svg>
-                {t("common:Products")}
+              Products
               </div>
             </Link>
           </li>
@@ -115,7 +115,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
                   data-testid="RestaurantIcon">
                   <path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"></path>
                 </svg>
-                {t("common:Restaurants")}
+                Restaurants
               </div>
             </Link>
           </li>
@@ -137,7 +137,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
                   <circle cx="17.5" cy="17.5" r="4.5"></circle>
                   <path d="M3 13.5h8v8H3z"></path>
                 </svg>
-                {t("common:Category")}
+                Category
               </div>
             </Link>
           </li>
@@ -157,7 +157,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
                   data-testid="FilterFramesIcon">
                   <path d="M20 4h-4l-4-4-4 4H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H4V6h4.52l3.52-3.5L15.52 6H20v14zM18 8H6v10h12"></path>
                 </svg>
-                {t("common:Orders")}
+                Orders
               </div>
             </Link>
           </li>
@@ -177,7 +177,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
                   data-testid="FilterFramesIcon">
                   <path d="M20 4h-4l-4-4-4 4H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H4V6h4.52l3.52-3.5L15.52 6H20v14zM18 8H6v10h12"></path>
                 </svg>
-                {t("common:History")}
+                History
               </div>
             </Link>
           </li>
@@ -197,7 +197,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
                   data-testid="LocalOfferIcon">
                   <path d="m21.41 11.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"></path>
                 </svg>
-                {t("common:Offers")}
+                Offers
               </div>
             </Link>
           </li>
@@ -220,7 +220,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
                   data-testid="ExitToAppIcon">
                   <path d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"></path>
                 </svg>
-                {t("common:Logout")}
+                Logout
               </div>
             </Link>
           </li>
