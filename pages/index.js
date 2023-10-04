@@ -1,19 +1,19 @@
 // import type { NextPage } from "next";
 import Head from "next/head";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations"
-import { useTranslation } from "next-i18next";
+// import {serverSideTranslations} from "next-i18next/serverSideTranslations"
+// import { useTranslation } from "next-i18next";
 
 
-export const getStaticProps = async ({locale})=>({
-  props:{
-      ...(await serverSideTranslations(locale, ["common"]))
-  }
-})
+// export const getStaticProps = async ({locale})=>({
+//   props:{
+//       ...(await serverSideTranslations(locale, ["common"]))
+//   }
+// })
 
 
 
 const Home = () => {
-  const {t, i18n} = useTranslation()
+  // const {t, i18n} = useTranslation()
   
   // const handleUpload = (e: any) => {
   //   const file = e.target.files[0];
@@ -38,7 +38,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
     <div className="text-white">
-      {t("common:ADDPRODUCT")}
+      ADDPRODUCT
     </div>
     </div>
   );
