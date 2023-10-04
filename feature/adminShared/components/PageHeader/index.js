@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 // import AddModal from "../AddModal";
 // import { FORM } from "utils/form";
 // import {serverSideTranslations} from "next-i18next/serverSideTranslations"
-// import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 
 
 // export const getStaticProps = async ({locale})=>({
@@ -17,7 +17,7 @@ import AddIcon from "@mui/icons-material/Add";
 // })
 
 const PageHeader = () => {
-  // const { t } = useTranslation("common");
+  const { t } = useTranslation("common");
 
   // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   // const location = useLocation();
@@ -33,7 +33,7 @@ const PageHeader = () => {
   // };
   return (
     <div className="bg-[#27283C] sm:h-[73px] flex sm:items-center justify-between gap-2 sm:flex-row flex-col h-auto  py-4 sm:px-10 px-3  sm:rounded-xl rounded-[4px] mb-8">
-      <div className="page-title capitalize text-[#C7C7C7] text-xl font-medium ">Offers</div>
+      <div className="page-title capitalize text-[#C7C7C7] text-xl font-medium ">{t("common:Offers")}</div>
 
       <div className="flex gap-6 items-center">
         <button

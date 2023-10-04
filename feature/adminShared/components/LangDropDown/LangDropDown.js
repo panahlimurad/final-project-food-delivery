@@ -4,13 +4,13 @@ import az from "../../../adminFolders/assets/image/flagicons/az.svg";
 import en from "../../../adminFolders/assets/image/flagicons/en.svg";
 import fr from "../../../adminFolders/assets/image/flagicons/fr.svg";
 import Image from "next/image";
-// import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 const LangDropDown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("en"); 
-  // const { i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const router = useRouter();
 
   useEffect(() => {

@@ -1,11 +1,11 @@
 import React from "react";
 import AddIcon from '@mui/icons-material/Add';
-// import { useTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 
 
 
 const NavButton = ({openAddModal}) => {
-  // const { t, i18n } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
   
   return (
   <>
@@ -16,7 +16,7 @@ const NavButton = ({openAddModal}) => {
         edge="start"
         aria-label="logo"
       />
-      <span className='ml-1 hidden md:block'>ADDPRODUCT</span>
+      <span className='ml-1 hidden md:block'>{t("common:ADDPRODUCT")}</span>
       </button>
     </>
   );
