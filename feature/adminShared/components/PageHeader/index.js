@@ -45,7 +45,7 @@ const PageHeader = () => {
             edge="start"
             aria-label="logo"
           />
-          <span className="ml-1 md:block">AddCategory</span>
+          <span className="ml-1 md:block">{t("common:AddCategory")}</span>
         </button>
 {/* 
         <AddModal
