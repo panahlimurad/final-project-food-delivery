@@ -1,0 +1,56 @@
+{
+  "name": "foody-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.11",
+    "@mui/material": "^5.14.11",
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "date-fns": "^2.30.0",
+    "firebase": "^10.1.0",
+    "firebase-admin": "^11.10.1",
+    "formidable": "^3.5.0",
+    "i18next": "^23.5.1",
+    "jsonwebtoken": "^9.0.1",
+    "material-icons": "^1.13.12",
+    "multiparty": "^4.2.3",
+    "nanoid": "^5.0.1",
+    "next": "13.5.3",
+    "next-i18next": "^14.0.3",
+    "next-swagger-doc": "^0.4.0",
+    "nextjs-cors": "^2.1.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.11.0",
+    "react-query": "^3.39.3",
+    "react-text-typing": "^0.2.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-react": "^5.3.1",
+    "sweetalert2": "^11.7.31"
+  },
+  "devDependencies": {
+    "@types/node": "20.7.0",
+    "@types/react": "18.2.23",
+    "@types/react-dom": "18.2.8",
+    "autoprefixer": "^10.4.16",
+    "eslint": "8.50.0",
+    "eslint-config-next": "13.5.3",
+    "postcss": "^8.4.30",
+    "tailwindcss": "^3.3.3",
+    "typescript": "5.2.2"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  
+        "ADDPRODUCT": "AJOUTER UN PRODUIT",
+        "AddProducts": "Ajouter des produits",
+        "AddRestaurants": "Ajouter des restaurants",
+        "AddCategory": "ajouter une catégorie",
+        "AddOffers": "Ajouter des offres",
+        "UploadImage": "Téléchargez l'image de votre produit",
+        "AddProductDescription": "Ajoutez la description de votre produit et les informations nécessaires",
+        "Name": "Nom",
+        "Description": "Description",
+        "Price": "Prix",
+        "Cancel": "Annuler",
+        "Create Offer": "Créer une offre",
+        "upload": "télécharger",
+        
+
+        "Dashboard": "Tableau de bord",
+        "Products": "Des produits",
+        "Restaurants": "Restaurants",
+        "Category": "Catégorie",
+        "Orders": "Ordres",
+        "History": "Histoire",
+        "Offers": "Des offres",
+        "Logout": "Se déconnecter",
+        "Version:": "Version",
+
+      
+
+        "Projects": "Projets par",
+        "account": "compte",
+        "TotalSalary": "Salaire total",
+        "Years": "Années",
+        "February": "Février",
+        "March": "Mars",
+        "April": "Avril",
+        "AssignedRisks": "Risques assignés",
+        "AssignedActionItems": "Éléments d'action assignés",
+        "NoRisksAssigned": "Aucun risque n’est attribué.",
+        "NoActionItemsAssigned": "Aucune action n'est assignée",
+        "Welcome Admin": "Bienvenue Administrateur",
+        "Username": "Nom d'utilisateur",
+        "Password": "Mot de passe",
+        "SignIn": "Se connecter"
+   
+}

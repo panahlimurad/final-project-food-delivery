@@ -1,0 +1,57 @@
+.box3{
+    padding: 16px 0 0 32px;
+    height: 472px;
+    border-radius: 14px;
+
+}
+.box4{
+    padding: 16px 0 0 32px;
+    margin-left: 20px;
+    height: 472px;
+    border-radius: 14px;
+
+}
+.paragraf3{
+position: absolute;
+top: 50%;
+left: 36%;
+}
+.paragraf4{
+    position: absolute;
+    top: 50%;
+    left: 34%;
+         
+}
+@media (max-width: 1370px) {
+    .paragraf3{
+        font-size: 12px;
+    }
+    .paragraf4{
+        font-size: 12px;
+ 
+    }
+}
+@media (max-width: 1100px) {
+    .paragraf4{
+        left: 22%;
+    }
+}
+@media (max-width: 668px) {
+    .box4{
+        margin-left: 0;
+    }
+    .paragraf3{
+        left: 40%;
+    }
+    .paragraf4{
+        left: 40%;
+    }
+}
+@media (max-width: 480px) {
+    .paragraf3{
+        left: 32%;
+    }
+    .paragraf4{
+        left: 32%;
+    }
+}

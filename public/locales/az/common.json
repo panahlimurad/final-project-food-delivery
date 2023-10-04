@@ -1,0 +1,45 @@
+{
+        "ADDPRODUCT": "Məhsul əlavə et",
+        "AddProducts": "Məhsullar əlavə et",
+        "AddRestaurants": "Restoranlar əlavə et",
+        "AddCategory": "Kateqoriya əlavə et",
+        "AddOffers": "Təkliflər əlavə et",
+        "UploadImage": "Məhsulunuzun Şəkilini yükləyin",
+        "AddProductDescription": "Məhsul təsvirinizi və lazımi məlumatları əlavə edin",
+        "Name": "Ad",
+        "Description": "Təsvir",
+        "Price": "Qiymət",
+        "Cancel": "İptal",
+        "Create Offer": "Təklif yarat",
+        "upload": "upload",
+
+
+        "Dashboard": "İdarə paneli",
+        "Products": "Məhsullar",
+        "Restaurants": "Restoranlar",
+        "Category": "Kateqoriya",
+        
+        "History": "Tarixçə",
+        "Offers": "Təkliflər",
+        "Logout": "Çıxış",
+        "Version:": "Versiya",
+
+
+
+        "Projects": "Layihələr",
+        "Orders": "Sifarişlər",
+        "account": "hesabı",
+        "TotalSalary": "Ümumi Əmək haqqı",
+        "Years": "İllər",
+        "February": "Fevral",
+        "March": "Mart",
+        "April": "Aprel",
+        "AssignedRisks": "Təyin edilmiş Risklər",
+        "AssignedActionItems": "Təyin edilmiş Fəaliyyət Maddələri",
+        "NoRisksAssigned": "Təyin edilmiş risklər yoxdur.",
+        "NoActionItemsAssigned": "Təyin edilmiş fəaliyyət elementləri yoxdur",
+        "WelcomeAdmin": "Xoş gəldiniz Admin",
+        "Username": "İstifadəçi adı",
+        "Password": "Şifrə",
+        "SignIn": "Daxil olun"
+    }

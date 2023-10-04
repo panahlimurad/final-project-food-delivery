@@ -1,0 +1,160 @@
+.box1 {
+    height: 472px;
+    border-radius: 14px;
+    background: #27283C;
+    padding: 16px 0 96px 24px;
+}
+
+.box2 {
+    height: 472px;
+    border-radius: 14px;
+    background: #27283C;
+    margin-left: 30px;
+    padding: 16px 0 60px 48px;
+}
+
+.paragraf1 {
+    left: 42%
+}
+
+@media (max-width: 1230px) {
+    .box1 {
+        padding-bottom: 10px;
+    }
+}
+
+@media (max-width: 1180px) {
+    .picture1 {
+        width: 240px;
+    }
+
+    .picture2 {
+        width: 440px;
+    }
+}
+
+@media (max-width: 1120px) {
+    .picture1 {
+        width: 210px;
+    }
+
+    .picture2 {
+        width: 410px;
+    }
+
+    .paragraf1 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .picture1 {
+        width: 180px;
+    }
+
+    .picture2 {
+        width: 380px;
+    }
+}
+
+@media (max-width: 994px) {
+    .picture1 {
+        width: 150px;
+    }
+
+    .picture2 {
+        width: 350px;
+    }
+
+    .paragraf1 {
+        font-size: 12px;
+    }
+
+    .box2 {
+        margin-left: 12px;
+    }
+}
+
+@media (max-width: 906px) {
+    .picture2 {
+        width: 320px;
+    }
+}
+
+@media (max-width: 850px) {
+    .picture1 {
+        width: 130px;
+    }
+
+    .picture2 {
+        width: 300px;
+    }
+
+    .paragraf1 {
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 816px) {
+    .picture1 {
+        width: 120px;
+    }
+
+    .picture2 {
+        width: 270px;
+    }
+}
+
+@media (max-width: 668px) {
+    .box2 {
+        margin-left: 0;
+    }
+    .picture1 {
+        width: 264px;
+    }
+    .picture2 {
+        width: 505px;
+    }
+    .paragraf1 {
+        margin-top: 0;
+        font-size: 16px;
+        left: 45%;
+    }
+}
+@media (max-width: 580px) {
+    .picture1 {
+        width: 224px;
+    }
+    .picture2 {
+        width: 465px;
+    }
+}
+@media (max-width: 540px) {
+    .box2{
+        padding-left: 32px;
+    }
+    .picture1 {
+        width: 184px;
+    }
+    .picture2 {
+        width: 425px;
+    }
+    .paragraf1 {
+       font-size: 14px;
+    }
+}
+@media (max-width: 483px) {
+    .picture2 {
+        width: 380px;
+    }
+}
+@media (max-width: 435px) {
+    .picture2 {
+        width: 350px;
+    }
+}
+@media (max-width: 406px) {
+    .picture2 {
+        width: 320px;
+    }
+}
