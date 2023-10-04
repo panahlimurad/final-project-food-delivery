@@ -3,7 +3,6 @@ import LayoutAdmin from "../../layoutAdmin/LayoutAdmin";
 import Head from "next/head";
 import BottomContent from "./dashboard/BottomContent/BottomContent";
 import TopContent from "./dashboard/TopContent/TopContent";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // import { useTranslation } from "next-i18next";
 
 
