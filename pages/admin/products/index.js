@@ -12,7 +12,7 @@ import ProductsContainer from '../../../feature/adminFolders/features/products/p
 // });
 
 const Products = () => {
-  const { t, i18n } = useTranslation();
+  // const { t, i18n } = useTranslation();
 
   return (
     <>
