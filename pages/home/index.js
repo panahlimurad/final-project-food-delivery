@@ -1,9 +1,12 @@
+import HowItWorksContainer from '../../feature/ClientShared/howItWorksContainer/HowItWorksContainer'
 import React from 'react'
 
-const HomePage = () => {
+const HowItWorks = () => {
   return (
-    <div>HomePage</div>
+    <div>
+      <HowItWorksContainer/>
+    </div>
   )
 }
 
-export default HomePage
+export default HowItWorks

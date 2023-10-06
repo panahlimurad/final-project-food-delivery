@@ -1,9 +1,12 @@
+import AboutContainer from '../../feature/ClientShared/aboutContainer/AboutContainer'
 import React from 'react'
 
-const AboutPage = () => {
+const AboutUs = () => {
   return (
-    <div>AboutPage</div>
+    <div>
+      <AboutContainer/>
+    </div>
   )
 }
 
-export default AboutPage
+export default AboutUs
