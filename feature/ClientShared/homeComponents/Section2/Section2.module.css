@@ -1,0 +1,159 @@
+.card{
+    width: 327px;
+    height: 396px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 12px 0 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.card-title {
+    color: #4F4F4F;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 70px;
+    letter-spacing: 0.9px;
+    margin-bottom: 12px;
+}
+
+.card-paragraf {
+    color: #828282;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0.54px;
+}
+
+.section-title {
+    width: 394px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 40px;
+    letter-spacing: 1.2px;
+    margin-bottom: 28px;
+}
+.section-paragraf{
+    color:  #828282;
+text-align: center;
+font-size: 22px;
+font-style: normal;
+font-weight: 400;
+line-height: 30px; /* 136.364% */
+letter-spacing: 0.66px;
+}
+@media (max-width: 1185px) {
+    .card {
+        width: 310px;
+        margin-right: 2rem;
+    }
+    .card-title {
+        font-size: 24px;
+    }
+}
+@media (max-width: 1080px) {
+    .card {
+        width: 260px;
+        margin-right: 2rem;
+    }
+    .card-title {
+        font-size: 20px;
+    }
+    .card-paragraf {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1023px) {
+    .card-section{
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+    .card {
+        width: 480px;
+        height: 430px;
+    }
+    .card-image{
+        width:300px;
+        height: 260px;
+    }
+    .card-title {
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+    .card-paragraf {
+        font-size: 18px;
+    }
+    .section-4{
+        height: auto;
+    }
+}
+@media (max-width: 800px) {
+    .top-content{
+        width: 640px;
+    }
+}
+@media (max-width: 680px) {
+    .top-content{
+        width: 580px;
+    }
+}
+@media (max-width: 640px) {
+    .top-content{
+        width: 520px;
+    }
+
+}
+@media (max-width: 604px) {
+    .top-content{
+        width: 480px;
+    }
+}
+@media (max-width: 568px) {
+    .top-content{
+        width: 430px;
+    }
+    .card {
+        width: 450px;
+    }
+    .card-title {
+        font-size: 28px;
+    }
+   
+}
+@media (max-width: 508px) {
+    .top-content{
+        width: 400px;
+    }
+    .card {
+        width: 410px;
+        margin-right: 0;
+    }
+}
+@media (max-width: 452px) {
+    .top-content{
+        width: 330px;
+        margin-bottom: 48px;
+    }
+    .card {
+        width: 336px;
+        margin-bottom: 24px;
+    }
+    .card-title {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    .card-paragraf {
+        font-size: 16px;
+        width: 230px;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+}

@@ -1,10 +1,14 @@
 import AboutContainer from '../../feature/ClientShared/aboutContainer/AboutContainer'
 import React from 'react'
+import LayoutClient from '../../layoutClient/LayoutClient'
 
 const AboutUs = () => {
   return (
     <div>
-      <AboutContainer/>
+      <LayoutClient>
+        <AboutContainer/>
+      </LayoutClient>
+      
     </div>
   )
 }

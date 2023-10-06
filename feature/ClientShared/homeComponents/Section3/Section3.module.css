@@ -1,0 +1,390 @@
+.section3-title {
+    color: #181617;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 70px;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
+}
+
+.section3-paragraf {
+    color: #828282;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0.66px;
+}
+
+.section3-container {
+    width: 421.314px;
+    height: 556.736px;
+    transform: rotate(22.825deg);
+    border-radius: 50px;
+    background: #D63626;
+}
+
+.section3-container1 {
+    width: 413.782px;
+    height: 534.169px;
+    transform: rotate(-27.165deg);
+    border-radius: 50px;
+    background: #D63626;
+}
+
+@media (max-width: 1357px) {
+    .section3-image1 {
+        width: 580px;
+    }
+
+    .section3-image2 {
+        width: 448px;
+    }
+
+    .section3-image3 {
+        width: 618px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .section3-title {
+        font-size: 42px;
+        font-weight: 800;
+        line-height: 60px;
+
+    }
+
+    .section3-image1 {
+        width: 540px;
+    }
+
+    .section3-image2 {
+        width: 408px;
+        right: -1rem;
+    }
+
+    .section3-image3 {
+        width: 578px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .section3-container {
+        width: 380px;
+    }
+
+    .section3-image1 {
+        width: 500px;
+    }
+
+    .section3-container1 {
+        width: 380px;
+
+    }
+
+    .section3-image2 {
+        width: 388px;
+        right: -1rem;
+    }
+
+    .section3-image3 {
+        width: 528px;
+    }
+}
+
+@media (max-width: 1185px) {
+    .section3-container {
+        width: 340px;
+        height: 440px;
+    }
+
+    .section3-container1 {
+        width: 340px;
+        height: 440px;
+
+    }
+
+    .section3-image1 {
+        width: 440px;
+        right: 0;
+    }
+
+    .section3-image2 {
+        width: 348px;
+        right: 0;
+    }
+
+    .section3-image3 {
+        width: 448px;
+        right: 1.5rem;
+        top: -1.5rem;
+    }
+}
+
+@media (max-width: 1080px) {
+    .section3-title {
+        font-size: 38px;
+        font-weight: 600;
+        line-height: 40px;
+
+    }
+
+    .section3-paragraf {
+        font-size: 20px;
+    }
+
+    .section3-container {
+        width: 300px;
+        height: 400px;
+    }
+
+    .section3-container1 {
+        width: 300px;
+        height: 400px;
+
+    }
+
+    .section3-image1 {
+        width: 410px;
+        right: 0;
+    }
+
+    .section3-image2 {
+        width: 328px;
+        right: 0;
+    }
+
+    .section3-image3 {
+        width: 418px;
+        right: 1.5rem;
+        top: -1.5rem;
+    }
+}
+
+@media (max-width: 1023px) {
+    .section-3 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top-container {
+        width: 54%;
+        margin-bottom: 36px;
+    }
+
+    .section3-title {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .bottom-container {
+        width: 54%;
+        margin-top: 36px;
+    }
+
+    .section3-container {
+        width: 421.314px;
+        height: 526.736px;
+    }
+
+    .section3-image1 {
+        width: 580px;
+        top: 24px;
+    }
+
+    .section3-second {
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+
+    .section3-container1 {
+        width: 413.782px;
+        height: 534.169px;
+    }
+
+    .section3-image2 {
+        width: 448px;
+        right: 32px;
+    }
+
+    .section3-image3 {
+        width: 578px;
+    }
+}
+
+@media (max-width: 800px) {
+    .section3-image1 {
+        width: 520px;
+    }
+
+    .section3-image2 {
+        width: 408px;
+        right: -38px;
+
+    }
+
+    .section3-image3 {
+        width: 528px;
+        right: -48px;
+    }
+}
+
+@media (max-width: 740px) {
+    .section3-title {
+        font-size: 36px;
+
+    }
+
+    .section3-paragraf {
+        font-size: 18px;
+    }
+
+    .section3-container {
+        width: 380px;
+        height: 480px;
+    }
+
+    .section3-image1 {
+        width: 440px;
+    }
+
+    .section3-container1 {
+        width: 380px;
+        height: 480px;
+        margin-left: 0;
+    }
+
+    .section3-title {
+        font-size: 32px;
+
+    }
+
+    .section3-paragraf {
+        font-size: 16px;
+    }
+
+    .section3-image3 {
+        width: 468px;
+        right: -48px;
+    }
+}
+
+@media (max-width: 640px) {
+    .top-container {
+        width: 64%;
+        margin-bottom: 36px;
+    }
+
+    .section3-container1 {
+        width: 380px;
+        height: 440px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 604px) {
+    .bottom-container {
+        width: 62%;
+    }
+}
+
+@media (max-width: 568px) {
+    .top-container {
+        width: 68%;
+    }
+
+    .section3-container {
+        width: 350px;
+        height: 420px;
+    }
+
+    .bottom-container {
+        width: 68%;
+    }
+
+    .section3-container1 {
+        width: 350px;
+        height: 410px;
+        margin-left: 0;
+    }
+
+    .section3-image1 {
+        width: 470px;
+    }
+
+    .section3-image2 {
+        width: 408px;
+        right: -38px;
+
+    }
+
+    .section3-image3 {
+        width: 428px;
+        right: -48px;
+    }
+}
+
+@media (max-width: 508px) {
+    .section3-image1 {
+        width: 430px;
+        right: -24px;
+    }
+
+    .section3-image2 {
+        width: 338px;
+        right: -38px;
+
+    }
+
+    .section3-image3 {
+        width: 408px;
+        right: -48px;
+        top: -6rem;
+
+    }
+
+    .section3-container {
+        width: 320px;
+        height: 380px;
+    }
+
+    .top-container {
+        width: 74%;
+    }
+
+    .section3-container1 {
+        width: 320px;
+        height: 340px;
+    }
+}
+
+@media (max-width: 452px) {
+    .section3-container1 {
+        width: 259.482px;
+        height: 289.324px;
+    }
+    .section3-image2 {
+        width: 238px;
+        right: 38px;
+
+    }
+    .section3-container {
+        width: 259.482px;
+        height: 289.324px;
+    }
+    .section3-image1 {
+        width: 300px;
+        right: -6px;
+    }
+    .section3-image3 {
+        width: 308px;
+        right: -18px;
+        top: -6rem;
+
+    }
+    .top-container {
+        width: 78%;
+    }
+}

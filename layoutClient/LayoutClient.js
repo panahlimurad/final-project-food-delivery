@@ -1,11 +1,17 @@
 import React from 'react'
+import Header from '../feature/ClientShared/header/Header'
+import Footer from '../feature/ClientShared/footer/Footer'
+
 
 const LayoutClient = ({children}) => {
   return (
     <>
-    <div>Header</div>
+    <Header/>
+    <div className='bg-white'>
     {children}
-    <div>Footer</div>
+    </div>
+    
+    <Footer/>
     </>
   )
 }

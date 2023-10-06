@@ -1,18 +1,22 @@
-"use client"
-// import { useRouter } from 'next/router'
-import React from 'react'
+import CardRestaurantContainer from "../../feature/ClientShared/CardRestaurantContainer/CardRestaurantContainer";
+import NavbarRestaurant from "../../feature/ClientShared/RestaurantNavbar/NavbarRestaurant";
+import LayoutClient from '../../layoutClient/LayoutClient'
 
-
-
+import React from "react";
 
 const Restaurants = () => {
-
-
   return (
-   
-    <div>Restaurants</div>
-   
-  )
-}
+    <>
+    <LayoutClient>
+    <div
+      className="flex mt-4 gap-8">
+      <NavbarRestaurant />
+      <CardRestaurantContainer />
+    </div>
+    </LayoutClient>
+    </>
+    
+  );
+};
 
-export default Restaurants
+export default Restaurants;

@@ -7,3 +7,7 @@
 .panel{
     display: flex;
 }
+
+.bodyAdmin{
+    background-color: #1e1e30;
+}
