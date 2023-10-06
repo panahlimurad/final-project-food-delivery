@@ -1,0 +1,294 @@
+.title {
+    font-size: 54px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 70px;
+    /* 116.667% */
+    letter-spacing: 1.8px;
+    color: #181617;
+    margin-bottom: 5px;
+}
+
+.paragraf {
+    color: #828282;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    /* 136.364% */
+    letter-spacing: 0.66px;
+    margin-bottom: 42px;
+}
+
+.boxShadow {
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: move 3s infinite ease alternate;
+}
+
+.paragraf1 {
+    width: 106px;
+    color: #4F4F4F;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    /* 150% */
+    letter-spacing: 0.48px;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(-15px);
+    }
+}
+
+@media (max-width: 1357px) {
+    .left-container {
+        width: 616px;
+    }
+
+    .right-image {
+        width: 580px;
+    }
+}
+
+@media (max-width: 1318px) {
+    .left-container {
+        width: 550px;
+    }
+
+    .title {
+        font-size: 48px;
+    }
+
+    .paragraf {
+        font-size: 20px;
+    }
+
+    .right-image {
+        width: 540px;
+        right: -28px;
+    }
+
+    .boxShadow {
+        width: 248px;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .left-container {
+        width: 500px;
+    }
+
+    .title {
+        font-size: 44px;
+    }
+
+    .right-image {
+        width: 500px;
+    }
+
+    .boxShadow {
+        width: 218px;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .left-container {
+        width: 460px;
+        margin-left: 0;
+    }
+
+    .right-container {
+        width: 460px;
+        height: 420px;
+    }
+
+    .title {
+        font-size: 40px;
+    }
+
+    .paragraf {
+        font-size: 18px;
+        width: 440px;
+    }
+}
+
+@media (max-width: 1185px) {
+    .left-container {
+        width: 420px;
+        margin-left: 0;
+    }
+
+    .right-container {
+        width: 420px;
+        height: 380px;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .paragraf {
+        font-size: 16px;
+    }
+
+    .right-image {
+        width: 440px;
+        top: -2rem;
+    }
+}
+
+@media (max-width: 1080px) {
+    .left-container {
+        width: 400px;
+    }
+
+    .title {
+        font-size: 34px;
+    }
+
+    .right-container {
+        width: 400px;
+        height: 360px;
+    }
+
+    .right-image {
+        width: 420px;
+        top: -2rem;
+    }
+
+    .boxShadow {
+        width: 198px;
+        gap: 4px;
+
+    }
+}
+
+@media (max-width: 1023px) {
+    .section-1 {
+        padding-top: 32px;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+       height: auto;
+    }
+
+    .right-container {
+        background: none;
+        margin-bottom: 48px;
+        width: 56%;
+    }
+    .secondClass{
+        display: none;
+    }
+    .left-container{
+        width: 56%;
+        margin-top: 52px;
+        align-items: center;
+    }
+    .title {
+        font-size: 34px;
+        line-height: normal;
+        text-align: center;
+        margin-bottom: 5px;
+        }
+        .right-image {
+            width: 580px;
+            margin-left: 36px;
+        }
+        .paragraf{
+            margin-top: 12px;
+            width: auto;
+        }
+        .boxShadow {
+            top: 40%;
+            width: 278px;
+        }
+}
+@media (max-width: 740px) {
+    .left-container{
+        width: 52%;
+    }
+    .right-image {
+        width: 510px;
+        margin-left: 36px;
+    }
+    .section-btn{
+        width: 180px;
+    }
+}
+@media (max-width: 680px) {
+    .right-image {
+        width: 460px;
+        margin-left: 36px;
+    }
+    .title {
+        font-size: 28px;
+    }
+}
+@media (max-width: 640px) {
+    .right-image {
+        width: 420px;
+        margin-left: 36px;
+    }
+    .boxShadow {
+        top: 34%;
+        width: 248px;
+    }
+    .left-container{
+        width: 62%;
+    }
+}
+@media (max-width: 604px) {
+    .paragraf{
+        display: none;
+    }
+    .btn-areas{
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+    .section-btn{
+        width: 260px;
+    }
+    .right-image {
+        right: -24px;
+        top: 0;
+    }
+}
+@media (max-width: 508px) {
+    .right-image {
+        width: 380px;
+        right: -48px;
+        top: 0;
+    }
+    .title {
+        font-size: 24px;
+    }
+    .boxShadow {
+        top: 34%;
+        left: 30%;
+        width: 218px;
+    }
+}
+@media (max-width: 452px) {
+    .right-image {
+        width: 330px;
+        right: -68px;
+        top: 0;
+    }
+    .boxShadow {
+        width: 192px;
+    }
+    .title {
+        font-size: 20px;
+    }
+}

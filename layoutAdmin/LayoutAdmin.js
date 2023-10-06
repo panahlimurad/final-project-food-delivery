@@ -12,7 +12,7 @@ const LayoutAdmin = ({ children }) => {
   const router = useRouter();
 
   return (
-    <div>
+    <div className={styled.bodyAdmin}>
       <Navbar />
       <div className={styled.panel}>
         <div className={styled.leftBar}>
