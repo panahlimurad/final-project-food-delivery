@@ -1,7 +1,7 @@
 import Image from "next/image";
-import twiter from "../../../../public/svg/twiter.svg"
-import instagram from "../../../../public/svg/instagram.svg"
-import facebook from "../../../../public/svg/facebook.svg"
+import twiter from "../../../../../public/svg/twiter.svg"
+import instagram from "../../../../../public/svg/instagram.svg"
+import facebook from "../../../../../public/svg/facebook.svg"
 import styles from "./FooterBottom.module.css"
 import Link from "next/link";
  export const FooterBottom = () => {

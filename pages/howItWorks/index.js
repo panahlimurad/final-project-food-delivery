@@ -1,4 +1,4 @@
-import HowItWorksContainer from '../../feature/ClientShared/howItWorksContainer/HowItWorksContainer'
+import HowItWorksContainer from '../../feature/ClientShared/components/howItWorksContainer/HowItWorksContainer'
 import React from 'react'
 import LayoutClient from '../../layoutClient/LayoutClient'
 

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import restIcon from "../../../public/svg/resticon.svg";
+import restIcon from "../../../../public/svg/resticon.svg";
 import Image from "next/image";
 
 

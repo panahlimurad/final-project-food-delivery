@@ -4,11 +4,13 @@ import Head from "next/head";
 
 const Login = () => {
   return (
-    <div className="h-full">
+    <div>
       <Head>
         <title>Login</title>
       </Head>
-      <LoginContent />
+      <div className="min-h-full">
+        <LoginContent />
+      </div>
     </div>
   );
 };
