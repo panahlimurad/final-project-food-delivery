@@ -4,7 +4,19 @@ module.exports = {
     "./feature/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor:{
+        primary:"#EB5757",
+        light_red:"#FFE7E7",
+        
+      },
+      colors:{
+        primary:"#EB5757",
+        gray_1:"#828282",
+        gray_2:"#4F4F4F",
+      }
+    
+    },
   },
   plugins: [],
 };
