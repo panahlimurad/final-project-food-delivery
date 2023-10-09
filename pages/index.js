@@ -2,19 +2,7 @@
 import Head from "next/head";
 import LayoutClient from "../layoutClient/LayoutClient";
 import HomePage from "../pages/home/index";
-import {
-  GetPostProduct,
-  Register,
-  PostProduct,
-  Login,
-  PostCategory,
-  GetRestaurants,
-  PostBasket,
-  GetBasket,
-  GetProducts,
-  PostRestaurants,
-  PostOffer,
-} from "../feature/adminShared/services/dataApi";
+
 // import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 // import { useTranslation } from "next-i18next";
 
@@ -42,21 +30,7 @@ const Home = () => {
   //   });
   // };
 
-  const product = {
-    img_url: "https://hips.hearstapps.com/hmg-prod/images/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
-    name: "Do you like Pizza at Papa John’s?",
-    description: "Yes you like pizza,Yummy"
-  };
 
-  const getPostNewProduct = () => {
-    PostOffer(product)
-      .then((data) => {
-        console.log("succes", data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <div>
@@ -66,7 +40,6 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LayoutClient>
-        <button onClick={getPostNewProduct}>Post</button>
         <HomePage />
       </LayoutClient>
     </div>
