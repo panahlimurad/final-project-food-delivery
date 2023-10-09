@@ -1,5 +1,5 @@
 import React from "react";
-import restLogo from "../../../public/svg/restLogo.svg";
+import restLogo from "../../../../public/svg/restLogo.svg";
 import Image from "next/image";
 
 const CardRestaurant = () => {

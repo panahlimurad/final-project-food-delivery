@@ -19,6 +19,8 @@ const RestaurantContainer = () => {
   //   dispatch(getAsyncRestaurant());
   // }, [dispatch]);
 
+  
+
   return (
 
       <div className="h-[600px] overflow-y-auto">

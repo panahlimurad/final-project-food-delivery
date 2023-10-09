@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import aboutImage from "../../../../public/svg/aboutImage.svg";
-import aboutImageSmall from "../../../../public/svg/aboutImageSmall.svg";
+import aboutImage from "../../../../../public/svg/aboutImage.svg";
+import aboutImageSmall from "../../../../../public/svg/aboutImageSmall.svg";
 
 const AboutImage = () => {
   const [width, setWidth] = useState(0);

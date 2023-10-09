@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import flag from "../../../public/svg/englishFlag.svg";
+import flag from "../../../../public/svg/englishFlag.svg";
 import Link from "next/link";
 import SignButton from "../signInButton/SignInButton";
 

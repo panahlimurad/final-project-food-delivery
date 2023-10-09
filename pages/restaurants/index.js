@@ -1,5 +1,5 @@
-import CardRestaurantContainer from "../../feature/ClientShared/CardRestaurantContainer/CardRestaurantContainer";
-import NavbarRestaurant from "../../feature/ClientShared/RestaurantNavbar/NavbarRestaurant";
+import CardRestaurantContainer from "../../feature/ClientShared/components/CardRestaurantContainer/CardRestaurantContainer";
+import NavbarRestaurant from "../../feature/ClientShared/components/RestaurantNavbar/NavbarRestaurant";
 import LayoutClient from '../../layoutClient/LayoutClient'
 
 import React from "react";

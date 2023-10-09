@@ -1,6 +1,6 @@
 import styles from "./footerTop.module.css"
-import pizza from "../../../../public/svg/pizza.svg"
-import hamburger from "../../../../public/svg/hamburger1.svg"
+import pizza from "../../../../../public/svg/pizza.svg"
+import hamburger from "../../../../../public/svg/hamburger1.svg"
 import Image from "next/image";
 
  export const FooterTop = () => {

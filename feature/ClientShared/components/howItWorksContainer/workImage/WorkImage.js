@@ -1,8 +1,8 @@
 "use client"
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import workImage from "../../../../public/svg/workImage.svg";
-import aboutImageSm from "../../../../public/svg/aboutImageSm.svg"
+import workImage from "../../../../../public/svg/workImage.svg";
+import aboutImageSm from "../../../../../public/svg/aboutImageSm.svg"
 
 const WorkImage = () => {
   const [width, setWidth] = useState(0);

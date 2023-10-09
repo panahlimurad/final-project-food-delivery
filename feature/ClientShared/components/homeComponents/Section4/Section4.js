@@ -1,7 +1,7 @@
 import styles from "../Section2/Section2.module.css"
-import kfc from "../../../../public/svg/kfc.svg"
-import hamburger from "../../../../public/svg/hamburger2.svg"
-import pizza from "../../../../public/svg/pizza1.svg"
+import kfc from "../../../../../public/svg/kfc.svg"
+import hamburger from "../../../../../public/svg/hamburger2.svg"
+import pizza from "../../../../../public/svg/pizza1.svg"
 import Image from "next/image"
  export const Section4 = () => {
     return (
