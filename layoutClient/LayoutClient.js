@@ -7,7 +7,7 @@ const LayoutClient = ({children}) => {
   return (
     <>
     <Header/>
-    <div className='bg-white'>
+    <div >
     {children}
     </div>
     
