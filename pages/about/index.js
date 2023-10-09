@@ -1,4 +1,4 @@
-import AboutContainer from '../../feature/ClientShared/aboutContainer/AboutContainer'
+import AboutContainer from '../../feature/ClientShared/components/aboutContainer/AboutContainer'
 import React from 'react'
 import LayoutClient from '../../layoutClient/LayoutClient'
 

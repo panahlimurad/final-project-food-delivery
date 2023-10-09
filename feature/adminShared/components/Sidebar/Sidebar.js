@@ -207,7 +207,6 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
               href={"/admin/login"}
               onClick={(event) => {
                 // removeFromLocalStorage();
-                closeAddModal();
               }}>
               <div className="flex items-center gap-5 p-2 rounded-md  text-sm font-medium leading-6 hover:bg-customHover transition">
                 <svg

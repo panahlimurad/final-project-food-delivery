@@ -22,7 +22,7 @@ const RestaurantCards = ({ name, img_url ,isLoading}) => {
         {name}
       </div>
       <div className="font-medium text-sm text-gray_2 xs:block hidden">
-        {/* bura category gelecek */}Fast food
+       Fast food
       </div>
     </div>
     <div className="flex flex-col gap-5">
