@@ -10,7 +10,7 @@ token = userData?.user?.access_token
 }
 
 
-// Register
+// Regist
 export const Register = async (endpoint, data)=>{
     try {
         const response = await instanceAxiosAdmin.post(endpoint, data);
