@@ -4,7 +4,7 @@ import rightImage from "../../../../../public/svg/Section1.svg";
 import hamburger from "../../../../../public/svg/hamburger1.svg";
 import fryPoteto from "../../../../../public/svg/frypoteto.svg";
 import pizza from "../../../../../public/svg/pizza.svg";
-import axios from "axios";
+
 
 export const Section1 = () => {
  
