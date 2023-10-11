@@ -1,8 +1,9 @@
 import React from 'react'
+import RegisterContainer from '../../feature/ClientShared/register/registerContainer'
 
 const Register = () => {
   return (
-    <div>Register</div>
+  <RegisterContainer/>
   )
 }
 
