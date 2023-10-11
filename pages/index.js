@@ -2,7 +2,6 @@
 import Head from "next/head";
 import LayoutClient from "../layoutClient/LayoutClient";
 import HomePage from "../pages/home/index";
-
 // import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 // import { useTranslation } from "next-i18next";
 
@@ -30,8 +29,7 @@ const Home = () => {
   //   });
   // };
 
-
-
+  
   return (
     <div>
       <Head>

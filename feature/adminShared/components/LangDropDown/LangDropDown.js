@@ -19,7 +19,7 @@ const LangDropDown = () => {
     if (storedLanguage) {
       setSelectedLanguage(storedLanguage);
     }
-  }, []);
+  }, [selectedLanguage]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);

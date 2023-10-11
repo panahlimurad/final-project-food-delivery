@@ -6,6 +6,18 @@ html{
   height: 100%;
 }
 
+body::-webkit-scrollbar {
+  width: 5px; 
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #C74FEB; 
+  border-radius: 4px; 
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #1e1e30; 
+}
 body {
   
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
