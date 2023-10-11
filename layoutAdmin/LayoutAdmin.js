@@ -8,23 +8,24 @@ import Footer from "../feature/adminShared/components/Footer/index";
 import Navbar from "../feature/adminShared/components/Header/Header";
 
 
+
 const LayoutAdmin = ({ children }) => {
   const router = useRouter();
 
   return (
-    <div className={styled.bodyAdmin}>
-      <Navbar />
-      <div className={styled.panel}>
-        <div className={styled.leftBar}>
-          <Sidebar />
-          <Footer />
-        </div>
-        <div className={styled.main}>
-          {router.pathname !== "/admin" ? <PageHeader /> : null}
-          {children}
+      <div className={styled.bodyAdmin}>
+        <Navbar />
+        <div className={styled.panel}>
+          <div className={styled.leftBar}>
+            <Sidebar />
+            <Footer />
+          </div>
+          <div className={styled.main}>
+            {router.pathname !== "/admin" ? <PageHeader /> : null}
+            {children}
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
