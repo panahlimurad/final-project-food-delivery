@@ -13,7 +13,7 @@ const LoginForm = () => {
     setPasswordType("password");
   };
   return (
-    <form className="lg:w-[640px] w-full md:px-10">
+    <form className="md:w-[640px] w-full md:px-10">
       <div className="flex justify-center lg:text-3xl text-2xl gap-10 mb-14">
         <Link
           href="/login"
@@ -34,9 +34,27 @@ const LoginForm = () => {
       </div>
       <div className="mb-4">
         <label className="text-gray_2 xl:text-xl tetx-lg font-medium lg:mb-4 mb-2 block">
+          Full Name
+        </label>
+        <input
+          placeholder="Full name"
+          className="ps-7 pe-14 text-gray_2 font-medium w-full xl:h-[68px] h-[54px] rounded-md bg-light_red outline-none"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="text-gray_2 xl:text-xl tetx-lg font-medium lg:mb-4 mb-2 block">
           Username
         </label>
         <input
+          placeholder="Username"
+          className="ps-7 pe-14 text-gray_2 font-medium w-full xl:h-[68px] h-[54px] rounded-md bg-light_red outline-none"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="text-gray_2 xl:text-xl tetx-lg font-medium lg:mb-4 mb-2 block">
+          Email
+        </label>
+        <input type="email"
           placeholder="Username"
           className="ps-7 pe-14 text-gray_2 font-medium w-full xl:h-[68px] h-[54px] rounded-md bg-light_red outline-none"
         />
@@ -45,12 +63,11 @@ const LoginForm = () => {
         <label className="text-gray_2 xl:text-xl tetx-lg font-medium mb-4 block">
           Password
         </label>
-        <input
-          type={passwordType}
+        <input type={passwordType}
           placeholder="Username"
           className="ps-7 pe-14 text-gray_2 font-medium w-full xl:h-[68px] h-[54px] rounded-md bg-light_red outline-none"
         />
-        <button
+            <button
           type="button"
           onClick={togglePassword}
           className="absolute xl:top-[70px] lg:top-[60px] top-[56px] right-[10px]"
@@ -62,7 +79,7 @@ const LoginForm = () => {
           )}
         </button>
       </div>
-      <button className="w-full xl:h-[68px] h-[54px] mt-8 bg-primary text-white font-medium lg:text-[22px] text-lg rounded-md">
+      <button className="w-full xl:h-[68px] h-[54px] mt-8 bg-primary text-white font-medium xl:text-[22px] text-lg rounded-md">
         Login
       </button>
     </form>

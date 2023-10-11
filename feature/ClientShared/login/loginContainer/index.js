@@ -7,7 +7,7 @@ const LoginContainer = () => {
   return (
     <div className="px-[34px] py-[30px]">
       <LoginHeader />
-      <div className="flex items-center">
+      <div className="lg:flex items-center justify-around">
         <LoginLeft />
         <LoginForm />
       </div>
