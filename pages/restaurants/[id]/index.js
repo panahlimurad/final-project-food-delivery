@@ -6,41 +6,43 @@ import { ButtonStyle } from '../../../feature/ClientShared/Button/Button'
 import { Table } from '../../../feature/ClientShared/RestaurantTable/Table'
 import { Basket } from '../../../feature/ClientShared/RestaurantTable/Basket'
 import LayoutClient from "../../../layoutClient/LayoutClient"
-
+import BasketModal from '../../../feature/ClientShared/components/BasketModal'
+import { useState } from 'react'
 const AboutRestaurants = () => {
+  const [activeModal, setActiveModal] = useState(false)
   return (
-    
-    
+
+
     <LayoutClient>
-<div className={`${styles["top-content"]} mt-6 pl-6 pr-6 mb-10 bg-[#FFF]`}>
-      <div className={`${styles["content-image"]}`}>
-        <Image src={PapaJohns} alt='restaurant' />
-      </div>
-      <div className='mt-4 flex items-center  justify-between max-[873px]:flex-col'>
-        <div className='w-[366px] max-[873px]:mb-8 max-[485px]:w-[320px] max-[380px]:text-center'>
-          <h4 className={`${styles.restaurantName}`}>Papa John’s Pizza Restaurant</h4>
-          <p className={`${styles["restaurant-paragraf"]}`}>19 Nizami street, Sabail, Baku</p>
+      <div className={`${styles["top-content"]} mt-6 pl-6 pr-6 mb-10 bg-[#FFF]`}>
+        <div className={`${styles["content-image"]}`}>
+          <Image src={PapaJohns} alt='restaurant' />
         </div>
-        <div className='flex items-center '>
-          <div className='w-[246px] mr-10 max-[485px]:w-[160px] max-[485px]:mr-6 max-[380px]:w-[200px]'>
-            <h4 className={`${styles.restaurantName}`}>Cuisine</h4>
-            <p className={`${styles["restaurant-paragraf"]}`}>pizza, drink, hotdog, sendvich, roll</p>
-
+        <div className='mt-4 flex items-center  justify-between max-[873px]:flex-col'>
+          <div className='w-[366px] max-[873px]:mb-8 max-[485px]:w-[320px] max-[380px]:text-center'>
+            <h4 className={`${styles.restaurantName}`}>Papa John’s Pizza Restaurant</h4>
+            <p className={`${styles["restaurant-paragraf"]}`}>19 Nizami street, Sabail, Baku</p>
           </div>
-          <div className='flex items-center gap-9  max-[380px]:flex-col max-[380px]:gap-2'>
-            <ButtonStyle size="sm" color="#D63626" bg="fff">$5 Delivery</ButtonStyle>
-            <ButtonStyle size="sm" color="#FFF" bg="#D63626">Go Back</ButtonStyle>
+          <div className='flex items-center '>
+            <div className='w-[246px] mr-10 max-[485px]:w-[160px] max-[485px]:mr-6 max-[380px]:w-[200px]'>
+              <h4 className={`${styles.restaurantName}`}>Cuisine</h4>
+              <p className={`${styles["restaurant-paragraf"]}`}>pizza, drink, hotdog, sendvich, roll</p>
 
+            </div>
+            <div className='flex items-center gap-9  max-[380px]:flex-col max-[380px]:gap-2'>
+              <ButtonStyle size="sm" color="#D63626" bg="fff">$5 Delivery</ButtonStyle>
+              <ButtonStyle size="sm" color="#FFF" bg="#D63626">Go Back</ButtonStyle>
+
+            </div>
           </div>
         </div>
+        <div className={`${styles.line}`}></div>
+        <div className='mt-12 pl-4 pr-4 flex  max-[487px]:pl-0 max-[487px]:pr-0'>
+          <Table setActiveModal={setActiveModal} />
+          <Basket />
+        </div>
+        <BasketModal setActiveModal={setActiveModal} activeModal={activeModal} />
       </div>
-      <div className={`${styles.line}`}></div>
-      <div className='mt-12 pl-4 pr-4 flex  max-[487px]:pl-0 max-[487px]:pr-0'>
-        <Table/>
-        <Basket/>
-      </div>
-
-    </div>
     </LayoutClient>
   )
 }
