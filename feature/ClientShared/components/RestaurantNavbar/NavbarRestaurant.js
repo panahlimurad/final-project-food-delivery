@@ -27,7 +27,7 @@ const NavbarRestaurant = () => {
 
   return (
     <div
-      className="w-[250px] bg-[#F3F4F6] p-6 flex-none"
+      className="w-[250px] bg-[#F3F4F6] p-6 flex-none hidden sm:block"
       style={{ maxHeight: "600px", overflowY: "auto" }}>
       <ul className="font-semibold text-lg text-[#333333] flex flex-col gap-5">
         {links.map((link, index) => (
