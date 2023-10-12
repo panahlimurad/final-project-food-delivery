@@ -18,7 +18,7 @@ function BasketModal({ setActiveModal, activeModal }) {
             <button onClick={handleClose} className={`${styles.closeModal}`}>x</button>
           </div>
           <ScrollBarContainer>
-
+            {/* table */}
           <table className="w-full h-full">
             <tbody>
              <tr className={`${styles.tableRow} relative  border-b-[1px] border-[#E0E0E0]`}>
