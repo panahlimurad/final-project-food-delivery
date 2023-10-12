@@ -7,8 +7,13 @@ import SignButton from "../signInButton/SignInButton";
 import basket from "../../assets/basket.svg";
 import { RiSearch2Line } from "react-icons/ri";
 import { motion } from "framer-motion";
+import { useTranslation } from "next-i18next";
+import LangDropDown from "../../../adminShared/components/LangDropDown/LangDropDown";
+
+
 
 const Header = () => {
+  const { t } = useTranslation();
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
   const [showFoodyText, setShowFoodyText] = useState(true);
   const [showInput, setShowInput] = useState(false);
@@ -27,8 +32,8 @@ const Header = () => {
   const links = [
     { text: "Home", href: "/" },
     { text: "Restaurants", href: "/restaurants" },
-    { text: "About us", href: "/about" },
-    { text: "How it works", href: "/howItWorks" },
+    { text: "AboutUs", href: "/about" },
+    { text: "HowItworks", href: "/howItWorks" },
     { text: "FAQs", href: "/FAQs" },
   ];
 
@@ -59,8 +64,8 @@ const Header = () => {
           </div>
         )}
       </div>
-      <div className="hidden lg:block w-[520px]">
-        <ul className="flex justify-center gap-8 font-medium text-lg text-[#828282]">
+      <div className="hidden lg:block w-auto">
+        <ul className="flex justify-center gap-6 font-bold text-base text-[#828282]">
           {links.map((link, index) => (
             <li
               key={index}
@@ -68,25 +73,25 @@ const Header = () => {
                 index === activeLinkIndex ? "text-[#D63626]" : ""
               }`}
               onClick={() => handleLinkClick(index)}>
-              <Link href={link.href}>{link.text}</Link>
+              <Link href={link.href}>{t(`common:${link.text}`)}</Link>
             </li>
           ))}
         </ul>
       </div>
       <div
-        className={`flex-1 sm:w-[300px] sm:h-[45px] rounded-lg sm:block ${
+        className={`flex-1 sm:w-[300px] justify-center sm:h-[35px] rounded-lg sm:block ${
           showInput ? "block" : "hidden"
         }`}>
         <motion.input
           initial={{ width: 0 }}
-          animate={{ width: showInput ? "100%" : "80%" }}
+          animate={{ width: showInput ? "90%" : "80%" }}
           transition={{ duration: 0.2}}
-          className="sm:w-[300px] sm:h-[45px] rounded-lg p-4"
+          className="sm:w-[300px] sm:h-[35px] rounded-lg p-4 ml-6"
           type="text"
-          placeholder="Search"
+          placeholder={t("common:Search")}
         />
       </div>
-      <div className="flex gap-4">
+      <div className="flex items-center">
         <div className="bg-[#D63626] w-[41px] h-[41px] rounded-full text-white sm:hidden">
           <button
             className="flex justify-center items-center w-[41px] h-[41px] cursor-pointer"
@@ -94,23 +99,23 @@ const Header = () => {
             <RiSearch2Line size={25} />
           </button>
         </div>
-        <div className="flex items-center w-[41px] h-[41px]">
-          <Image className="cursor-pointer" src={flag} />
+        <div className="z-20 transition-transform transform hover:scale-95">
+        <LangDropDown/>
         </div>
         <div className="flex gap-4 hidden">
-          <div className="w-[44px] relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757]">
+          <div className="w-[44px] relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757] transition-transform transform hover:scale-95">
             <span className="absolute bg-[#D63626] text-white top-[-10px] w-6 text-center right-[-4px] rounded-full text-">
               2
             </span>
             <Image src={basket} />
           </div>
-          <div className="w-[44px] relative h-[44px] text-white text-xl cursor-pointer flex justify-center items-center rounded-full bg-[#F178B6]">
+          <div className="w-[44px] relative h-[44px] text-white text-xl cursor-pointer flex justify-center items-center rounded-full bg-[#F178B6] transition-transform transform hover:scale-95">
             <p>MP</p>
           </div>
         </div>
       </div>
-      <div className="hidden lg:block">
-        <SignButton url="/login" text="Sign up" />
+      <div className="hidden lg:block transition-opacity ease-in-out duration-300 hover:opacity-75">
+        <SignButton url="/login" text={t("common:SignIn")} />
       </div>
     </div>
   );

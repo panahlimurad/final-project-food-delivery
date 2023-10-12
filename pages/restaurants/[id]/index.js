@@ -6,6 +6,7 @@ import { ButtonStyle } from '../../../feature/ClientShared/Button/Button'
 import { Table } from '../../../feature/ClientShared/RestaurantTable/Table'
 import { Basket } from '../../../feature/ClientShared/RestaurantTable/Basket'
 import LayoutClient from "../../../layoutClient/LayoutClient"
+
 const AboutRestaurants = () => {
   return (
     

@@ -3,11 +3,17 @@ import kfc from "../../../../../public/svg/kfc.svg"
 import hamburger from "../../../../../public/svg/hamburger2.svg"
 import pizza from "../../../../../public/svg/pizza1.svg"
 import Image from "next/image"
+import { useTranslation } from "next-i18next";
+
+
  export const Section4 = () => {
+
+  const { t } = useTranslation("common");
+
     return (
         <div className={`flex flex-col items-center h-[800px] ${styles["section-4"]}`}>
             <div className={`w-[780px] flex flex-col items-center mb-8 ${styles["top-content"]}`}>
-                <h1 className={`text-[#181617] ${styles["section-title"]}`}>Our Popular Update New Foods</h1>
+                <h1 className={`text-[#181617] ${styles["section-title"]}`}>{t("common:OurPopularUpdateNewFoods")}</h1>
                 <p className={`${styles["section-paragraf"]}`}>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
             </div>
             <div className={`flex items-center ${styles["card-section"]}`}>
