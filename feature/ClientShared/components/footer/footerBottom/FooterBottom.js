@@ -4,7 +4,13 @@ import instagram from "../../../../../public/svg/instagram.svg"
 import facebook from "../../../../../public/svg/facebook.svg"
 import styles from "./FooterBottom.module.css"
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
+
+
  export const FooterBottom = () => {
+
+  const { t } = useTranslation("common");
+
     return (
         <div className={`${styles["footer-bottom"]}   pt-20`}>
             <div className={`${styles["section-left"]}`}>
@@ -22,25 +28,25 @@ import Link from "next/link";
 
             <div className={`${styles["section-right"]}`}>
                 <div className={`${styles["section-2"]} mr-24`}>
-                    <div className={`${styles["section-title"]} text-[#F5F5F5] mb-2`}>Popular </div>
-                    <Link className={`${styles.link}`} href="/programming">Programming </Link>
-                    <Link className={`${styles.link}`} href="/programming"> Books for children </Link>
-                    <Link className={`${styles.link}`}href="/programming">Psychology </Link>
-                    <Link className={`${styles.link}`} href="/programming"> Business </Link>
+                    <div className={`${styles["section-title"]} text-[#F5F5F5] mb-2`}>{t("common:Popular")} </div>
+                    <Link className={`${styles.link}`} href="/programming">{t("common:Programming")} </Link>
+                    <Link className={`${styles.link}`} href="/programming"> {t("common:Booksforchildren")} </Link>
+                    <Link className={`${styles.link}`}href="/programming">{t("common:Psychology")} </Link>
+                    <Link className={`${styles.link}`} href="/programming"> {t("common:Business")} </Link>
 
                 </div>
                 <div className={`${styles["section-3"]} mr-24`}>
-                    <div className={`${styles["section-title"]} text-[#F5F5F5] mb-2`}>Cash  </div>
-                    <Link className={`${styles.link}`} href="/programming">Delivery </Link>
-                    <Link className={`${styles.link}`} href="/programming">  Payment </Link>
-                    <Link className={`${styles.link}`} href="/programming"> About the store </Link>
+                    <div className={`${styles["section-title"]} text-[#F5F5F5] mb-2`}>{t("common:Cash")}  </div>
+                    <Link className={`${styles.link}`} href="/programming">{t("common:Delivery")} </Link>
+                    <Link className={`${styles.link}`} href="/programming">  {t("common:Payment")} </Link>
+                    <Link className={`${styles.link}`} href="/programming"> {t("common:Aboutthestore")} </Link>
 
                 </div>
                  <div className={`${styles["section-4"]}`}>
-                    <div className={`${styles["section-title"]} text-[#F5F5F5] mb-2`}>Help  </div>
-                    <Link className={`${styles.link}`} href="/programming">Contacts </Link>
-                    <Link className={`${styles.link}`} href="/programming"> Purchase returns </Link>
-                    <Link className={`${styles.link}`} href="/programming">  Buyer help </Link>
+                    <div className={`${styles["section-title"]} text-[#F5F5F5] mb-2`}>{t("common:Help")}  </div>
+                    <Link className={`${styles.link}`} href="/programming">{t("common:Contacts")} </Link>
+                    <Link className={`${styles.link}`} href="/programming"> {t("common:Purchasereturns")}</Link>
+                    <Link className={`${styles.link}`} href="/programming">  {t("common:Buyerhelp")}</Link>
 
                 </div>
             </div>

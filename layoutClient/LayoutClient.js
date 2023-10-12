@@ -1,19 +1,18 @@
-import React from 'react'
-import Header from '../feature/ClientShared/components/header/Header'
-import Footer from '../feature/ClientShared/components/footer/Footer'
+import React from "react";
+import Header from "../feature/ClientShared/components/header/Header";
+import Footer from "../feature/ClientShared/components/footer/Footer";
 
-
-const LayoutClient = ({children}) => {
+const LayoutClient = ({ children }) => {
   return (
     <>
-    <Header/>
-    <div >
-    {children}
-    </div>
-    
-    <Footer/>
-    </>
-  )
-}
+      <div className="p-6">
+        <Header />
+        <div>{children}</div>
+      </div>
 
-export default LayoutClient
+      <Footer />
+    </>
+  );
+};
+
+export default LayoutClient;

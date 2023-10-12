@@ -3,7 +3,12 @@ import kfc from "../../../../../public/svg/kfc.svg"
 import fryPoteto from "../../../../../public/svg/frypoteto.svg"
 import pizza from "../../../../../public/svg/pizza3.svg"
 import styles from "./Section3.module.css"
+
+
+
+
 export const Section3 = () => {
+    
     return (
         <div className="mb-44">
             <div className={`flex justify-around items-center mb-40 ${styles["section-3"]}`}>
