@@ -1,0 +1,192 @@
+.basketModal {
+    transition: 0.5s all ease;
+    width: 60%;
+    height: auto;
+    margin: 0 auto;
+    position: fixed;
+    top: 5%;
+    left: 20%;
+    z-index: 999;
+    border-radius: 20px;
+    background: #FFF;
+    padding: 28px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hideModal {
+    height: 0;
+    display: none;
+}
+
+.showModal {
+    height: auto;
+    display: block;
+}
+
+.closeModal {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: #BDBDBD;
+    background-color: white;
+    border: 1px solid #BDBDBD;
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+.restaurantName {
+    color: #4F4F4F;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 0.66px;
+}
+
+.restaurant-paragraf {
+    color: #828282;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.42px;
+}
+.basketTitle {
+    color: #4F4F4F;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.48px;
+}
+
+.basket-btn1 {
+    width: 90%;
+    background-color: #D63626;
+    height: 62px;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.48px;
+    border-radius: 100px;
+    text-align: start;
+    padding-left: 24px;
+}
+
+.basket-totalAmount {
+    position: absolute;
+    right: 48px;
+    width: 135px;
+    height: 43px;
+    border-radius: 100px;
+    background: #FFF;
+    color: #D63626;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.48px;
+}
+.basket-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 48px;
+    border-radius: 50px;
+    background-color: #F3F4F6;
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.48px;
+    padding: 18px;
+}
+.tableRow{
+    margin-bottom: 8px !important;
+    padding-bottom: 22px !important;
+    height: auto;
+}
+@media (max-width:981px) {
+    .basketModal {
+        padding: 18px;
+    }
+}
+@media (max-width:922px) {
+    .restaurantName {
+        font-size: 18px;
+    }
+}
+@media (max-width:822px) {
+    .basketModal {
+        width: 72%;
+        left: 15%;
+    }
+}
+@media (max-width:662px) {
+    .basketModal {
+        width: 80%;
+        left: 10%;
+    }
+}
+@media (max-width:590px) {
+    .basketModal {
+        width: 86%;
+        left: 8%;
+    }
+}
+@media (max-width:548px) {
+    .restaurantName {
+        font-size: 16px;
+    }
+    .closeModal {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+    .basket-btn {
+        gap: 4px;
+        width: 32px;
+        border-radius: 50px;
+        background-color: #F3F4F6;
+        color: #000;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.48px;
+        padding: 12px;
+    }
+    .restaurant-paragraf {
+        font-size: 14px;
+    }
+}
+@media (max-width:500px) {
+    .basketModal {
+        width: 96%;
+        left: 2%;
+    }
+}
+@media (max-width:445px) {
+    .basketModal {
+        width: 98%;
+        padding: 6px;
+        left: 1%;
+    }
+    .restaurantName {
+        font-size: 14px;
+    }
+    .basket-totalAmount {
+        width: 86px;
+        height: 36px;
+    }
+
+}
+@media (max-width:380px) {
+    .restaurantName {
+        font-size: 12px;
+    }
+    .restaurant-paragraf {
+        font-size: 12px;
+    }
+}

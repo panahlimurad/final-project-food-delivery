@@ -387,4 +387,40 @@
     .top-container {
         width: 78%;
     }
+    .section3-title {
+        font-size: 22px;
+
+    }
+
+    .section3-paragraf {
+        font-size: 14px;
+    }
+}
+@media (max-width: 380px) {
+    .top-container {
+        width: 86%;
+    }
+    .bottom-container {
+        width: 86%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .section3-container1 {
+        width: 210px;
+        height: 268px;
+    }
+    .section3-image2 {
+        width: 180px;
+        right: 80px;
+    }
+    .section3-image3{
+        width: 180px;
+        right: 60px;
+    }
+    .section3-container {
+        width: 210px;
+        height: 268px;
+    }
+  
 }

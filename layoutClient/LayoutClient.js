@@ -5,7 +5,7 @@ import Footer from "../feature/ClientShared/components/footer/Footer";
 const LayoutClient = ({ children }) => {
   return (
     <>
-      <div className="p-6">
+      <div>
         <Header />
         <div>{children}</div>
       </div>
