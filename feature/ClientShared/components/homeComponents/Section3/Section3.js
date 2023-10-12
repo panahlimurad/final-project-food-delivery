@@ -27,7 +27,7 @@ export const Section3 = () => {
                 <div className={`w-1/3 relative mt-10 ${styles["bottom-container"]}`} >
                     <div className={`${styles["section3-container1"]} ml-12`}></div>
                     <div className={`w-[468.362px] h-[472.84px] absolute z-10 top-6 -right-12 ${styles["section3-image2"]}`}>
-                        <Image src={pizza} alt="pizza" className="" style={{ objectFit: "cover" }} />
+                        <Image src={pizza} alt="pizza" className=" max-[380px]:w-[180px]" style={{ objectFit: "cover" }} />
                     </div>
                 </div>
                 <div className={`w-2/5 mb-6 ${styles["top-container"]}`}>

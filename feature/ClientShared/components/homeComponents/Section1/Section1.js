@@ -42,7 +42,7 @@ export const Section1 = () => {
         </div>
         <div
           className={` ${styles.boxShadow} w-[278px] h-[91px] bg-[#FFF] gap-4 absolute -top-8 z-30 -right-6`}>
-          <Image src={pizza} className="w-[80px] h-[60px]" alt="Pizza" />
+          <Image src={pizza} className="w-[80px] h-[60px] max-[380px]:w-[40px]" alt="Pizza" />
           <p className={`${styles.paragraf1}`}>Pizza Hut Yummy ...</p>
         </div>
         <div

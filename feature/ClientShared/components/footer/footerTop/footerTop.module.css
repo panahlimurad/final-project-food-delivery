@@ -199,6 +199,29 @@ left: 40px;
 
 @media (max-width: 400px) {
     .footer-Top{
-left: 30px;
+left: 25px;
+height: 280px;
+    }
+    .main{
+margin-left: 0;
+    }
+}
+@media (max-width: 380px) {
+    .footer-Top{
+        width: 280px;
+        left: 40px;
+    }
+    .title{
+        font-size: 16px;
+        line-height: normal;
+    }
+    .footer-btn{
+        font-size: 14px;
+    }
+
+}
+@media (max-width: 350px) {
+    .footer-Top{
+        left: 20px;
     }
 }

@@ -99,6 +99,12 @@ line-height: 196.187%;
 }
 @media (max-width: 508px) {
     .section-left {
-        width: 66%;
+        width: 72%;
+    }
+    .section-title{
+        font-size: 22px;
+    }
+    .title{
+        font-size: 18px;
     }
 }
