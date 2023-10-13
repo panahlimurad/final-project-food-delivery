@@ -43,7 +43,7 @@ const Navbar = () => {
       </div>
       <div className="flex gap-3 items-center justify-between">
         <NavButton />
-        <LangDropDown />
+        <LangDropDown backgroundColor="#27283C"/>
         <div className="rounded-2xl flex items-center">
           <Image
             src={adminAvatar}

@@ -19,7 +19,7 @@ export const Register = async (endpoint, data)=>{
         throw error;
     }
 }
-// re
+
 export const Login = async (endpoint, data)=>{
     try {
         const response = await instanceAxiosAdmin.post(endpoint, data);

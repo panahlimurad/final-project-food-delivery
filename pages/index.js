@@ -2,15 +2,14 @@
 import Head from "next/head";
 import LayoutClient from "../layoutClient/LayoutClient";
 import HomePage from "../pages/home/index";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 
-// import {serverSideTranslations} from "next-i18next/serverSideTranslations"
-// import { useTranslation } from "next-i18next";
 
-// export const getStaticProps = async ({locale})=>({
-//   props:{
-//       ...(await serverSideTranslations(locale, ["common"]))
-//   }
-// })
+export const getStaticProps = async ({locale})=>({
+  props:{
+      ...(await serverSideTranslations(locale, ["common"]))
+  }
+})
 
 const Home = () => {
   // const {t, i18n} = useTranslation()
@@ -30,8 +29,7 @@ const Home = () => {
   //   });
   // };
 
-
-
+  
   return (
     <div>
       <Head>

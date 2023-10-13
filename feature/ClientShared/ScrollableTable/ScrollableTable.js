@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ScrollBarContainer = styled.div`
+export const ScrollBarContainer = styled.div`
   width: 100%;
   max-height: 660px; 
   overflow-y: auto;
@@ -10,12 +10,12 @@ const ScrollBarContainer = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #D63626; 
+    /* background-color: #D63626;  */
+    background-color: ${(props) => (props.bg === "#C74FEB" ? "#C74FEB" : "#D63626")};
     border-radius: 4px; 
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #F3F4F6; 
     border-radius: 4px; 
   }
 `;

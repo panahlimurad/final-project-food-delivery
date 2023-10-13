@@ -4,18 +4,19 @@ import rightImage from "../../../../../public/svg/Section1.svg";
 import hamburger from "../../../../../public/svg/hamburger1.svg";
 import fryPoteto from "../../../../../public/svg/frypoteto.svg";
 import pizza from "../../../../../public/svg/pizza.svg";
-
+import { useTranslation } from "next-i18next";
 
 export const Section1 = () => {
+  const { t } = useTranslation('common');
  
 
   return (
     <div
-      className={`flex items-center justify-around bg-[#F3F4F6] rounded h-[740px] pb-28 mb-20 ${styles["section-1"]}`}>
+      className={`flex items-center justify-around bg-[#F3F4F6] pt-10 rounded h-[740px] pb-28 mb-20 ${styles["section-1"]}`}>
       <div
         className={`w-[643px] flex flex-col  ml-6 ${styles["left-container"]}`}>
         <h1 className={`${styles.title}`}>
-          Our Food site makes it easy to find local food
+          {t("common:OURFOOD")}
         </h1>
         <p className={`${styles.paragraf} w-[510px]`}>
           {" "}
@@ -26,11 +27,11 @@ export const Section1 = () => {
           <button
           
             className={`w-[220px] h-[70px] rounded-[30px] bg-[#D63626] text-[#FFF] text-center hover:bg-[#C43626] ${styles["section-btn"]}`}>
-            Register
+            {t("common:Register")}
           </button>
           <button
             className={`w-[220px] h-[70px] border-solid border-2 border-[#828282] rounded-[30px] bg-[#F2F2F2] text-[#828282] text-center hover:bg-[#bcc8e2b7] ${styles["section-btn"]}`}>
-            Order now
+            {t("common:ordernow")}
           </button>
         </div>
       </div>
@@ -41,7 +42,7 @@ export const Section1 = () => {
           <Image src={rightImage} alt="hamburger" />
         </div>
         <div
-          className={` ${styles.boxShadow} w-[278px] h-[91px] bg-[#FFF] gap-4 absolute -top-8 z-30 -right-6`}>
+          className={` ${styles.boxShadow} w-[278px] h-[91px] bg-[#FFF] gap-4 absolute top-10 z-30 right-12`}>
           <Image src={pizza} className="w-[80px] h-[60px]" alt="Pizza" />
           <p className={`${styles.paragraf1}`}>Pizza Hut Yummy ...</p>
         </div>

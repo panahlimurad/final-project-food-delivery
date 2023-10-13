@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import az from "../../../adminFolders/assets/image/flagicons/az.svg";
 import en from "../../../adminFolders/assets/image/flagicons/en.svg";
@@ -7,14 +7,13 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
-const LangDropDown = () => {
+const LangDropDown = ({ backgroundColor, bgFlags }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("en"); 
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
   const { i18n } = useTranslation();
   const router = useRouter();
 
   useEffect(() => {
-    
     const storedLanguage = localStorage.getItem("selectedLanguage");
     if (storedLanguage) {
       setSelectedLanguage(storedLanguage);
@@ -26,8 +25,6 @@ const LangDropDown = () => {
   };
 
   const changeLanguage = (newLanguage) => {
-    
-  
     router.push(router.pathname, router.asPath, { locale: newLanguage });
     i18n.changeLanguage(newLanguage);
     localStorage.setItem("selectedLanguage", newLanguage);
@@ -35,9 +32,10 @@ const LangDropDown = () => {
     setSelectedLanguage(newLanguage);
   };
 
-
   return (
-    <div className="relative inline-block bg-[#27283C]">
+    <div
+      className="relative inline-block"
+      style={{ backgroundColor: `${bgFlags}` }}>
       <button onClick={toggleDropdown} className="px-4 py-2">
         <Image
           src={
@@ -48,35 +46,43 @@ const LangDropDown = () => {
         />
       </button>
       {isOpen && (
-        <div className="absolute h-48 left-1 w-16 bg-[#27283C] rounded-md">
-          <div className="flex flex-col justify-center items-center gap-6 mt-4">
-            <button onClick={() => changeLanguage("en")}>
-              <Image
-                src={en}
-                alt="enFlag"
-                className={`opacity-75 cursor-pointer ${
-                  selectedLanguage === "en" ? "hover:opacity-100" : ""
-                }`}
-              />
-            </button>
-            <button onClick={() => changeLanguage("az")}>
-              <Image
-                src={az}
-                alt="azFlag"
-                className={`opacity-75 cursor-pointer ${
-                  selectedLanguage === "az" ? "hover:opacity-100" : ""
-                }`}
-              />
-            </button>
-            <button onClick={() => changeLanguage("fr")}>
-              <Image
-                src={fr}
-                alt="frFlag"
-                className={`opacity-75 cursor-pointer ${
-                  selectedLanguage === "fr" ? "hover:opacity-100" : ""
-                }`}
-              />
-            </button>
+        <div
+          className="absolute h-36 left-1 w-16 rounded-md"
+          style={{ backgroundColor: `${backgroundColor}` }}>
+          <div className="flex flex-col justify-center items-center gap-4 mt-4">
+            {selectedLanguage !== "en" && (
+              <button onClick={() => changeLanguage("en")}>
+                <Image
+                  src={en}
+                  alt="enFlag"
+                  className={`opacity-50 cursor-pointer transition-opacity ease-in-out duration-300 hover:opacity-100 ${
+                    selectedLanguage === "en"
+                  }`}
+                />
+              </button>
+            )}
+            {selectedLanguage !== "az" && (
+              <button onClick={() => changeLanguage("az")}>
+                <Image
+                  src={az}
+                  alt="azFlag"
+                  className={`opacity-50 cursor-pointer transition-opacity ease-in-out duration-300 hover:opacity-100 ${
+                    selectedLanguage === "az"
+                  }`}
+                />
+              </button>
+            )}
+            {selectedLanguage !== "fr" && (
+              <button onClick={() => changeLanguage("fr")}>
+                <Image
+                  src={fr}
+                  alt="frFlag"
+                  className={`opacity-50 cursor-pointer transition-opacity ease-in-out duration-300 hover:opacity-100 ${
+                    selectedLanguage === "fr"
+                  }`}
+                />
+              </button>
+            )}
           </div>
         </div>
       )}
