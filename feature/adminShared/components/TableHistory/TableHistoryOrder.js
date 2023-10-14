@@ -2,6 +2,7 @@ import React from "react";
 import deleteBtn from "../../../../feature/adminFolders/assets/image/orders/delete.svg";
 import eyes from "../../../../feature/adminFolders/assets/image/orders/eyes.svg";
 import Image from "next/image";
+import ModalOrders from '../../../../pages/modalBtnOrders/ModalOrders'
 
 const TableHistoryOrder = () => {
   return (
@@ -48,7 +49,7 @@ const TableHistoryOrder = () => {
                     <td className="whitespace-nowrap px-6 py-4">Otto</td>
                     <td className="whitespace-nowrap px-6 py-4">@mdo</td>
                     <td className="whitespace-nowrap px-6 py-4 cursor-pointer">
-                      <Image src={eyes} alt=".." />
+                      <Image src={eyes} onClick={ModalOrders} alt=".." />
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 cursor-pointer">
                       <Image src={deleteBtn} alt=".." />
