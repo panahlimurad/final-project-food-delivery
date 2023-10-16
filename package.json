@@ -46,7 +46,7 @@
     "styled-components": "^6.0.8",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-react": "^5.3.1",
-    "sweetalert2": "^11.7.31"
+    "sweetalert2": "^11.7.32"
   },
   "devDependencies": {
     "@types/node": "20.7.0",

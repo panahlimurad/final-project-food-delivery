@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 export const ScrollBarContainer = styled.div`
   width: 100%;
-  max-height: 170px; 
+  max-height: 500px; 
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 5px; 
   }
 
   &::-webkit-scrollbar-thumb {
-    /* background-color: #D63626;  */
+    
     background-color: ${(props) => (props.bg === "#C74FEB" ? "#C74FEB" : "#D63626")};
     border-radius: 4px; 
   }

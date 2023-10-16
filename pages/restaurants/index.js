@@ -16,7 +16,7 @@ const Restaurants = () => {
     <>
     <LayoutClient>
     <div
-      className="flex mt-4 gap-8">
+      className="flex gap-8">
       <NavbarRestaurant />
       <CardRestaurantContainer />
     </div>

@@ -3,7 +3,7 @@ import del from "../../../../adminFolders/assets/image/productCard/delete.svg";
 import pizza from "../../../../adminFolders/assets/image/productCard/product.svg";
 import Image from "next/image";
 import { shortText } from "../../../../adminShared/helper/shortText";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 // import Image from "next/image";
 // import CustomScrollbar from "shared/hooks/customScrollBar/customScrollBar";
 // import { shortText } from "shared/helper/shortText";
