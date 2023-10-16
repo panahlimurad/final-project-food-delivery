@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import restIcon from "../../../../public/svg/resticon.svg";
 import Image from "next/image";
-
+import { ScrollBarContainer } from "../../Scroll/Scroll";
 
 const NavbarRestaurant = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
@@ -26,22 +26,24 @@ const NavbarRestaurant = () => {
   ];
 
   return (
-    <div
-      className="w-[250px] bg-[#F3F4F6] p-6 flex-none hidden sm:block"
-      style={{ maxHeight: "600px", overflowY: "auto" }}>
-      <ul className="font-semibold text-lg text-[#333333] flex flex-col gap-5">
-        {links.map((link, index) => (
-          <li
-            key={index}
-            className={`flex p-1 gap-3 items-center cursor-pointer ${
-              index === activeLinkIndex ? "text-[#D63626] bg-[#cfc3c2]" : ""
-            }`}
-            onClick={() => handleClick(index)}>
-            <Image src={link.url} />
-            {link.text}
-          </li>
-        ))}
-      </ul>
+    <div className="mt-4">
+      <ScrollBarContainer bg="#C74FEB">
+        <div className="w-[250px] bg-[#F3F4F6] p-6 flex-none hidden sm:block">
+          <ul className="font-semibold text-lg text-[#333333] flex flex-col gap-5">
+            {links.map((link, index) => (
+              <li
+                key={index}
+                className={`flex p-1 gap-3 items-center cursor-pointer ${
+                  index === activeLinkIndex ? "text-[#D63626] bg-[#cfc3c2]" : ""
+                }`}
+                onClick={() => handleClick(index)}>
+                <Image src={link.url} />
+                {link.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </ScrollBarContainer>
     </div>
   );
 };

@@ -2,14 +2,15 @@ import React from "react";
 import deleteBtn from "../../../../feature/adminFolders/assets/image/orders/delete.svg";
 import eyes from "../../../../feature/adminFolders/assets/image/orders/eyes.svg";
 import Image from "next/image";
+import {ScrollBarContainer} from "../../../ClientShared/Scroll/Scroll";
 
 const TableHistoryOrder = () => {
   return (
-    <>
+    <ScrollBarContainer bg='#C74FEB'>
       <div className="overflow-x-hidden flex flex-col bg-slate-50 ">
         <div className="sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-            <div className="max-h-[500px] overflow-y-scroll">
+            <div>
               <table className="min-w-full text-left text-black text-sm font-light">
                 <thead className="border-b font-normal dark:border-neutral-500">
                   <tr>
@@ -264,7 +265,7 @@ const TableHistoryOrder = () => {
           </div>
         </div>
       </div>
-    </>
+    </ScrollBarContainer>
   );
 };
 

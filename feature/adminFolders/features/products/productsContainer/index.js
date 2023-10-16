@@ -8,7 +8,7 @@ import ProductCard from "../productCard";
 import { GetProducts } from "../../../../adminShared/services/dataApi";
 import { useQuery } from "react-query";
 import { motion } from "framer-motion";
-import { ScrollBarContainer } from "../../../../ClientShared/ScrollableTable/ScrollableTable";
+import { ScrollBarContainer } from "../../../../ClientShared/Scroll/Scroll";
 // import PageHeader from "shared/components/PageHeader";
 
 // const getPostNewProduct = () => {
