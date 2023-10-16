@@ -1,10 +1,7 @@
-import Table from "../../../../adminShared/components/Table/index"
+import Table from "../../../../adminShared/components/Table/index";
 
+const CategoryTable = ({ rows, isLoading }) => {
+  return <Table rows={rows} isLoading={isLoading} />;
+};
 
-const CategoryTable = ({rows,isLoading}) => {
-  return (
-    <Table rows={rows} isLoading={isLoading} />
-  )
-}
-
-export default CategoryTable
+export default CategoryTable;

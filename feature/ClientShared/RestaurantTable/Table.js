@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ScrollableTable, { Td, Th } from '../ScrollableTable/ScrollableTable';
 import pizza from "../../../public/svg/pizza.svg"
 import Image from 'next/image';
 import styles from "../../../pages/restaurants/[id]/AboutRestaurants.module.css";
 import add from "../../../public/svg/basket.svg";
-export const Table = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export const Table = ({setActiveModal}) => {
 
   const handleAddToCart = () => {
     // Sepete ekleme işlemi burada yapılabilir
     // Sepete eklendikten sonra modalı açın
-    setIsModalOpen(true);
+    setActiveModal(true);
   };
   return (
     <div className={`w-[846px] h-[961px] ${styles["scrollbar-container"]} mr-12 `}>

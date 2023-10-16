@@ -292,3 +292,23 @@
         font-size: 20px;
     }
 }
+@media (max-width: 380px) {
+    .right-image {
+        width: 310px;
+    }
+    .paragraf1{
+        font-size: 14px;
+    }
+    .boxShadow{
+        height: 60px;
+    }
+    .left-container{
+ margin-top: 0;
+ width: 80%;
+    }
+    .section-btn{
+        width: 180px;
+        height: 52px;
+        font-size: 12px;
+    }
+}

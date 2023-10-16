@@ -7,7 +7,7 @@ const CardRestaurant = () => {
     <div
       className="w-[235px] h-[345px] flex flex-col gap-4 justify-center items-center p-3 cursor-pointer"
       style={{
-        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+        boxShadow: "2px 4px 4px 4px rgba(0, 0, 0, 0.25)",
       }}>
       <div>
         <Image width={174} height={160} src={restLogo} />
