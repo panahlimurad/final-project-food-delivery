@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const ScrollBarContainer = styled.div`
   width: 100%;
-  max-height: 500px; 
+  max-height: 260px; 
   overflow-y: auto;
   &::-webkit-scrollbar {
     width: 5px; 
