@@ -1,0 +1,9 @@
+.active {
+    border-radius: 4px;
+    background: #d89494;
+    /* background: #eccdcddc; */
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.6px
+}
