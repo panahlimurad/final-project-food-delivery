@@ -25,6 +25,7 @@ export default function AddModal({
  
 
   return (
+   
     <div>
       <div
         onClick={closeAddModal}
@@ -36,7 +37,7 @@ export default function AddModal({
       <div
         className={
           isAddModalOpen
-            ? `bg-gray text-gray fixed top-0 right-0 lg:px-10 px-2 py-4 h-full z-20  block overflow-y-auto lg:w-[948px] w-full`
+            ? `bg-[#38394E] text-white fixed top-0 right-0 lg:px-10 px-2 py-4 h-full z-20  block overflow-y-auto lg:w-[948px] w-full`
             : ` hidden`
         }
       >
@@ -54,7 +55,7 @@ export default function AddModal({
           <div className="lg:flex justify-between gap-24">
             <div className="mb-4">
               {" "}
-              <div className="text-lg mb-4">
+              <div className="text-lg mb-4 ">
                 {t(infoImg)}
               </div>
               {selectedImage && (
@@ -80,7 +81,7 @@ export default function AddModal({
             <div className="text-lg lg:mt-20 my-4">
               {t(description)}
             </div>
-            <div className="bg-gray-200  rounded-lg p-4 shadow lg:w-[526px] w-full">
+            <div className="bg-[#43445A]  rounded-lg p-4 shadow lg:w-[526px] w-full">
               {inputs?.map((field, id) => {
                 switch (field.type) {
                   case "text":
@@ -96,7 +97,7 @@ export default function AddModal({
                           type="text"
                           name={field.name}
                           id={field.name}
-                          className="bg-grayInput outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
+                          className="bg-grayInput text-black outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         />
                       </div>
                     );
@@ -112,7 +113,7 @@ export default function AddModal({
                         <textarea
                           id={field.name}
                           name={field.name}
-                          className="bg-grayInput outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"
+                          className="bg-grayInput text-black outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"
                         ></textarea>
                       </div>
                     );
@@ -129,7 +130,7 @@ export default function AddModal({
                           type="text"
                           name={field.name}
                           id={field.name}
-                          className="bg-grayInput outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
+                          className="bg-grayInput outline-none w-full text-black rounded-lg px-4 mt-3 h-[46px] focus:border"
                         />
                       </div>
                     );
@@ -147,7 +148,7 @@ export default function AddModal({
                           name={field.name}
                           id={field.name}
                           autoComplete={field.name}
-                          className="bg-grayInput outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
+                          className="bg-grayInput text-black outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         >
                           {/* {restaurantList?.map((res, id) => (
                             <option key={id} value={res.name}>
@@ -169,12 +170,12 @@ export default function AddModal({
             style={{ borderTop: "1px solid #43445A" }}
           >
             <button
-              className="lg:min-w-[400px] w-auto min-w-auto px-5 h-12 rounded-xl bg-gray-200 text-white shadow-lg hover:bg-purple"
+              className="lg:min-w-[400px] w-auto min-w-auto px-5 h-12 rounded-xl bg-[#38394E] shadow-lg hover:bg-purple"
               onClick={closeAddModal}
             >
               {t("Cancel")}
             </button>
-            <button className="lg:min-w-[400px] min-w-auto px-5 w-auto h-12 rounded-xl bg-pink text-white shadow-md hover:bg-purple">
+            <button className="lg:min-w-[400px] min-w-auto px-5 w-auto h-12 rounded-xl bg-[#C035A2] text-white shadow-md hover:bg-purple">
               {t(buttonTitle)}
             </button>
           </div>
