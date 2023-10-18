@@ -23,7 +23,7 @@ const RestaurantContainer = () => {
   return (
     <ScrollBarContainer>
       
-        <div className="grid xl:grid-cols-4 md:grid-cols-3 xs:grid-cols-2 xl:gap-4 gap-5">
+        <div className="grid bg-[#1e1e30] xl:grid-cols-4 md:grid-cols-3 xs:grid-cols-2 xl:gap-4 gap-5">
           <RestaurantCards />
           <RestaurantCards />
           <RestaurantCards />

@@ -3,12 +3,30 @@ import edit from "../../../assets/image/productCard/edit.svg";
 import del from "../../../assets/image/productCard/delete.svg";
 import restoran from "../../../assets/image/productCard/restIcon.svg";
 import Image from "next/image";
+import Swal from "sweetalert2";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
+
+const handleDeleteClick = () => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire("Deleted!", "Your file has been deleted.", "success");
+    }
+  });
+};
+
 const RestaurantCards = ({ name, img_url ,isLoading}) => {
   return (
  <>
-    <div className=" bg-white flex items-center h-[83px] gap-4 rounded-md p-2 justify-between 
+    <div className="bg-white flex items-center h-[83px] gap-4 rounded-md p-2 justify-between 
     xs:w-auto w-[247px] xs:m-0 mx-auto">
     <div className="w-[65px] h-[65px]">
       <Image
@@ -26,7 +44,7 @@ const RestaurantCards = ({ name, img_url ,isLoading}) => {
       </div>
     </div>
     <div className="flex flex-col gap-5">
-      <div className="cursor-pointer ml-1">
+      <div onClick={handleDeleteClick} className="cursor-pointer ml-1">
         <Image src={del} alt="del" />
       </div>
       <div className="cursor-pointer">
