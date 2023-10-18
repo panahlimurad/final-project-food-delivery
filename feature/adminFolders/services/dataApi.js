@@ -74,7 +74,8 @@ export async function postProducts(url, data) {
       throw error;
     }
   }
-// POST FOR CATEGORY dont work yet
+
+
 export async function postCategory(url, data){
     try {
         const response = await fetch(url, {

@@ -5,7 +5,7 @@ import React, { useState, useRef, useEffect } from "react";
 export default function AddModal({
   isAddModalOpen,
   closeAddModal,
-  form: { title, infoImg,description,initialValues, inputs,buttonTitle },
+  form: { title, infoImg, description, initialValues, inputs, buttonTitle },
 }) {
   const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState(null);
@@ -97,7 +97,7 @@ export default function AddModal({
                           type="text"
                           name={field.name}
                           id={field.name}
-                          className="bg-grayInput text-black outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
+                          className="bg-[#5A5B70] outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         />
                       </div>
                     );
@@ -113,7 +113,7 @@ export default function AddModal({
                         <textarea
                           id={field.name}
                           name={field.name}
-                          className="bg-grayInput text-black outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"
+                          className="bg-[#5A5B70] outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"
                         ></textarea>
                       </div>
                     );
@@ -130,7 +130,7 @@ export default function AddModal({
                           type="text"
                           name={field.name}
                           id={field.name}
-                          className="bg-grayInput outline-none w-full text-black rounded-lg px-4 mt-3 h-[46px] focus:border"
+                          className="bg-[#5A5B70] outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         />
                       </div>
                     );
@@ -148,7 +148,7 @@ export default function AddModal({
                           name={field.name}
                           id={field.name}
                           autoComplete={field.name}
-                          className="bg-grayInput text-black outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
+                          className="bg-[#5A5B70] outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         >
                           {/* {restaurantList?.map((res, id) => (
                             <option key={id} value={res.name}>
