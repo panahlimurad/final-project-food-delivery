@@ -3,26 +3,14 @@ import { SlTrash } from "react-icons/sl";
 // import CustomScrollbar from "shared/hooks/customScrollBar/customScrollBar";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
-import { TableCell, TableRow } from "@mui/material";
 import Image from "next/image";
 // import { useEffect, useState } from "react";
 import tableImage from "../../../adminFolders/assets/image/tableImage.svg";
-import {ScrollBarContainer} from "../../../ClientShared/Scroll/Scroll";
+import { ScrollBarContainer } from "../../../ClientShared/Scroll/Scroll";
+import { shortText } from "../../helper/shortText";
 
+function Table({ data, headers }) {
 
-function Table({ rows, isLoading, data }) {
-  // const [columns, setColumn] = useState([]);
-  // useEffect(() => {
-  //   rows.length &&
-  //     setColumn(
-  //       Object.keys(rows[0]).map((key) => {
-  //         return {
-  //           id: key,
-  //           title: key,
-  //         };
-  //       })
-  //     );
-  // }, []);
 
   return (
     <ScrollBarContainer bg="#C74FEB">
@@ -32,23 +20,27 @@ function Table({ rows, isLoading, data }) {
         <table className="table-fixed w-full text-center bg-white text-[#00072B]">
           <thead className="max-[420px]:text-sm">
             <tr>
-              <th className="sticky top-0 bg-white">column.title</th>
+              {headers.map((text, index) => (
+                <th key={index} className="sticky top-0 bg-white">
+                  {text}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody className="max-[420px]:text-xs">
-            <tr className="border-2">
+            {data[1]?.data?.map((item,index)=>(
+              <tr key={index} className="border-2">
               <td>
-                <span className="border-2 rounded-md p-1">9177</span>
+                <span className="border-2 rounded-md p-1">{shortText(5, item.id)}</span>
               </td>
-              <td className="flex justify-center items-center">
-                <Image
-                  className="w-[45px] h-[45px] object-cover my-3"
-                  src={tableImage}
-                />
+              <td className="flex justify-center">
+
+             <Image className="text-center" src={tableImage}/>
               </td>
-              <td>Pizza</td>
-              <td>yummy pizza</td>
+                <td>{shortText(15, item.name)}</td>
+                <td>{shortText(15, item.description)}</td>
               <td>
+                {/* <td>{shortText(10, item.description)}</td> */}
                 <div className="flex">
                   {" "}
                   <div className="w-[64px] h-[36px] hover:bg-slate-100 flex items-center justify-center rounded-md">
@@ -67,7 +59,7 @@ function Table({ rows, isLoading, data }) {
                 </div>
               </td>
             </tr>
-           
+            ))}
           </tbody>
         </table>
       </div>

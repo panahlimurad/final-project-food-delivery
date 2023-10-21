@@ -32,7 +32,6 @@ export default function AddModal({
     });
   };
 
-  console.log('kimsen e sen',selectedImage);
 
   const uploadData = { ...categoryData, img_url: selectedImage };
 
