@@ -23,15 +23,18 @@ const handleDeleteClick = () => {
   });
 };
 
-const RestaurantCards = ({ name, img_url ,isLoading}) => {
+const RestaurantCards = ({ name, img ,isLoading}) => {
+  console.log('seklimiz', img);
   return (
  <>
     <div className="bg-white flex items-center h-[83px] gap-4 rounded-md p-2 justify-between 
     xs:w-auto w-[247px] xs:m-0 mx-auto">
     <div className="w-[65px] h-[65px]">
       <Image
-        src={restoran}
-        alt="restoran"
+      src={'blob:http://localhost:3000/7054f651-7fb8-45b9-bf4f-14c08a3f714b'}
+      width={100}
+      height={100}
+        alt="Res"
         className="w-full h-full object-cover rounded-full"
       />
     </div>

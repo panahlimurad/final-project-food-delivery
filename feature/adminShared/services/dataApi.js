@@ -56,6 +56,18 @@ export const PostOffer = async (data)=>{
     }
 }
 
+export const PostImg = async (data)=>{
+    try {
+        const response = await instanceAxiosAdmin.post("/api/uploads", data ,{ headers: {
+                   "Content-Type": "multi-part",
+                 }});
+        
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const PostRestaurants = async (data)=>{
     try {
         const response = await instanceAxiosAdmin.post("/api/restuarants", data);
@@ -86,6 +98,24 @@ export const GetRestaurants = async ()=>{
 export const GetProducts = async ()=>{
     try {
         const response = await instanceAxiosAdmin.get("/api/products");
+        return response.data;
+    }catch(error){
+        throw error
+    }
+}
+
+export const GetCategory = async ()=>{
+    try {
+        const response = await instanceAxiosAdmin.get("/api/category");
+        return response.data;
+    }catch(error){
+        throw error
+    }
+}
+
+export const GetOffer = async ()=>{
+    try {
+        const response = await instanceAxiosAdmin.get("/api/offer");
         return response.data;
     }catch(error){
         throw error

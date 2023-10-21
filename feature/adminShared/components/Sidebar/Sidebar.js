@@ -39,7 +39,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
 //  }`
 
   return (
-    <div className="lg:w-[256px] w-0 lg:me-4">
+    <div className="hidden lg:block lg:w-[256px] w-0 lg:me-4">
       <div
         // onClick={toggleMenu}
         className="menu-overlay h-full fixed top-0 left-0 backdrop-brightness-50  transition-transform  ease-in z-10"></div>

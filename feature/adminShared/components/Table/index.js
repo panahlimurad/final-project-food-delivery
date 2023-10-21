@@ -9,7 +9,8 @@ import Image from "next/image";
 import tableImage from "../../../adminFolders/assets/image/tableImage.svg";
 import {ScrollBarContainer} from "../../../ClientShared/Scroll/Scroll";
 
-function Table({ rows, isLoading }) {
+
+function Table({ rows, isLoading, data }) {
   // const [columns, setColumn] = useState([]);
   // useEffect(() => {
   //   rows.length &&
@@ -66,68 +67,7 @@ function Table({ rows, isLoading }) {
                 </div>
               </td>
             </tr>
-            <tr className="border-2">
-              <td>
-                <span className="border-2 rounded-md p-1">9177</span>
-              </td>
-              <td className="flex justify-center items-center">
-                <Image
-                  className="w-[45px] h-[45px] object-cover my-3"
-                  src={tableImage}
-                />
-              </td>
-              <td>Pizza</td>
-              <td>yummy pizza</td>
-              <td>
-                <div className="flex">
-                  {" "}
-                  <div className="w-[64px] h-[36px] hover:bg-slate-100 flex items-center justify-center rounded-md">
-                    <MdModeEditOutline
-                      size={24}
-                      className="text-green-600 cursor-pointer"
-                    />
-                  </div>
-                  <div className="w-[64px] h-[36px] hover:bg-slate-100 flex items-center justify-center rounded-md">
-                    {" "}
-                    <SlTrash
-                      size={24}
-                      className="text-red-600 cursor-pointer  p-1"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr className="border-2">
-              <td>
-                <span className="border-2 rounded-md p-1">9177</span>
-              </td>
-              <td className="flex justify-center items-center">
-                <Image
-                  className="w-[45px] h-[45px] object-cover my-3"
-                  src={tableImage}
-                />
-              </td>
-              <td>Pizza</td>
-              <td>yummy pizza</td>
-              <td>
-                <div className="flex">
-                  {" "}
-                  <div className="w-[64px] h-[36px] hover:bg-slate-100 flex items-center justify-center rounded-md">
-                    <MdModeEditOutline
-                      size={24}
-                      className="text-green-600 cursor-pointer"
-                    />
-                  </div>
-                  <div className="w-[64px] h-[36px] hover:bg-slate-100 flex items-center justify-center rounded-md">
-                    {" "}
-                    <SlTrash
-                      size={24}
-                      className="text-red-600 cursor-pointer  p-1"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
+           
           </tbody>
         </table>
       </div>
