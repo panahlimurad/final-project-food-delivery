@@ -6,7 +6,6 @@ import { shortText } from "../../../../adminShared/helper/shortText";
 import Swal from "sweetalert2";
 // import Image from "next/image";
 // import CustomScrollbar from "shared/hooks/customScrollBar/customScrollBar";
-// import { shortText } from "shared/helper/shortText";
 // import "react-loading-skeleton/dist/skeleton.css";
 const ProductCard = ({ name, img, price, description, isLoading }) => {
   // const { img_url, name, price } = product;

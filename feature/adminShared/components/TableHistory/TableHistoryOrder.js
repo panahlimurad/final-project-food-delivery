@@ -4,7 +4,7 @@ import eyes from "../../../../feature/adminFolders/assets/image/orders/eyes.svg"
 import Image from "next/image";
 import {ScrollBarContainer} from "../../../ClientShared/Scroll/Scroll";
 
-const TableHistoryOrder = () => {
+const TableHistoryOrder = (data) => {
   return (
     <ScrollBarContainer bg='#C74FEB'>
       <div className="overflow-x-hidden flex flex-col bg-slate-50 ">

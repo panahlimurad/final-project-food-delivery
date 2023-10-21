@@ -34,13 +34,13 @@ const ProductsContainer = () => {
     GetProducts,
     {
       onSuccess: (res) => {
-        console.log("query", res);
+        
       },
     }
   );
   const dataArray = data ? Object.values(data) : [];
 
-  console.log(dataArray);
+ 
 
   return (
     <ScrollBarContainer bg="#C74FEB">

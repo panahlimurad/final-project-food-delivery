@@ -8,9 +8,10 @@ export const FORM = {
     buttonTitle:"Create Product",
     initialValues: {
       name: "",
-      desc: "",
+      description: "",
       price: "",
-      restaurant: "",
+      img_url: "",
+      
     },
     inputs: [
       {
@@ -29,7 +30,7 @@ export const FORM = {
         id: nanoid(),
         label: "Price",
         name: "price",
-        type: "number",
+        type: "text",
       },
       {
         id: nanoid(),
@@ -47,11 +48,12 @@ export const FORM = {
     initialValues: {
       name: "",
       cuisine: "",
+      category_id: nanoid(),
       delivery_price: "",
-      delivery_minute: "",
+      delivery_min: "",
       address: "",
-      category: "",
       slug: "",
+      img_url: "",
     },
     inputs: [
       {
@@ -70,13 +72,13 @@ export const FORM = {
         id: nanoid(),
         label: "Delivery price $",
         name: "delivery_price",
-        type: "number",
+        type: "text",
       },
       {
         id: nanoid(),
         label: "Delivery min",
-        name: "delivery_minute",
-        type: "number",
+        name: "delivery_min",
+        type: "text",
       },
       {
         id: nanoid(),
@@ -128,14 +130,14 @@ export const FORM = {
     description:"Add your offer information",
     buttonTitle:"Create Offer",
     initialValues: {
-      title: "",
+      name: "",
       description: "",
     },
     inputs: [
       {
         id: nanoid(),
         label: "Title",
-        name: "title",
+        name: "name",
         type: "text",
       },
       {
