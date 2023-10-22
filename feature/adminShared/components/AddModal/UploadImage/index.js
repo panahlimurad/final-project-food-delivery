@@ -4,7 +4,7 @@ import UploadIcon from "../../../../../public/uploadIcon.svg";
 
 
 function UploadImage({
-  handleImageChange,
+  handleNewProductImage,
   fileInputRef,
   handleButtonClick,
 }) {
@@ -14,7 +14,7 @@ function UploadImage({
       <input
         type="file"
         accept="image/*"
-        onChange={handleImageChange}
+        onChange={(e)=>handleNewProductImage(e)}
         ref={fileInputRef}
         className="hidden"
       />

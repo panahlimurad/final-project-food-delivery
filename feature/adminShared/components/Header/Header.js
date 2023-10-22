@@ -13,7 +13,7 @@ import { useState } from "react";
 import {FORM} from '../../../adminFolders/utils/form'
 import AddModal from '../../components/AddModal/AddModal'
 
-const Navbar = () => {
+const Navbar = ({toggleMenu}) => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const openAddModal = () => {
       setIsAddModalOpen(true);
@@ -29,8 +29,8 @@ const Navbar = () => {
   return (
     <div className="flex sticky h-[65px]  rounded-xl justify-between p-5 bg-[#27283C] z-10 top-0 mb-4  w-full shadow transition duration-300">
       <div className="flex items-center justify-between">
-        <button className="lg:hidden block mr-3 relative">
-          <img src={hamburger} alt="hamburger" />
+        <button className="lg:hidden block mr-3 relative" onClick={toggleMenu}>
+          <Image src={hamburger} alt="hamburger" />
         </button>
         <Link href={"#"}>
           <Image src={logo} alt="logoimage" />

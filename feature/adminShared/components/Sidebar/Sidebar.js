@@ -21,11 +21,6 @@ import { useTranslation } from "next-i18next";
 const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
 
   const { t } = useTranslation("common");
-
-//   function removeFromLocalStorage() {
-//     localStorage.removeItem("userData");
-//   }
-
 // const menuOpen = `menu-overlay w-full h-full fixed top-0 left-0 backdrop-brightness-50  transition-transform  ease-in z-10  ${
 //     isMenuOpen ? "translate-x-0" : "-translate-x-full"
 //   }`
@@ -39,22 +34,24 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
 //  }`
 
   return (
-    <div className="hidden lg:block lg:w-[256px] w-0 lg:me-4">
+    <div className="lg:w-[256px] w-0 lg:me-4">
       <div
-        // onClick={toggleMenu}
+        onClick={toggleMenu}
         className="menu-overlay h-full fixed top-0 left-0 backdrop-brightness-50  transition-transform  ease-in z-10"></div>
       <div
-        className="bg-[#C74FEB] lg:w-[256px] w-[274px] text-[#FCDDEC]
+        className={`bg-[#C74FEB] lg:w-[256px] w-[274px] text-[#FCDDEC]
         h-full lg:h-[474px] rounded-0 fixed lg:top-[80px] lg:left-3 top-0 left-0
         lg:rounded-[14px] transition-transform  ease-in  
-         p-6 z-10 lg:block lg:translate-x-0">
+         p-6 z-10 lg:block lg:translate-x-0 ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-96"
+        }`}>
         <div className="mb-9 lg:hidden block">
           <div className="flex gap-3">
             <div className="close-menu" onClick={toggleMenu}>
-              <img src={arrow} alt="" />
+              <Image src={arrow} alt="" />
             </div>
             <Link href={"/admin"}>
-              <img src={logo} alt="logo" />
+              <Image src={logo} alt="logo" />
             </Link>
           </div>
         </div>
@@ -206,7 +203,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, closeAddModal }) => {
               className="text-link"
               href={"/admin/login"}
               onClick={(event) => {
-                // removeFromLocalStorage();
+              
               }}>
               <div className="flex items-center gap-5 p-2 rounded-md  text-sm font-medium leading-6 hover:bg-customHover transition">
                 <svg

@@ -8,7 +8,7 @@ const nextConfig = {
   reactStrictMode: false,
  i18n,
  images: {
-  domains: ['www.nizampide.com'],
+  domains: ['firebasestorage.googleapis.com'],
 },
 
 };
