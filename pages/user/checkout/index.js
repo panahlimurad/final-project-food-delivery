@@ -7,6 +7,7 @@ const Checkout = () => {
     return (
         <LayoutClient>
             <LayoutUser>
+                {/* user */}
                 <div className="flex">
                     <CheckoutPart />
                     <CheckoutYourOrder/>

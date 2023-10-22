@@ -8,7 +8,7 @@ const CheckoutYourOrder = () => {
 <h1 className='text-[#4F4F4F] text-[30px] h-8 font-semibold leading-6 text-center block md:hidden '>Checkout</h1>
 <h1 className='md:text-center text-lg font-medium '>Your Order</h1>
 <ScrollBarContainer>
-
+{/* ssj */}
 <div className='flex justify-center items-center gap-4 pr-5  ' >
   <ul className='text-lg font-medium leading-5 items-center h-auto'>
 <li className='mb-4'>1</li>
