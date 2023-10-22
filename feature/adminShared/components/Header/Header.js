@@ -11,8 +11,7 @@ import LangDropDown from "../LangDropDown/LangDropDown";
 // import useScrollHandler from "shared/hooks/useScrollHandler";
 import { useState } from "react";
 import {FORM} from '../../../adminFolders/utils/form'
-// import AddModal from '../../components/AddModal/AddModal'
-
+import AddModal from "../AddModal/AddModal";
 const Navbar = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const openAddModal = () => {
