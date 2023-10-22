@@ -2,9 +2,19 @@ import { useTranslation } from "react-i18next";
 import UploadImage from "./UploadImage/index";
 import React, { useState, useRef, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { GetCategory, PostCategory, PostImg, PostProduct, PostRestaurants } from "../../services/dataApi";
+import {
+  GetCategory,
+  PostCategory,
+  PostImg,
+  PostProduct,
+  PostRestaurants,
+} from "../../services/dataApi";
 import { PostOffer } from "../../services/dataApi";
 import { useRouter } from "next/router";
+import { nanoid } from "nanoid";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { fileStorage } from "../../../../server/configs/firebase";
+import Image from "next/image";
 
 export default function AddModal({
   isAddModalOpen,
@@ -16,6 +26,28 @@ export default function AddModal({
   const fileInputRef = useRef(null);
   const router = useRouter();
   const routerPath = router.pathname;
+  const [addProductImage, setAddProductImage] = useState(null);
+  const [lastProductImage, setlastProductImage] = useState(null)
+
+  const handleNewProductImage = (e) => {
+    const selectedFile = e.target.files[0];
+    setAddProductImage(URL.createObjectURL(selectedFile));
+    const newUUID = nanoid();
+    const imageRef = ref(fileStorage, `images/${selectedFile.name + newUUID}`);
+    uploadBytes(imageRef, selectedFile).then((snapshot) => {
+      getDownloadURL(snapshot.ref)
+      .then((downloadURL)=>{
+        setlastProductImage(downloadURL)
+        console.log("succes", downloadURL);
+      })
+      .catch((error)=>{
+        console.log("error", error);
+      })
+    })
+    .catch((error)=>{
+      console.log("error", error);
+    })
+  };
 
   // const dataJ = {
   //   name: "",
@@ -32,8 +64,7 @@ export default function AddModal({
     });
   };
 
-
-  const uploadData = { ...categoryData, img_url: selectedImage };
+  const uploadData = { ...categoryData, img_url: lastProductImage };
 
   const mutation = useMutation((data) => PostCategory(data), {
     onError: (error) => {
@@ -63,19 +94,18 @@ export default function AddModal({
 
   function handleSubmit(event) {
     event.preventDefault();
-   console.log('upload', uploadData);
-   mutationProduct.mutate(uploadData);
+    console.log("upload", uploadData);
+    mutationProduct.mutate(uploadData);
     {
       routerPath === "/admin/category" && mutation.mutate(uploadData);
     }
-    
-      
-    
+
     {
-      routerPath === "/admin/offer" && mutationOffer.mutate(uploadData);
+      routerPath === "/admin/offers" && mutationOffer.mutate(uploadData);
     }
     {
-      routerPath === "/admin/restaurants" && mutationRestaurant.mutate(uploadData);
+      routerPath === "/admin/restaurants" &&
+        mutationRestaurant.mutate(uploadData);
     }
 
     closeAddModal();
@@ -92,22 +122,20 @@ export default function AddModal({
   );
   const categoryList = data ? Object.values(data) : [];
 
+  // const handleImageChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     setSelectedImage(URL.createObjectURL(file))
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file))
-      
-      const formData = new FormData()
-      formData.append('file', file)
+  //     const formData = new FormData()
+  //     formData.append('file', file)
 
-      // mutationImg.mutate(formData)
+  //     // mutationImg.mutate(formData)
 
-      console.log('data img', formData);
+  //     console.log('data img', formData);
 
-
-    }
-  };
+  //   }
+  // };
 
   const mutationImg = useMutation((data) => PostImg(data), {
     onError: (error) => {
@@ -126,22 +154,19 @@ export default function AddModal({
         onClick={closeAddModal}
         className={`menu-overlay w-full h-full fixed top-0 left-0 backdrop-brightness-50 z-10 ${
           isAddModalOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      ></div>
+        }`}></div>
 
       <div
         className={
           isAddModalOpen
             ? `bg-[#38394E] text-white fixed top-0 right-0 lg:px-10 px-2 py-4 h-full z-20  block overflow-y-auto lg:w-[948px] w-full`
             : ` hidden`
-        }
-      >
+        }>
         {isAddModalOpen && (
           <div
             className="absolute  z-20 top-3 lg:hidden right-3 rounded-full bg-pink w-7 h-7 flex items-center 
             justify-center text-3xl cursor-pointer hover:opacity-60"
-            onClick={closeAddModal}
-          >
+            onClick={closeAddModal}>
             &times;
           </div>
         )}
@@ -150,12 +175,14 @@ export default function AddModal({
           <div className="lg:flex justify-between gap-24">
             <div className="mb-4">
               {" "}
-              <div className="text-lg mb-4 ">{t(infoImg)}</div>
-              {selectedImage && (
-                <div className="w-40 h-32 ">
-                  <img
-                    src={selectedImage}
+              <div className="text-lg mb-4">{t(infoImg)}</div>
+              {addProductImage && (
+                <div className="w-40 h-20 ">
+                  <Image
+                    src={addProductImage}
                     alt="Selected"
+                    width={80}
+                    height={40}
                     className="w-full h-full"
                   />
                 </div>
@@ -163,7 +190,7 @@ export default function AddModal({
             </div>
             <div className="flex-1">
               <UploadImage
-                handleImageChange={handleImageChange}
+                handleNewProductImage={handleNewProductImage}
                 selectedImage={selectedImage}
                 fileInputRef={fileInputRef}
                 handleButtonClick={handleButtonClick}
@@ -181,8 +208,7 @@ export default function AddModal({
                       <div className="form-group mb-5" key={id}>
                         <label
                           htmlFor={field.name}
-                          className="text-sm font-medium"
-                        >
+                          className="text-sm font-medium">
                           {t(field.label)}
                         </label>
                         <input
@@ -200,8 +226,7 @@ export default function AddModal({
                       <div className="form-group mb-5" key={id}>
                         <label
                           htmlFor={field.name}
-                          className="text-sm font-medium"
-                        >
+                          className="text-sm font-medium">
                           {t(field.label)}
                         </label>
                         <textarea
@@ -209,8 +234,7 @@ export default function AddModal({
                           name={field.name}
                           onChange={handleInputChange}
                           value={categoryData[field.name]}
-                          className="bg-[#5A5B70] outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"
-                        ></textarea>
+                          className="bg-[#5A5B70] outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"></textarea>
                       </div>
                     );
                   case "number":
@@ -218,8 +242,7 @@ export default function AddModal({
                       <div className="form-group mb-5" key={id}>
                         <label
                           htmlFor={field.name}
-                          className="text-sm font-medium"
-                        >
+                          className="text-sm font-medium">
                           {t(field.label)}
                         </label>
                         <input
@@ -236,8 +259,7 @@ export default function AddModal({
                       <div className="form-group mb-5" key={id}>
                         <label
                           htmlFor={field.name}
-                          className="text-sm font-medium"
-                        >
+                          className="text-sm font-medium">
                           {t(field.label)}
                         </label>
                         {/* <select
@@ -261,18 +283,15 @@ export default function AddModal({
           </div>
           <div
             className="flex gap-10 p-4 justify-center mt-10"
-            style={{ borderTop: "1px solid #43445A" }}
-          >
+            style={{ borderTop: "1px solid #43445A" }}>
             <button
               className="lg:min-w-[400px] w-auto min-w-auto px-5 h-12 rounded-xl bg-[#38394E] shadow-lg hover:bg-purple"
-              onClick={closeAddModal}
-            >
+              onClick={closeAddModal}>
               {t("Cancel")}
             </button>
             <button
               onClick={handleSubmit}
-              className="lg:min-w-[400px] min-w-auto px-5 w-auto h-12 rounded-xl bg-[#C035A2] text-white shadow-md hover:bg-purple"
-            >
+              className="lg:min-w-[400px] min-w-auto px-5 w-auto h-12 rounded-xl bg-[#C035A2] text-white shadow-md hover:bg-purple">
               {t(buttonTitle)}
             </button>
           </div>

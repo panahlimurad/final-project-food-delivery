@@ -31,7 +31,7 @@ const RestaurantCards = ({ name, img ,isLoading}) => {
     xs:w-auto w-[247px] xs:m-0 mx-auto">
     <div className="w-[65px] h-[65px]">
       <Image
-      src={'blob:http://localhost:3000/7054f651-7fb8-45b9-bf4f-14c08a3f714b'}
+      src={img}
       width={100}
       height={100}
         alt="Res"

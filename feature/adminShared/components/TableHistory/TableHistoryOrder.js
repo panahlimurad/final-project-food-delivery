@@ -7,11 +7,11 @@ import {ScrollBarContainer} from "../../../ClientShared/Scroll/Scroll";
 const TableHistoryOrder = (data) => {
   return (
     <ScrollBarContainer bg='#C74FEB'>
-      <div className="overflow-x-hidden flex flex-col bg-slate-50 ">
+      <div className="overflow-x-hidden w-full flex flex-col bg-slate-50">
         <div className="sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div className="py-2 sm:px-6 lg:px-8">
             <div>
-              <table className="min-w-full text-left text-black text-sm font-light">
+              <table className="w-full text-left text-black text-sm font-light">
                 <thead className="border-b font-normal dark:border-neutral-500">
                   <tr>
                     <th scope="col" className="px-6 py-4">
