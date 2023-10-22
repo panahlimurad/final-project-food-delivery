@@ -13,10 +13,12 @@ import { useState } from "react";
 import {FORM} from '../../../adminFolders/utils/form'
 import AddModal from '../AddModal/AddModal'
 
+
 const Navbar = ({toggleMenu}) => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const openAddModal = () => {
       setIsAddModalOpen(true);
+
     };
 
     const closeAddModal = () => {
