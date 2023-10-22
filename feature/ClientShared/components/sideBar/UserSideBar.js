@@ -1,6 +1,5 @@
 
 import Link from "next/link";
-import { useState } from "react";
 import styles from "../sideBar/sideBar.module.css"
 import { useRouter } from "next/router";
 const UserSideBar = () => {
@@ -11,7 +10,7 @@ const UserSideBar = () => {
   //   setActiveLink(linkName);
   // };
   return (
-    <div className="lg:w-[256px] w-0 lg:me-4">
+    <div className="lg:w-[256px] w-0 lg:me-4 max-[1200px]:hidden">
       {/* <div
         className="menu-overlay h-full   backdrop-brightness-50  transition-transform  ease-in z-10"></div> */}
       <div
