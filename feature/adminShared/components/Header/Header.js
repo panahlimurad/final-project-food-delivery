@@ -14,7 +14,7 @@ import { useState } from "react";
 import {FORM} from '../../../adminFolders/utils/form'
 import AddModal from '../../components/AddModal/AddModal'
 
-const Navbar = () => {
+const Navbar = ({toggleMenu}) => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const openAddModal = () => {
       setIsAddModalOpen(true);
