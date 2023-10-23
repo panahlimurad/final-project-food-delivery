@@ -10,7 +10,7 @@
 // import CustomScrollbar from "shared/hooks/customScrollBar/customScrollBar";
 
 import RestaurantCards from "../restaurantCards";
-import ScrollBarContainer from "../../../../ClientShared/ScrollableTable/ScrollableTable";
+
 import { GetRestaurants } from "../../../../adminShared/services/dataApi";
 import { useQuery } from "react-query";
 import { motion } from "framer-motion";

@@ -56,13 +56,37 @@ export default function AddModal({
   // };
   const [categoryData, setCategoryData] = useState(initialValues);
 
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setCategoryData({
+  //     ...categoryData,
+  //     [name]: value,
+  //   });
+  // };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCategoryData({
-      ...categoryData,
-      [name]: value,
-    });
+    if (name === "category") {
+     
+      const selectedCategory = categoryList[1]?.data.find(
+        (category) => category.name === value
+      );
+  
+      
+      const selectedName = selectedCategory ? selectedCategory.id : "";
+  
+      setCategoryData({
+        ...categoryData,
+        category_id: selectedName,
+      });
+    } else {
+      setCategoryData({
+        ...categoryData,
+        [name]: value,
+      });
+    }
   };
+  
+  
 
   const uploadData = { ...categoryData, img_url: lastProductImage };
 
@@ -121,6 +145,8 @@ export default function AddModal({
     }
   );
   const categoryList = data ? Object.values(data) : [];
+
+  // console.log("category data", categoryList[1].data);
 
   // const handleImageChange = (e) => {
   //   const file = e.target.files[0];
@@ -262,7 +288,7 @@ export default function AddModal({
                           className="text-sm font-medium">
                           {t(field.label)}
                         </label>
-                        {/* <select
+                        <select
                           type="text"
                           name={field.name}
                           value={categoryData[field.name]}
@@ -272,9 +298,9 @@ export default function AddModal({
                           className="bg-[#5A5B70] outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         >
                           {categoryList[1]?.data?.map((product, index) => (
-                            <option >{product.name}</option>
+                            <option value={product.name}>{product.name}</option>
                           ))}
-                        </select> */}
+                        </select>
                       </div>
                     );
                 }
