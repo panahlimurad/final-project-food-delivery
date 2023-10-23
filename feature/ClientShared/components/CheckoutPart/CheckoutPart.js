@@ -4,7 +4,7 @@ const CheckoutPart = () => {
   return (
    <>
    
-   <div className=' mt-5 ml-0 sm:ml-5 mr-2 px-8 py-12  md:bg-[#F3F4F6] bg-[#FFFFFF]'>
+   <div className=' ml-0 sm:ml-5 mr-2 px-12 py-12 w-full  md:bg-[#F3F4F6] bg-[#FFFFFF]'>
    
    <h1 className='text-[#4F4F4F] text-[30px] h-8 font-semibold leading-6 md:ml-0 ml-8 hidden md:block'>Checkout</h1>
 
@@ -13,7 +13,7 @@ const CheckoutPart = () => {
 
 
    <div className="mt-4 flex justify-center items-center  ">
-<div className="grid grid-cols-1  gap-3">
+<div className="grid grid-cols-1  gap-3 h-full">
 
 
 <div>
@@ -24,7 +24,7 @@ Delivery Address
    <input
 type="text"
 id="inputField"
-className="mt-1 p-2 border text-[#828282] leading-6 font-normal rounded text-xl  w-[260px] h-[53px] sm:w-[360px] xl:w-[480px] md:bg-[#FFFFFF] bg-[#F3F4F6] "
+className="mt-1 p-2 border text-[#828282] leading-6 font-normal rounded text-xl  w-[260px] h-[53px] sm:w-[320px] xl:w-[360px] md:bg-[#FFFFFF] bg-[#F3F4F6] "
 placeholder="Ataturk 45 Ganclik Baku"
 />
 </div>
@@ -36,7 +36,7 @@ placeholder="Ataturk 45 Ganclik Baku"
       <input
         type="tel"
         id="inputField"
-        className="mt-1 p-2 border text-[#828282] leading-6 font-normal rounded text-xl sm:w-[360px] xl:w-[480px] h-[53px] w-[260px]  md:bg-[#FFFFFF] bg-[#F3F4F6] "
+        className="mt-1 p-2 border text-[#828282] leading-6 font-normal rounded text-xl  sm:w-[320px] xl:w-[360px]  h-[53px] w-[260px]  md:bg-[#FFFFFF] bg-[#F3F4F6] "
         placeholder="+994"
         />
         </div>
@@ -81,7 +81,7 @@ Payment Method
 
         <div>
 
-<button className='bg-[#6FCF97]  w-[260px]  sm:w-[360px] xl:w-[480px] h-[53px] mt-7 rounded text-[#FFFFFF] text-[18px] font-semibold leading-6 hover:bg-[#1b6339]' >Checkout</button>
+<button className='bg-[#6FCF97]  w-[260px]  sm:w-[320px] xl:w-[360px]  h-[53px] mt-7 rounded text-[#FFFFFF] text-[18px] font-semibold leading-6 hover:bg-[#1b6339]' >Checkout</button>
 </div>
 
 
