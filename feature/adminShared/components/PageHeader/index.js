@@ -11,7 +11,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Select from "../Select/index";
-import AddModal from '../AddModal/AddModal'
+import AddModal from "../AddModal/AddModal";
 import { FORM } from "../../../adminFolders/utils/form";
 // export const getStaticProps = async ({locale})=>({
 //   props:{
@@ -39,7 +39,7 @@ const PageHeader = () => {
     "/admin/order-history": t("common:History"),
   };
 
-  const headerText = contentMap[pathName]
+  const headerText = contentMap[pathName];
 
   const closeAddModal = () => {
     setIsAddModalOpen(false);
@@ -49,27 +49,27 @@ const PageHeader = () => {
       <div className="page-title capitalize text-[#C7C7C7] text-xl font-medium ">
         {headerText}
       </div>
-
       <div className="flex gap-6 items-center">
         {pathName === "/admin/products" || pathName === "/admin/restaurants" ? (
           <Select />
         ) : null}
         {pathName === "/admin/restaurants" ||
-          pathName === "/admin/category" ||
-          pathName === "/admin/offers" ? (
-            <button
-              onClick={openAddModal}
-              className=" h-[35px] sm:w-auto w-full  sm:capitalize uppercase cursor-pointer text-center px-5 flex items-center justify-center font-bold text-sm text-white bg-[#C035A2] hover:bg-[#C74FEB]  transition-all duration-300 ease-in-out sm:rounded-[14px] rounded-md shadow">
-              <AddIcon
-                sx={{ fontSize: 25 }}
-                style={{ marginRight: "5px" }}
-                edge="start"
-                aria-label="logo"
-              />
-              <span className="ml-1 md:block">{`Add ${headerText}`}</span>
-            </button>
-          ):null}
-         {pathName === "/admin/restaurants" ? (
+        pathName === "/admin/category" ||
+        pathName === "/admin/offers" ? (
+          <button
+            onClick={openAddModal}
+            className=" h-[35px] sm:w-auto w-full  sm:capitalize uppercase cursor-pointer text-center px-5 flex items-center justify-center font-bold text-sm text-white bg-[#C035A2] hover:bg-[#C74FEB]  transition-all duration-300 ease-in-out sm:rounded-[14px] rounded-md shadow"
+          >
+            <AddIcon
+              sx={{ fontSize: 25 }}
+              style={{ marginRight: "5px" }}
+              edge="start"
+              aria-label="logo"
+            />
+            <span className="ml-1 md:block">{`Add ${headerText}`}</span>
+          </button>
+        ) : null}
+        {pathName === "/admin/restaurants" ? (
           <AddModal
             form={FORM.RESTAURANT}
             isAddModalOpen={isAddModalOpen}
@@ -83,14 +83,14 @@ const PageHeader = () => {
             openAddModal={openAddModal}
             closeAddModal={closeAddModal}
           />
-        ) :pathName==="/admin/offers"?(
+        ) : pathName === "/admin/offers" ? (
           <AddModal
             form={FORM.OFFER}
             isAddModalOpen={isAddModalOpen}
             openAddModal={openAddModal}
             closeAddModal={closeAddModal}
           />
-        ):null}
+        ) : null}
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export const FORM = {
     initialValues: {
       name: "",
       cuisine: "",
-      category_id: nanoid(),
+      category_id: "",
       delivery_price: "",
       delivery_min: "",
       address: "",

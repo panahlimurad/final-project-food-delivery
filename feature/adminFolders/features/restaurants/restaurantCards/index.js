@@ -1,7 +1,6 @@
 
 import edit from "../../../assets/image/productCard/edit.svg";
 import del from "../../../assets/image/productCard/delete.svg";
-import restoran from "../../../assets/image/productCard/restIcon.svg";
 import Image from "next/image";
 import Swal from "sweetalert2";
 // import Skeleton from "react-loading-skeleton";
