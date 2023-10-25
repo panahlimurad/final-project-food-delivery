@@ -72,7 +72,9 @@ export default function AddModal({
       );
   
       
-      const selectedName = selectedCategory ? selectedCategory.id : "";
+      const selectedName = selectedCategory ? selectedCategory.name : "";
+
+      console.log("category_id nedir", selectedCategory);
   
       setCategoryData({
         ...categoryData,
@@ -118,7 +120,7 @@ export default function AddModal({
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("upload", uploadData);
+    
     mutationProduct.mutate(uploadData);
     {
       routerPath === "/admin/category" && mutation.mutate(uploadData);

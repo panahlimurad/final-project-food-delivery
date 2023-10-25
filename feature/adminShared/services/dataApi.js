@@ -77,6 +77,15 @@ export const PostRestaurants = async (data)=>{
     }
 }
 
+export const DeleteRestaurants = async (id) => {
+    try {
+        const response = await instanceAxiosAdmin.delete(`/api/restuarants/${id}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const PostBasket = async (data)=>{
     try {
         const response = await instanceAxiosAdmin.post("/api/basket/add", data);

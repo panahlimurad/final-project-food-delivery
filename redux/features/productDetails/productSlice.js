@@ -1,22 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState={
-   value: 45
- }
-
-export const productSlice = createSlice({
-  name: "product",
-  initialState,
+const categorySlice = createSlice({
+  name: "category",
+  initialState: null, 
   reducers: {
-    increment: (state) => {
-      state.value += 1
-    },
-    decrement: (state) => {
-        state.value -= 1
-      },
+    setCategory: (state, action) => action.payload,
   },
 });
 
-export const { increment, decrement } = productSlice.actions;
+export const { setCategory } = categorySlice.actions;
+export default categorySlice.reducer;
 
-export default productSlice.reducer;
+

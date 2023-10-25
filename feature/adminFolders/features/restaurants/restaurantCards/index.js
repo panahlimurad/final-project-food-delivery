@@ -3,27 +3,36 @@ import edit from "../../../assets/image/productCard/edit.svg";
 import del from "../../../assets/image/productCard/delete.svg";
 import Image from "next/image";
 import Swal from "sweetalert2";
+import { DeleteRestaurants } from "../../../../adminShared/services/dataApi";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
-const handleDeleteClick = () => {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire("Deleted!", "Your file has been deleted.", "success");
-    }
-  });
-};
 
-const RestaurantCards = ({ name, img ,isLoading}) => {
-  console.log('seklimiz', img);
+
+const RestaurantCards = ({ name, img, category, item_id,isLoading}) => {
+  const handleDeleteClick = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await DeleteRestaurants(item_id);
+          console.log("restoran id-si", item_id);
+          Swal.fire("Deleted!", "Your restaurant has been deleted.", "success");
+          
+        } catch (error) {
+          
+          Swal.fire("Error", "An error occurred while deleting the restaurant.", "error");
+        }
+      }
+    });
+  };
   return (
  <>
     <div className="bg-white flex items-center h-[83px] gap-4 rounded-md p-2 justify-between 
@@ -39,10 +48,10 @@ const RestaurantCards = ({ name, img ,isLoading}) => {
     </div>
     <div className="">
       <div className="font-medium text-lg leading-[1.1] text-black_1 mb-1 xs:text-left text-center">
-        {name}
+        {name} 
       </div>
-      <div className="font-medium text-sm text-gray_2 xs:block hidden">
-       Fast food
+      <div className="font-medium text-center text-sm text-gray-600">
+       {category}
       </div>
     </div>
     <div className="flex flex-col gap-5">
