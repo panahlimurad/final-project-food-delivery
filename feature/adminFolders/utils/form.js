@@ -23,7 +23,7 @@ export const FORM = {
       {
         id: nanoid(),
         label: "Description",
-        name: "desc",
+        name: "description",
         type: "textarea",
       },
       {
@@ -35,7 +35,7 @@ export const FORM = {
       {
         id: nanoid(),
         label: "Restaurants",
-        name: "restaurants",
+        name: "rest_id",
         type: "select",
       },
     ],
