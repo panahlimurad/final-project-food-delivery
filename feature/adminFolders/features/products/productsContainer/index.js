@@ -8,6 +8,8 @@ import ProductCard from "../productCard";
 import { GetProducts } from "../../../../adminShared/services/dataApi";
 import { useQuery } from "react-query";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+
 import { ScrollBarContainer } from "../../../../ClientShared/Scroll/Scroll";
 // import PageHeader from "shared/components/PageHeader";
 
@@ -29,6 +31,8 @@ const ProductsContainer = () => {
   //   dispatch(getAsyncProduct());
   // }, [dispatch]);
 
+  
+
   const { data, isLoading, isError, error } = useQuery(
     "products",
     GetProducts,
@@ -38,15 +42,26 @@ const ProductsContainer = () => {
       },
     }
   );
+
+
+
   const dataArray = data ? Object.values(data) : [];
 
+  const selectedCategory = useSelector((state) => state.category);
+
+  const filteredRestaurants = selectedCategory
+    ? dataArray[1]?.data?.filter(
+        (restaurant) => restaurant.rest_id === selectedCategory
+      
+      )
+    : dataArray[1]?.data;
  
 
   return (
     <ScrollBarContainer bg="#C74FEB">
       <div>
         <div className="grid xl:grid-cols-5 2xl:grid-cols-6 md:grid-cols-3 xs:grid-cols-2 xl:gap-8 gap-5">
-          {dataArray[1]?.data?.map((product, index) => (
+          {filteredRestaurants?.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 50 }}
@@ -58,6 +73,7 @@ const ProductsContainer = () => {
                 name={product.name}
                 img={product.img_url}
                 price={product.price}
+                product_id={product.id}
                 description={product.description}
               />
             </motion.div>

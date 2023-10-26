@@ -4,11 +4,13 @@ import pizza from "../../../../adminFolders/assets/image/productCard/product.svg
 import Image from "next/image";
 import { shortText } from "../../../../adminShared/helper/shortText";
 import Swal from "sweetalert2";
-// import Image from "next/image";
+import { DeleteProduct } from "../../../../adminShared/services/dataApi";
+
 // import CustomScrollbar from "shared/hooks/customScrollBar/customScrollBar";
 // import "react-loading-skeleton/dist/skeleton.css";
-const ProductCard = ({ name, img, price, description, isLoading }) => {
+const ProductCard = ({ name, img, price, description, product_id, isLoading }) => {
   // const { img_url, name, price } = product;
+  console.log("product img", img);
 
   // delete product button modal
   const handleDeleteClick = () => {
@@ -20,9 +22,16 @@ const ProductCard = ({ name, img, price, description, isLoading }) => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        try {
+          await DeleteProduct(product_id);
+          Swal.fire("Deleted!", "Your restaurant has been deleted.", "success");
+          
+        } catch (error) {
+          
+          Swal.fire("Error", "An error occurred while deleting the restaurant.", "error");
+        }
       }
     });
   };

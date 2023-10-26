@@ -120,7 +120,7 @@ export default function AddModal({
 
   function handleSubmit(event) {
     event.preventDefault();
-    
+    console.log("checking data for products", uploadData);
     mutationProduct.mutate(uploadData);
     {
       routerPath === "/admin/category" && mutation.mutate(uploadData);
