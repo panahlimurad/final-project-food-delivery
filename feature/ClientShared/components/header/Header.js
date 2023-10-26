@@ -102,7 +102,7 @@ const Header = () => {
         <div className="z-20 transition-transform transform hover:scale-95">
         <LangDropDown/>
         </div>
-        <div className="flex gap-4 hidden">
+        <div className="flex gap-4">
           <div className="w-[44px] relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757] transition-transform transform hover:scale-95">
             <span className="absolute bg-[#D63626] text-white top-[-10px] w-6 text-center right-[-4px] rounded-full text-">
               2
