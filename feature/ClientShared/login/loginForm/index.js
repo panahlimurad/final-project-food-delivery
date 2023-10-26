@@ -32,10 +32,11 @@ const LoginForm = () => {
     onSuccess: (responseData) => {
       writeToLocalStorage(responseData);
       console.log(responseData);
-      router.push("/user/profile");
+      router.push("/user?page=profile");
     },
     onError: (error) => {
       console.log("Error", error);
+      router.push("/login")
     },
   });
 

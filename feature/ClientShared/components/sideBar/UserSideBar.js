@@ -33,7 +33,7 @@ const UserSideBar = () => {
           <li className={`mb-3 ${pathname === "/user/profile" ? styles.active : ""}`} 
           >
             <Link
-              href={"/user/profile"}
+              href={"/user?page=profile"}
             >
               <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 ">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@ const UserSideBar = () => {
           >
             <Link
               className="text-link"
-              href={"/user/basket"}
+              href={"/user?page=basket"}
             >
               <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -76,7 +76,7 @@ const UserSideBar = () => {
           >
             <Link
               className="text-link"
-              href={"/user/orders"}
+              href={"/user?page=orders"}
             >
               <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -98,7 +98,7 @@ const UserSideBar = () => {
           >
             <Link
               className="text-link"
-              href={"/user/checkout"}
+              href={"/user?page=checkout"}
             >
               <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
