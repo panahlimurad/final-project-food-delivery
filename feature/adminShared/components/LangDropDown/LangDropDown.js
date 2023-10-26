@@ -12,6 +12,7 @@ const LangDropDown = ({ backgroundColor, bgFlags }) => {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const { i18n } = useTranslation();
   const router = useRouter();
+//  update 
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem("selectedLanguage");
