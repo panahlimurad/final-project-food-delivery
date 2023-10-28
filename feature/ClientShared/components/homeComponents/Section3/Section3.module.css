@@ -22,7 +22,7 @@
     height: 556.736px;
     transform: rotate(22.825deg);
     border-radius: 50px;
-    background: #D63626;
+    /* background: #D63626; */
 }
 
 .section3-container1 {
@@ -30,7 +30,7 @@
     height: 534.169px;
     transform: rotate(-27.165deg);
     border-radius: 50px;
-    background: #D63626;
+    /* background: #D63626; */
 }
 
 @media (max-width: 1357px) {
