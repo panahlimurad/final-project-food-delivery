@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./Section3.module.css";
 
 export const Section3 = ({ data }) => {
-  const offers = data.slice(0, 3);
+  const offers = data;
 
   return (
     <div className="mb-44">
