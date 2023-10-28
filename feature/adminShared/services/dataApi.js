@@ -3,15 +3,15 @@ import { instanceAxiosAdmin } from "../helper/instanceAxiosAdmin";
 let token = null;
 
 if (typeof window !== "undefined") {
-const userJSONData = localStorage.getItem("userData")
-const userData = JSON.parse(userJSONData)
-token = userData?.user?.access_token
+    const userJSONData = localStorage.getItem("userData")
+    const userData = JSON.parse(userJSONData)
+    token = userData?.user?.access_token
 
 }
 
 
 
-export const Register = async (endpoint, data)=>{
+export const Register = async (endpoint, data) => {
     try {
         const response = await instanceAxiosAdmin.post(endpoint, data);
         return response.data;
@@ -20,7 +20,7 @@ export const Register = async (endpoint, data)=>{
     }
 }
 
-export const Login = async (endpoint, data)=>{
+export const Login = async (endpoint, data) => {
     try {
         const response = await instanceAxiosAdmin.post(endpoint, data);
         return response.data;
@@ -29,7 +29,7 @@ export const Login = async (endpoint, data)=>{
     }
 }
 
-export const PostCategory = async (data)=>{
+export const PostCategory = async (data) => {
     try {
         const response = await instanceAxiosAdmin.post("/api/category", data);
         return response.data;
@@ -38,7 +38,7 @@ export const PostCategory = async (data)=>{
     }
 }
 
-export const PostProduct = async (data)=>{
+export const PostProduct = async (data) => {
     try {
         const response = await instanceAxiosAdmin.post("/api/products", data);
         return response.data;
@@ -47,7 +47,7 @@ export const PostProduct = async (data)=>{
     }
 }
 
-export const PostOffer = async (data)=>{
+export const PostOffer = async (data) => {
     try {
         const response = await instanceAxiosAdmin.post("/api/offer", data);
         return response.data;
@@ -56,19 +56,21 @@ export const PostOffer = async (data)=>{
     }
 }
 
-export const PostImg = async (data)=>{
+export const PostImg = async (data) => {
     try {
-        const response = await instanceAxiosAdmin.post("/api/uploads", data ,{ headers: {
-                   "Content-Type": "multi-part",
-                 }});
-        
+        const response = await instanceAxiosAdmin.post("/api/uploads", data, {
+            headers: {
+                "Content-Type": "multi-part",
+            }
+        });
+
         return response.data;
     } catch (error) {
         throw error;
     }
 }
 
-export const PostRestaurants = async (data)=>{
+export const PostRestaurants = async (data) => {
     try {
         const response = await instanceAxiosAdmin.post("/api/restuarants", data);
         return response.data;
@@ -95,7 +97,7 @@ export const DeleteProduct = async (id) => {
     }
 }
 
-export const PostBasket = async (data)=>{
+export const PostBasket = async (data) => {
     try {
         const response = await instanceAxiosAdmin.post("/api/basket/add", data);
         return response.data;
@@ -104,52 +106,49 @@ export const PostBasket = async (data)=>{
     }
 }
 
-export const GetRestaurants = async ()=>{
+export const GetRestaurants = async () => {
     try {
         const response = await instanceAxiosAdmin.get("/api/restuarants");
         return response.data;
-    }catch(error){
+    } catch (error) {
         throw error
     }
 }
 
-export const GetProducts = async ()=>{
+export const GetProducts = async () => {
     try {
         const response = await instanceAxiosAdmin.get("/api/products");
         return response.data;
-    }catch(error){
+    } catch (error) {
         throw error
     }
 }
 
-export const GetCategory = async ()=>{
+export const GetCategory = async () => {
     try {
         const response = await instanceAxiosAdmin.get("/api/category");
         return response.data;
-    }catch(error){
+    } catch (error) {
         throw error
     }
 }
 
-export const GetOffer = async ()=>{
-    try {
-        const response = await instanceAxiosAdmin.get("/api/offer");
-        return response.data;
-    }catch(error){
-        throw error
-    }
+export const GetOffer = async () => {
+    const response = await instanceAxiosAdmin.get("/api/offer");
+    return response.data;
+
 }
 
 // DONT WORK YET
-export const GetBasket = async (endpoint)=>{
+export const GetBasket = async (endpoint) => {
     try {
         const response = await instanceAxiosAdmin.get(endpoint, {
-            headers:{
-                "Authorization":`Bearer +${token}`
+            headers: {
+                "Authorization": `Bearer +${token}`
             }
         });
         return response.data;
-    }catch(error){
+    } catch (error) {
         throw error
     }
 }
