@@ -3,6 +3,7 @@ import styles from "./Section3.module.css";
 
 export const Section3 = ({ data }) => {
     const offers = data;
+      console.log(offers)
     return (
         <div className="mb-44">
             <div className={`flex justify-around items-center mb-40 ${styles["section-3"]}`}>

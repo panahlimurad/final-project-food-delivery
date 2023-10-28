@@ -2,7 +2,7 @@
 import Head from "next/head";
 import LayoutClient from "../layoutClient/LayoutClient";
 import HomePage from "../pages/home/index";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+// import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { GetOffer } from "../feature/adminShared/services/dataApi";
 
 
@@ -41,7 +41,7 @@ const Home = ({offer}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LayoutClient>
-        <HomePage offer={data} />
+        <HomePage productoffer={data} />
       </LayoutClient>
     </div>
   );
