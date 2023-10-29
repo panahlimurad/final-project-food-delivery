@@ -1,9 +1,9 @@
 // import type { NextPage } from "next";
+import React from "react";
 import Head from "next/head";
 import LayoutClient from "../layoutClient/LayoutClient";
 import HomePage from "../pages/home/index";
 // import { serverSideTranslations } from "next-i18next/serverSideTranslations"
-import { GetOffer } from "../feature/adminShared/services/dataApi";
 
 
 // export const getStaticProps = async ({ locale }) => ({
@@ -12,8 +12,7 @@ import { GetOffer } from "../feature/adminShared/services/dataApi";
 //   }
 // })
 
-const Home = ({offer}) => {
-  const {data} = offer.result
+const Home = () => {
   // console.log("ee",data)
   // const {t, i18n} = useTranslation()
 
@@ -41,27 +40,27 @@ const Home = ({offer}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LayoutClient>
-        <HomePage productoffer={data} />
+        <HomePage  />
       </LayoutClient>
     </div>
   );
 };
 
 export default Home;
-export async function getServerSideProps() {
-  try {
-    const res = await GetOffer();
-    console.log("res", res)
-    return {
-      props: {
-        offer: res
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        hasError: true,
-      },
-    };
-  }
-}
+// export async function getServerSideProps() {
+//   try {
+//     const res = await GetOffer();
+//     console.log("res", res)
+//     return {
+//       props: {
+//         offer: res
+//       },
+//     };
+//   } catch (err) {
+//     return {
+//       props: {
+//         hasError: true,
+//       },
+//     };
+//   }
+// }

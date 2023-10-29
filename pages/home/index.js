@@ -14,13 +14,13 @@ import { Section4 } from '../../feature/ClientShared/components/homeComponents/S
 // })
 
 
-export default function HomePage({productoffer}){
+export default function HomePage(){
 // console.log("a",productoffer)
   return (
     <div>
       <Section1 />
       <Section2 />
-      <Section3 data={productoffer} />
+      <Section3  />
       <Section4 />
 
 
