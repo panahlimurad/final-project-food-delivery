@@ -1,62 +1,44 @@
+import React from "react";
 import Image from "next/image";
 import styles from "./Section3.module.css";
+import { GetOffer } from "../../../../adminShared/services/dataApi";
+import { useQuery } from "react-query";
 
 export const Section3 = () => {
+    const { data: offer } = useQuery(
+        "offer",
+        GetOffer,
+        {
+            onSuccess: (res) => {
+                console.log(res);
+            },
+        }
+    );
+    const newoffers = offer?.result.data;
+    console.log("a", newoffers);
+
     return (
         <div className="mb-44">
-            <div className={`flex justify-around items-center mb-40 ${styles["section-3"]}`}>
-                <div className={`w-2/5 ${styles["top-container"]}`}>
-                    <h3 className={`${styles["section3-title"]}`}>.name</h3>
-                    <p className={`${styles["section3-paragraf"]}`}>description</p>
-                </div>
-                <div className={`w-1/3 relative mt-8 ${styles["bottom-container"]}`}>
-                    <div className={`${styles["section3-container"]}`}></div>
-                    <div className={`w-[626px] h-[441px] absolute z-10 top-6 -right-20 ${styles["section3-image1"]}`}>
-                        <Image
-                            src=""
-                            alt="kfc"
-                            width={498}
-                            height={472}
-                            style={{ objectFit: "cover" }}
-                        />
+            {newoffers?.map((offer, index) => (
+                <div className={`flex justify-around items-center mb-10 ${styles["section-3"]}`} key={index}>
+                    <div className={`w-2/5 ${styles["top-container"]}`}>
+                        <h3 className={`${styles["section3-title"]}`}>{offer.name}</h3>
+                        <p className={`${styles["section3-paragraf"]}`}>{offer.description}</p>
+                    </div>
+                    <div className={`w-1/3 relative mt-8 ${styles["bottom-container"]}`}>
+                        <div className={`${styles["section3-container"]}`}></div>
+                        <div className={`w-[626px] h-[441px] absolute z-10 top-6 -right-20 ${styles["section3-image1"]}`}>
+                            <Image
+                                src={offer.img_url} // Replace with the actual image source
+                                alt={offer.name} // Use a relevant alt text
+                                width={498}
+                                height={472}
+                                style={{ objectFit: "cover" }}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className={`flex justify-around items-center mb-36 ${styles["section3-second"]}`}>
-                <div className={`w-1/3 relative mt-10 ${styles["bottom-container"]}`}>
-                    <div className={`${styles["section3-container1"]} ml-12`}></div>
-                    <div className={`w-[468.362px] h-[472.84px] absolute z-10 top-6 -right-12 ${styles["section3-image2"]}`}>
-                        <Image
-                            src=""
-                            alt="pizza"
-                            width={468.362}
-                            height={472.84}
-                            style={{ objectFit: "cover" }}
-                        />
-                    </div>
-                </div>
-                <div className={`w-2/5 mb-6 ${styles["top-container"]}`}>
-                    <h3 className={`${styles["section3-title"]}`}>.name</h3>
-                    <p className={`${styles["section3-paragraf"]}`}>description</p>
-                </div>
-            </div>
-            <div className={`flex justify-around items-center ${styles["section-3"]}`}>
-                <div className={`w-2/5 ${styles["top-container"]}`}>
-                    <h3 className={`${styles["section3-title"]}`}>name</h3>
-                    <p className={`${styles["section3-paragraf"]}`}>description</p>
-                </div>
-                <div className={`w-1/3 relative mt-16 ${styles["bottom-container"]}`}>
-                    <div className={`${styles["section3-container"]}`}></div>
-                    <div className={`w-[637px] h-[461px] absolute z-10 top-6 -right-6 ${styles["section3-image3"]}`}>
-                        <Image
-                            src=""
-                            alt="fryPoteto"
-                            width={637}
-                            height={461}
-                        />
-                    </div>
-                </div>
-            </div>
+            ))}
         </div>
     );
 };
