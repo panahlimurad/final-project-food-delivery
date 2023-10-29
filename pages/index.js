@@ -12,8 +12,7 @@ import { GetOffer } from "../feature/adminShared/services/dataApi";
 //   }
 // })
 
-const Home = ({offer}) => {
-  const {data} = offer.result
+const Home = () => {
   // console.log("ee",data)
   // const {t, i18n} = useTranslation()
 
@@ -41,27 +40,27 @@ const Home = ({offer}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LayoutClient>
-        <HomePage offer={data} />
+        <HomePage />
       </LayoutClient>
     </div>
   );
 };
 
 export default Home;
-export async function getServerSideProps() {
-  try {
-    const res = await GetOffer();
-    console.log("res", res)
-    return {
-      props: {
-        offer: res
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        hasError: true,
-      },
-    };
-  }
-}
+// export async function getServerSideProps() {
+//   try {
+//     const res = await GetOffer();
+//     console.log("res", res)
+//     return {
+//       props: {
+//         offer: res
+//       },
+//     };
+//   } catch (err) {
+//     return {
+//       props: {
+//         hasError: true,
+//       },
+//     };
+//   }
+// }

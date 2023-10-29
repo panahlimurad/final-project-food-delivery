@@ -14,13 +14,13 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 // })
 
 
-export default function HomePage({offer}){
+export default function HomePage(){
 // console.log("a",offer)
   return (
     <div>
       <Section1 />
       <Section2 />
-      <Section3 data ={offer}/>
+      <Section3 />
       <Section4 />
 
 
