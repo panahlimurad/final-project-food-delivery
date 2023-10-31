@@ -40,80 +40,81 @@ export async function getRestaurant(restaurantName) {
 }
 // GET FOR PRODUCT
 export async function getProducts(restaurantId) {
-    try {
-      const apiUrl = `https://foody-api.vercel.app/api/restuarants/${restaurantId}`;
-      const response = await fetch(apiUrl);
-      if (!response.ok) {
-        throw new Error("Error:" + response.status);
-      }
-      const responseData = await response.json();
-      return responseData;
-    } catch (error) {
-      console.error("Error:", error);
-      throw error;
+  try {
+    const apiUrl = `https://foody-api.vercel.app/api/restuarants/${restaurantId}`;
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error("Error:" + response.status);
     }
+    const responseData = await response.json();
+    console.log("responseData", responseData);
+    return responseData;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
 }
 // POST FOR PRODUCTS dont work yet
 export async function postProducts(url, data) {
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization":`Bearer +${token}`
-        },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) {
-        throw new Error("Error: " + response.status);
-      }
-      const responseData = await response.json();
-      return responseData;
-    } catch (error) {
-      console.error("Error:", error);
-      throw error;
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer +${token}`
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error("Error: " + response.status);
     }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
   }
+}
 
 
-export async function postCategory(url, data){
-    try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer +${token}`
-          },
-          body: JSON.stringify(data),
-        });
-        if (!response.ok) {
-          throw new Error("Error: " + response.status);
-        }
-        const responseData = await response.json();
-        return responseData;
-      } catch (error) {
-        console.error("Error:", error);
-        throw error;
-      }
+export async function postCategory(url, data) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer +${token}`
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error("Error: " + response.status);
+    }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
 }
 // POST FOR RESTAURANT dont work yet
-export async function postRestaurant(url, data){
-    try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer +${token}`
-          },
-          body: JSON.stringify(data),
-        });
-        if (!response.ok) {
-          throw new Error("Error: " + response.status);
-        }
-        const responseData = await response.json();
-        return responseData;
-      } catch (error) {
-        console.error("Error:", error);
-        throw error;
-      }
+export async function postRestaurant(url, data) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer +${token}`
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error("Error: " + response.status);
+    }
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
 }

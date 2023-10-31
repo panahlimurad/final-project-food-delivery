@@ -32,7 +32,8 @@ const RestaurantContainer = () => {
   
   const dataArray = data ? Object.values(data) : [];
 
-  const selectedCategory = useSelector((state) => state.category);
+  // const selectedCategory = useSelector((state) => state.category);
+  const selectedCategory = useSelector(setCategory);
 
   const filteredRestaurants = selectedCategory
     ? dataArray[1]?.data?.filter(
