@@ -1,5 +1,4 @@
 import { instanceAxiosAdmin } from "../helper/instanceAxiosAdmin";
-
 export const Register = async (endpoint, data) => {
   try {
     const response = await instanceAxiosAdmin.post(endpoint, data);
@@ -8,7 +7,6 @@ export const Register = async (endpoint, data) => {
     throw error;
   }
 };
-
 export const Login = async (endpoint, data) => {
   try {
     const response = await instanceAxiosAdmin.post(endpoint, data);
@@ -17,7 +15,6 @@ export const Login = async (endpoint, data) => {
     throw error;
   }
 };
-
 export const PostCategory = async (data) => {
   try {
     const response = await instanceAxiosAdmin.post("/api/category", data);
@@ -26,7 +23,6 @@ export const PostCategory = async (data) => {
     throw error;
   }
 };
-
 export const PostProduct = async (data) => {
   try {
     const response = await instanceAxiosAdmin.post("/api/products", data);
@@ -35,7 +31,6 @@ export const PostProduct = async (data) => {
     throw error;
   }
 };
-
 export const PutUser = async (data) => {
   const userJSONData = localStorage.getItem("clientData");
   const userData = JSON.parse(userJSONData);
@@ -51,7 +46,6 @@ export const PutUser = async (data) => {
     throw error;
   }
 };
-
 export const PostOffer = async (data) => {
   try {
     const response = await instanceAxiosAdmin.post("/api/offer", data);
@@ -60,7 +54,6 @@ export const PostOffer = async (data) => {
     throw error;
   }
 };
-
 export const PostImg = async (data) => {
   try {
     const response = await instanceAxiosAdmin.post("/api/uploads", data, {
@@ -68,13 +61,11 @@ export const PostImg = async (data) => {
         "Content-Type": "multi-part",
       },
     });
-
     return response.data;
   } catch (error) {
     throw error;
   }
 };
-
 export const PostRestaurants = async (data) => {
   try {
     const response = await instanceAxiosAdmin.post("/api/restuarants", data);
@@ -83,7 +74,6 @@ export const PostRestaurants = async (data) => {
     throw error;
   }
 };
-
 export const DeleteRestaurants = async (id) => {
   try {
     const response = await instanceAxiosAdmin.delete(`/api/restuarants/${id}`);
@@ -92,7 +82,6 @@ export const DeleteRestaurants = async (id) => {
     throw error;
   }
 };
-
 export const DeleteProduct = async (id) => {
   try {
     const response = await instanceAxiosAdmin.delete(`/api/products/${id}`);
@@ -101,7 +90,6 @@ export const DeleteProduct = async (id) => {
     throw error;
   }
 };
-
 export const PostBasket = async (data) => {
   try {
     const response = await instanceAxiosAdmin.post("/api/basket/add", data);
@@ -110,7 +98,6 @@ export const PostBasket = async (data) => {
     throw error;
   }
 };
-
 export const GetRestaurants = async () => {
   try {
     const response = await instanceAxiosAdmin.get("/api/restuarants");
@@ -119,7 +106,6 @@ export const GetRestaurants = async () => {
     throw error;
   }
 };
-
 export const GetProducts = async () => {
   try {
     const response = await instanceAxiosAdmin.get("/api/products");
@@ -128,7 +114,6 @@ export const GetProducts = async () => {
     throw error;
   }
 };
-
 export const GetCategory = async () => {
   try {
     const response = await instanceAxiosAdmin.get("/api/category");
@@ -137,7 +122,6 @@ export const GetCategory = async () => {
     throw error;
   }
 };
-
 export const GetUser = async () => {
   const userJSONData = localStorage.getItem("clientData");
   const userData = JSON.parse(userJSONData);
@@ -148,13 +132,11 @@ export const GetUser = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
     return response.data;
   } catch (error) {
     throw error;
   }
 };
-
 export const GetOffer = async () => {
   try {
     const response = await instanceAxiosAdmin.get("/api/offer");
@@ -163,7 +145,6 @@ export const GetOffer = async () => {
     throw error;
   }
 };
-
 // DONT WORK YET
 export const GetBasket = async (endpoint) => {
   try {

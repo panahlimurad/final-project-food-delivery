@@ -27,6 +27,8 @@ const Select = () => {
   };
   const dataArray = data ? Object.values(data) : [];
 
+  console.log("bu nedir?", dataArray);
+
   return (
     <div className="flex relative">
       <select onChange={handleCategoryChange} value={selectedCategory} class="md:w-[200px] w-full h-9 text-[#F2F2F2] sm:rounded-2xl rounded-md tracking-wide appearance-none bg-[#5A5B70] bg-no-repeat bg-[96%] md:bg-[162px_4px] cursor-pointer px-3 bg-grayInput outline-none ">
