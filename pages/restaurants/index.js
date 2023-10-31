@@ -3,7 +3,7 @@ import CardRestaurantContainer from "../../feature/ClientShared/components/CardR
 import NavbarRestaurant from "../../feature/ClientShared/components/RestaurantNavbar/NavbarRestaurant";
 import { GetRestaurants } from "../../feature/adminShared/services/dataApi";
 import LayoutClient from '../../layoutClient/LayoutClient'
-import React from "react";
+
 import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 
 
