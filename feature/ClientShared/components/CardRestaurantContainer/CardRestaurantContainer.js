@@ -13,7 +13,7 @@ export default function CardRestaurantContainer({restaurantData}) {
 
  
   // const dataArray = restaurants ? Object.values(restaurants) : [];
-
+// console.log(dataArray);
   // const selectedCategory = useSelector(setCategory);
   const selectedCategory = useSelector((state) => state.category);
 
@@ -25,7 +25,6 @@ export default function CardRestaurantContainer({restaurantData}) {
         (restaurant) => {console.log("nnnnnnnnnnnnnnn",restaurant.name)}
       )
     : restaurants;
-// console.log("reduxdan gelen", filteredRestaurants);
 
 console.log("filter datas", filteredRestaurants);
 
