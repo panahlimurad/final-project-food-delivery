@@ -6,6 +6,7 @@ import { Login } from "../../../adminShared/services/dataApi";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import LoaderClient from "../../components/Loader/Loader";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const pathname = usePathname();
@@ -26,18 +27,23 @@ const LoginForm = () => {
 
   function writeToLocalStorage(data) {
     localStorage.setItem("clientData", JSON.stringify(data));
+    // localStorage.setItem("refresh_token", JSON.stringify(refData));
   }
 
   const mutation = useMutation((data) => Login("/api/auth/signin", data), {
     onSuccess: (responseData) => {
+     toast.success("You are successfully logged in",{autoClose:2000})
       writeToLocalStorage(responseData);
       console.log(responseData);
-      router.push("/user/profile");
+      router.push("/user?page=profile");
     },
     onError: (error) => {
+      toast.error("Your surgery was unsuccessful")
       console.log("Error", error);
+      router.push("/login")
     },
   });
+
 
   const handleInput = (event) => {
     setLogin({ ...login, [event.target.name]: event.target.value });

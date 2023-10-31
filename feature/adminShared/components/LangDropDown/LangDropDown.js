@@ -12,6 +12,7 @@ const LangDropDown = ({ backgroundColor, bgFlags }) => {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const { i18n } = useTranslation();
   const router = useRouter();
+//  update 
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem("selectedLanguage");
@@ -47,7 +48,7 @@ const LangDropDown = ({ backgroundColor, bgFlags }) => {
       </button>
       {isOpen && (
         <div
-          className="absolute h-36 left-1 w-16 rounded-md"
+          className="absolute h-36 left-1 w-16 rounded-md z-30"
           style={{ backgroundColor: `${backgroundColor}` }}>
           <div className="flex flex-col justify-center items-center gap-4 mt-4">
             {selectedLanguage !== "en" && (

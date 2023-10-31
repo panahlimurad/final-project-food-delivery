@@ -18,6 +18,8 @@ import { useSelector } from "react-redux";
 import { setCategory } from "../../../../../redux/features/productDetails/productSlice";
 
 const RestaurantContainer = () => {
+  
+
   const { data, isLoading, isError, error } = useQuery(
     "restaurant",
     GetRestaurants,

@@ -1,12 +1,22 @@
-import LayoutUser from "../../feature/ClientShared/components/LayoutUser/LayoutUser"
-import LayoutClient from "../../layoutClient/LayoutClient"
+import LayoutUser from "../../feature/ClientShared/components/LayoutUser/LayoutUser";
+import LayoutClient from "../../layoutClient/LayoutClient";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 
- const User = () => {
-    return (
-        <LayoutClient>
-            <LayoutUser />
-        </LayoutClient>
-    )
-}
 
-export default User
+export const getStaticProps = async ({locale})=>({
+  props:{
+      ...(await serverSideTranslations(locale, ["common"]))
+  }
+})
+
+const User = () => {
+  return (
+    <LayoutClient>
+      <div>
+        <LayoutUser />
+      </div>
+    </LayoutClient>
+  );
+};
+
+export default User;

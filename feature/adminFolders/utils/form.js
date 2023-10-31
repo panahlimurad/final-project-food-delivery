@@ -1,5 +1,9 @@
 import { nanoid } from "nanoid";
 
+
+
+
+
 export const FORM = {
   PRODUCTS: {
     title: "Add product",
@@ -91,6 +95,7 @@ export const FORM = {
         label: "Category",
         name: "category",
         type: "select",
+        
       },
       {
         id: nanoid(),

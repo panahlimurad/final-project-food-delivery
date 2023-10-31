@@ -3,7 +3,9 @@ import CardRestaurantContainer from "../../feature/ClientShared/components/CardR
 import NavbarRestaurant from "../../feature/ClientShared/components/RestaurantNavbar/NavbarRestaurant";
 import { GetRestaurants } from "../../feature/adminShared/services/dataApi";
 import LayoutClient from '../../layoutClient/LayoutClient'
+import React from "react";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations"
+
 
 
 // export const getStaticProps = async ({locale})=>({
@@ -13,6 +15,9 @@ import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 // })
 import React from "react";
 import { ROUTER } from "../../server/constant/router";
+
+
+
 
 const Restaurants = ({restData}) => {
   console.log("res", restData);
@@ -37,6 +42,7 @@ export default Restaurants;
 
 
 
+
 export async function getServerSideProps() {
   try {
     const data = await GetRestaurants();
@@ -53,3 +59,4 @@ export async function getServerSideProps() {
     };
   }
 }
+

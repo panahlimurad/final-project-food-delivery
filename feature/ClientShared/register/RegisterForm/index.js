@@ -26,6 +26,8 @@ const LoginForm = () => {
     },
     onError: (error) => {
       console.log("error", error);
+      router.push("/register");
+
     },
   });
 
