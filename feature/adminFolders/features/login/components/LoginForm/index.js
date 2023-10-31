@@ -16,16 +16,11 @@ const LoginForm = () => {
     password: "",
   });
 
-    function writeToLocalStorage(data) {
-    localStorage.setItem("userData", JSON.stringify(data));
-  }
-
 
   
 
   const mutation = useMutation((data) => Login("/api/auth/signin", data), {
     onSuccess: (responseData) => {
-      writeToLocalStorage(responseData)
       router.push("/admin");
     },
     onError: (error) => {

@@ -1,6 +1,7 @@
 import CardRestaurantContainer from "../../feature/ClientShared/components/CardRestaurantContainer/CardRestaurantContainer";
 import NavbarRestaurant from "../../feature/ClientShared/components/RestaurantNavbar/NavbarRestaurant";
 import LayoutClient from '../../layoutClient/LayoutClient'
+import React from "react";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 
 
@@ -9,7 +10,6 @@ export const getStaticProps = async ({locale})=>({
       ...(await serverSideTranslations(locale, ["common"]))
   }
 })
-import React from "react";
 
 const Restaurants = () => {
   return (
@@ -27,3 +27,5 @@ const Restaurants = () => {
 };
 
 export default Restaurants;
+
+

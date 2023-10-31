@@ -3,6 +3,11 @@ import Link from "next/link";
 import styles from "../sideBar/sideBar.module.css"
 import { useRouter } from "next/router";
 const UserSideBar = () => {
+
+  const removeLocalUser = ()=>{
+    localStorage.removeItem("clientData");
+  }
+
   const {pathname}  = useRouter()
   // const [activeLink, setActiveLink] = useState(null);
 
@@ -121,6 +126,7 @@ const UserSideBar = () => {
             <Link
               className="text-link"
               href={"/login"}
+              onClick={removeLocalUser}
             >
               <div className="flex items-center gap-5 p-2 rounded-md  text-sm font-semibold leading-6 hover:bg-customHover transition">
                 <svg
