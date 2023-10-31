@@ -2,12 +2,6 @@ import {
     instanceAxiosAdmin
 } from "../helper/instanceAxiosAdmin";
 
-
-
-
-
-
-
 export const Register = async (endpoint, data) => {
     try {
         const response = await instanceAxiosAdmin.post(endpoint, data);
@@ -75,14 +69,6 @@ export const PostRestaurants = async (data) => {
         throw error;
     }
 }
-export const Register = async (endpoint, data) => {
-  try {
-    const response = await instanceAxiosAdmin.post(endpoint, data);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
 
 export const Login = async (endpoint, data) => {
   try {
