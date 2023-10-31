@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import {
   GetCategory,
+  GetRestaurants,
   PostCategory,
   PostImg,
   PostProduct,
@@ -27,58 +28,58 @@ export default function AddModal({
   const router = useRouter();
   const routerPath = router.pathname;
   const [addProductImage, setAddProductImage] = useState(null);
-  const [lastProductImage, setlastProductImage] = useState(null)
+  const [lastProductImage, setlastProductImage] = useState(null);
 
   const handleNewProductImage = (e) => {
     const selectedFile = e.target.files[0];
     setAddProductImage(URL.createObjectURL(selectedFile));
     const newUUID = nanoid();
     const imageRef = ref(fileStorage, `images/${selectedFile.name + newUUID}`);
-    uploadBytes(imageRef, selectedFile).then((snapshot) => {
-      getDownloadURL(snapshot.ref)
-      .then((downloadURL)=>{
-        setlastProductImage(downloadURL)
-        console.log("succes", downloadURL);
+    uploadBytes(imageRef, selectedFile)
+      .then((snapshot) => {
+        getDownloadURL(snapshot.ref)
+          .then((downloadURL) => {
+            setlastProductImage(downloadURL);
+            console.log("succes", downloadURL);
+          })
+          .catch((error) => {
+            console.log("error", error);
+          });
       })
-      .catch((error)=>{
+      .catch((error) => {
         console.log("error", error);
-      })
-    })
-    .catch((error)=>{
-      console.log("error", error);
-    })
+      });
   };
 
-  // const dataJ = {
-  //   name: "",
-  //   slug: "",
-  //   img_url: '',
-  // };
   const [categoryData, setCategoryData] = useState(initialValues);
 
-  // const handleInputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setCategoryData({
-  //     ...categoryData,
-  //     [name]: value,
-  //   });
-  // };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === "category") {
-     
       const selectedCategory = categoryList[1]?.data.find(
         (category) => category.name === value
       );
-  
-      
+
       const selectedName = selectedCategory ? selectedCategory.name : "";
 
       console.log("category_id nedir", selectedCategory);
-  
+
       setCategoryData({
         ...categoryData,
         category_id: selectedName,
+      });
+    } else if (name === "rest_id") {
+      const selectedCategory = restaurantList[1]?.data.find(
+        (restaurant) => restaurant.name === value
+      );
+
+      const selectedName = selectedCategory ? selectedCategory.name : "";
+
+      console.log("rest_id nedir", selectedCategory);
+
+      setCategoryData({
+        ...categoryData,
+        rest_id: selectedName,
       });
     } else {
       setCategoryData({
@@ -87,8 +88,6 @@ export default function AddModal({
       });
     }
   };
-  
-  
 
   const uploadData = { ...categoryData, img_url: lastProductImage };
 
@@ -116,8 +115,6 @@ export default function AddModal({
     },
   });
 
-  // console.log('data',data);
-
   function handleSubmit(event) {
     event.preventDefault();
     console.log("checking data for products", uploadData);
@@ -137,33 +134,44 @@ export default function AddModal({
     closeAddModal();
   }
 
-  const { data, isLoading, isError, error } = useQuery(
-    "category",
-    GetCategory,
-    {
-      onSuccess: (res) => {
-        console.log("categoryList", res);
-      },
-    }
-  );
-  const categoryList = data ? Object.values(data) : [];
+ 
 
-  // console.log("category data", categoryList[1].data);
+const {
+  data: categoryListData,
+  isLoading: categoryIsLoading,
+  isError: categoryIsError,
+  error: categoryError
+} = useQuery("category", GetCategory, {
+  onSuccess: (res) => {
+    console.log("categoryList", res);
+  },
+  onError: (err) => {
+    console.error("Category Query Error:", err);
+  }
+});
 
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     setSelectedImage(URL.createObjectURL(file))
+const {
+  data: restaurantData,
+  isLoading: restaurantIsLoading,
+  isError: restaurantIsError,
+  error: restaurantError
+} = useQuery("restaurant", GetRestaurants, {
+  onSuccess: (res) => {
+    console.log("restaurantList", res);
+  },
+  onError: (err) => {
+    console.error("Restaurant Query Error:", err);
+  }
+});
 
-  //     const formData = new FormData()
-  //     formData.append('file', file)
+const categoryList = categoryListData ? Object.values(categoryListData) : [];
+const restaurantList = restaurantData ? Object.values(restaurantData) : [];
 
-  //     // mutationImg.mutate(formData)
 
-  //     console.log('data img', formData);
 
-  //   }
-  // };
+
+
+  console.log("bu neyin listidir?", categoryList);
 
   const mutationImg = useMutation((data) => PostImg(data), {
     onError: (error) => {
@@ -182,19 +190,22 @@ export default function AddModal({
         onClick={closeAddModal}
         className={`menu-overlay w-full h-full fixed top-0 left-0 backdrop-brightness-50 z-10 ${
           isAddModalOpen ? "translate-x-0" : "translate-x-full"
-        }`}></div>
+        }`}
+      ></div>
 
       <div
         className={
           isAddModalOpen
             ? `bg-[#38394E] text-white fixed top-0 right-0 lg:px-10 px-2 py-4 h-full z-20  block overflow-y-auto lg:w-[948px] w-full`
             : ` hidden`
-        }>
+        }
+      >
         {isAddModalOpen && (
           <div
             className="absolute  z-20 top-3 lg:hidden right-3 rounded-full bg-pink w-7 h-7 flex items-center 
             justify-center text-3xl cursor-pointer hover:opacity-60"
-            onClick={closeAddModal}>
+            onClick={closeAddModal}
+          >
             &times;
           </div>
         )}
@@ -236,7 +247,8 @@ export default function AddModal({
                       <div className="form-group mb-5" key={id}>
                         <label
                           htmlFor={field.name}
-                          className="text-sm font-medium">
+                          className="text-sm font-medium"
+                        >
                           {t(field.label)}
                         </label>
                         <input
@@ -254,7 +266,8 @@ export default function AddModal({
                       <div className="form-group mb-5" key={id}>
                         <label
                           htmlFor={field.name}
-                          className="text-sm font-medium">
+                          className="text-sm font-medium"
+                        >
                           {t(field.label)}
                         </label>
                         <textarea
@@ -262,7 +275,8 @@ export default function AddModal({
                           name={field.name}
                           onChange={handleInputChange}
                           value={categoryData[field.name]}
-                          className="bg-[#5A5B70] outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"></textarea>
+                          className="bg-[#5A5B70] outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"
+                        ></textarea>
                       </div>
                     );
                   case "number":
@@ -270,7 +284,8 @@ export default function AddModal({
                       <div className="form-group mb-5" key={id}>
                         <label
                           htmlFor={field.name}
-                          className="text-sm font-medium">
+                          className="text-sm font-medium"
+                        >
                           {t(field.label)}
                         </label>
                         <input
@@ -287,7 +302,8 @@ export default function AddModal({
                       <div className="form-group mb-5" key={id}>
                         <label
                           htmlFor={field.name}
-                          className="text-sm font-medium">
+                          className="text-sm font-medium"
+                        >
                           {t(field.label)}
                         </label>
                         <select
@@ -299,9 +315,17 @@ export default function AddModal({
                           autoComplete={field.name}
                           className="bg-[#5A5B70] outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         >
-                          {categoryList[1]?.data?.map((product, index) => (
-                            <option value={product.name}>{product.name}</option>
-                          ))}
+                          {title === "Add restaurant"
+                            ? categoryList[1]?.data?.map((product, index) => (
+                                <option value={product.name} key={index}>
+                                  {product.name}
+                                </option>
+                              ))
+                            : restaurantList[1]?.data?.map((restaurant, index) => (
+                                <option value={restaurant.name} key={index}>
+                                  {restaurant.name}
+                                </option>
+                              ))}
                         </select>
                       </div>
                     );
@@ -311,15 +335,18 @@ export default function AddModal({
           </div>
           <div
             className="flex gap-10 p-4 justify-center mt-10"
-            style={{ borderTop: "1px solid #43445A" }}>
+            style={{ borderTop: "1px solid #43445A" }}
+          >
             <button
               className="lg:min-w-[400px] w-auto min-w-auto px-5 h-12 rounded-xl bg-[#38394E] shadow-lg hover:bg-purple"
-              onClick={closeAddModal}>
+              onClick={closeAddModal}
+            >
               {t("Cancel")}
             </button>
             <button
               onClick={handleSubmit}
-              className="lg:min-w-[400px] min-w-auto px-5 w-auto h-12 rounded-xl bg-[#C035A2] text-white shadow-md hover:bg-purple">
+              className="lg:min-w-[400px] min-w-auto px-5 w-auto h-12 rounded-xl bg-[#C035A2] text-white shadow-md hover:bg-purple"
+            >
               {t(buttonTitle)}
             </button>
           </div>

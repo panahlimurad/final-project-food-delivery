@@ -5,6 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Table from "../../../feature/adminShared/components/Table";
 import { useQuery } from "react-query";
 import { GetOffer } from "../../../feature/adminShared/services/dataApi";
+import EditModal from "../../../feature/adminShared/components/EditModal/EditModal";
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
@@ -29,6 +30,7 @@ const Offers = () => {
             <title>Offers</title>
           </Head>
           <Table data={dataArray} headers={title} />
+          <EditModal/>
         </div>
       </LayoutAdmin>
     </>
