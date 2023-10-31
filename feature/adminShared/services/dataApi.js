@@ -75,7 +75,6 @@ export const PostRestaurants = async (data) => {
         throw error;
     }
 }
-=======
 export const Register = async (endpoint, data) => {
   try {
     const response = await instanceAxiosAdmin.post(endpoint, data);
