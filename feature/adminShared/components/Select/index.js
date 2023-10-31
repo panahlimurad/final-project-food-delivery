@@ -24,7 +24,6 @@ const Select = () => {
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     dispatch(setCategory(selectedCategory));
-    console.log("seletecedCategory", selectedCategory);
   };
   const dataArray = data ? Object.values(data) : [];
 
