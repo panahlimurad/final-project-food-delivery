@@ -13,15 +13,12 @@ import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 //       ...(await serverSideTranslations(locale, ["common"]))
 //   }
 // })
+
 import React from "react";
 import { ROUTER } from "../../server/constant/router";
 
-
-
-
 const Restaurants = ({restData}) => {
   console.log("res", restData);
-  const { push } = useRouter();
   return (
     <>
     <LayoutClient>
@@ -42,7 +39,6 @@ export default Restaurants;
 
 
 
-
 export async function getServerSideProps() {
   try {
     const data = await GetRestaurants();
@@ -59,4 +55,3 @@ export async function getServerSideProps() {
     };
   }
 }
-

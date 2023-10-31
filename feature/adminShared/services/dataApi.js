@@ -157,4 +157,4 @@ export const GetBasket = async (endpoint) => {
   } catch (error) {
     throw error;
   }
-};
+}
