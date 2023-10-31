@@ -3,20 +3,21 @@ import CardRestaurantContainer from "../../feature/ClientShared/components/CardR
 import NavbarRestaurant from "../../feature/ClientShared/components/RestaurantNavbar/NavbarRestaurant";
 import { GetRestaurants } from "../../feature/adminShared/services/dataApi";
 import LayoutClient from '../../layoutClient/LayoutClient'
-import React from "react";
+
 import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 
 
-export const getStaticProps = async ({locale})=>({
-  props:{
-      ...(await serverSideTranslations(locale, ["common"]))
-  }
-})
+// export const getStaticProps = async ({locale})=>({
+//   props:{
+//       ...(await serverSideTranslations(locale, ["common"]))
+//   }
+// })
+
 import React from "react";
+import { ROUTER } from "../../server/constant/router";
 
 const Restaurants = ({restData}) => {
   console.log("res", restData);
-  const { push } = useRouter();
   return (
     <>
     <LayoutClient>
@@ -33,3 +34,23 @@ const Restaurants = ({restData}) => {
 };
 
 export default Restaurants;
+
+
+
+
+export async function getServerSideProps() {
+  try {
+    const data = await GetRestaurants();
+    return {
+      props: {
+        restData:data,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        hasError: true,
+      },
+    };
+  }
+}

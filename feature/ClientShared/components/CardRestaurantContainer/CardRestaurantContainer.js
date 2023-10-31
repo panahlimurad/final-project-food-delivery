@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { setCategory } from "../../../../redux/features/productDetails/productSlice";
 
 export default function CardRestaurantContainer({restaurantData}) {
-  const restaurants=restaurantData.result.data
+  const restaurants=restaurantData?.result.data
   console.log("restaurants" , restaurants);
 
  
@@ -34,7 +34,7 @@ console.log("filter datas", filteredRestaurants);
   return (
 
       <div className="flex flex-wrap justify-center gap-7 mt-4"> 
-        {restaurants.map((restaurant,index) => (
+        {restaurants?.map((restaurant,index) => (
           <button   onClick={() => push(ROUTER.RESTUARANTS_ID(restaurant.id))}>
              <CardRestaurant
           
