@@ -2,16 +2,17 @@
 import Head from "next/head";
 import LayoutClient from "../layoutClient/LayoutClient";
 import HomePage from "../pages/home/index";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 
-export const getStaticProps = async ({locale})=>({
-  props:{
-      ...(await serverSideTranslations(locale, ["common"]))
-  }
-})
+// export const getStaticProps = async ({ locale }) => ({
+//   props: {
+//     ...(await serverSideTranslations(locale, ["common"]))
+//   }
+// })
 
 const Home = () => {
+  // console.log("ee",data)
   // const {t, i18n} = useTranslation()
 
   // const handleUpload = (e: any) => {
@@ -29,7 +30,7 @@ const Home = () => {
   //   });
   // };
 
-  
+
   return (
     <div>
       <Head>
@@ -45,3 +46,20 @@ const Home = () => {
 };
 
 export default Home;
+// export async function getServerSideProps() {
+//   try {
+//     const res = await GetOffer();
+//     console.log("res", res)
+//     return {
+//       props: {
+//         offer: res
+//       },
+//     };
+//   } catch (err) {
+//     return {
+//       props: {
+//         hasError: true,
+//       },
+//     };
+//   }
+// }
