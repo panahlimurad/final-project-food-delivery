@@ -1,12 +1,13 @@
 import LayoutUser from "../../../feature/ClientShared/components/LayoutUser/LayoutUser"
+import YourOrder from "../../../feature/ClientShared/components/yourorder/YourOrder"
 import LayoutClient from "../../../layoutClient/LayoutClient"
 
  const Orders = ()=>{
+
     return(
         <LayoutClient>
         <LayoutUser>
-        <div>Orders</div>
-        
+       <YourOrder/>
         </LayoutUser>
                 </LayoutClient>    )
 }

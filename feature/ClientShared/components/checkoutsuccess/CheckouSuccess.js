@@ -3,7 +3,7 @@ import Image from 'next/image'
 import checoutsuccess from '../../../../public/svg/checkoutsuccess.svg'
 const CheckouSuccess = () => {
   return (
-    <div className='h-[515px] w-[1031px] md:bg-[#F3F4F6] mt-5 ml-6 bg-[#FFFFFF] '>
+    <div className='h-[515px] w-full md:bg-[#F3F4F6]  bg-[#FFFFFF] '>
 <div className='flex justify-center mt-16 ' >
 
 <Image src={checoutsuccess} className='w-[133px] h-[133px] md:w-[200px] md:h-[200px]' />

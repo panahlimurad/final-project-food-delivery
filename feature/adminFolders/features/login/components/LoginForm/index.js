@@ -1,11 +1,12 @@
 "use client";
 import { Login } from "../../../../../adminShared/services/dataApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../../../adminShared/ui/Button";
 import LoginImg from "../LoginImg";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import Loader from "../../../../../adminShared/components/Loader/Loader";
+
 
 const LoginForm = () => {
   const router = useRouter();
@@ -15,13 +16,11 @@ const LoginForm = () => {
     password: "",
   });
 
-    function writeToLocalStorage(data) {
-    localStorage.setItem("userData", JSON.stringify(data));
-  }
+
+  
 
   const mutation = useMutation((data) => Login("/api/auth/signin", data), {
     onSuccess: (responseData) => {
-      writeToLocalStorage(responseData)
       router.push("/admin");
     },
     onError: (error) => {

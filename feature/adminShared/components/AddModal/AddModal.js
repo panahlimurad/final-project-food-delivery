@@ -30,6 +30,7 @@ export default function AddModal({
   const [addProductImage, setAddProductImage] = useState(null);
   const [lastProductImage, setlastProductImage] = useState(null);
 
+
   const handleNewProductImage = (e) => {
     const selectedFile = e.target.files[0];
     setAddProductImage(URL.createObjectURL(selectedFile));

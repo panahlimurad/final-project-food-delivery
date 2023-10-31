@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
 
-const SignButton = ({text, url}) => {
+const SignButton = ({text, url, removeToken}) => {
   return (
     <Link href={url}>
-        <button className="bg-[#D63626] rounded-3xl w-[115px] h-[41px] font-medium text-base text-white">{text}</button>
+        <button onClick={removeToken} className="bg-[#D63626] rounded-3xl w-[115px] h-[41px] font-medium text-base text-white">{text}</button>
     </Link>
   )
 }
