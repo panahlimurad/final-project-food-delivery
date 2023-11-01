@@ -1,16 +1,35 @@
 import edit from "../../../../adminFolders/assets/image/productCard/edit.svg";
 import del from "../../../../adminFolders/assets/image/productCard/delete.svg";
-import pizza from "../../../../adminFolders/assets/image/productCard/product.svg";
 import Image from "next/image";
 import { shortText } from "../../../../adminShared/helper/shortText";
 import Swal from "sweetalert2";
 import { DeleteProduct } from "../../../../adminShared/services/dataApi";
+import EditModal from "../../../../adminShared/components/EditModal/EditModal";
+import { FORM } from "../../../utils/form";
+import { useState } from "react";
 
 // import CustomScrollbar from "shared/hooks/customScrollBar/customScrollBar";
 // import "react-loading-skeleton/dist/skeleton.css";
-const ProductCard = ({ name, img, price, description, product_id, isLoading }) => {
+const ProductCard = ({
+  name,
+  img,
+  price,
+  description,
+  product_id,
+  isLoading,
+}) => {
   // const { img_url, name, price } = product;
   console.log("product img", img);
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const openEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+  };
 
   // delete product button modal
   const handleDeleteClick = () => {
@@ -27,10 +46,12 @@ const ProductCard = ({ name, img, price, description, product_id, isLoading }) =
         try {
           await DeleteProduct(product_id);
           Swal.fire("Deleted!", "Your restaurant has been deleted.", "success");
-          
         } catch (error) {
-          
-          Swal.fire("Error", "An error occurred while deleting the restaurant.", "error");
+          Swal.fire(
+            "Error",
+            "An error occurred while deleting the restaurant.",
+            "error"
+          );
         }
       }
     });
@@ -59,7 +80,13 @@ const ProductCard = ({ name, img, price, description, product_id, isLoading }) =
           </div>
           <div className=" flex gap-2">
             <button className="cursor-pointer">
-              <Image src={edit} />
+              <Image src={edit} onClick={openEditModal}/>
+              <EditModal
+                form={FORM.PRODUCTS}
+                isEditModalOpen={isEditModalOpen}
+                openEditModal={openEditModal}
+                closeEditModal={closeEditModal}
+              />
             </button>
             <button onClick={handleDeleteClick} className="cursor-pointer">
               <Image src={del} />
