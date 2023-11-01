@@ -5,34 +5,35 @@ import hamburger from "../../../../../public/svg/hamburger1.svg";
 import fryPoteto from "../../../../../public/svg/frypoteto.svg";
 import pizza from "../../../../../public/svg/pizza.svg";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 export const Section1 = () => {
-  const { t } = useTranslation('common');
- 
+  const { t } = useTranslation("common");
 
   return (
     <div
       className={`flex items-center justify-around bg-[#F3F4F6] pt-10 rounded h-[740px] pb-28 mb-20 ${styles["section-1"]}`}>
       <div
         className={`w-[643px] flex flex-col  ml-6 ${styles["left-container"]}`}>
-        <h1 className={`${styles.title}`}>
-          {t("common:OURFOOD")}
-        </h1>
+        <h1 className={`${styles.title}`}>{t("common:OURFOOD")}</h1>
         <p className={`${styles.paragraf} w-[510px]`}>
           {" "}
           Lorem ipsum is placeholder text commonly used in the graphic, print,
           and publishing industries for previewing layouts and visual mockups.
         </p>
         <div className={`flex gap-9 ${styles["btn-areas"]}`}>
-          <button
-          
-            className={`w-[220px] h-[70px] rounded-[30px] bg-[#D63626] text-[#FFF] text-center hover:bg-[#C43626] ${styles["section-btn"]}`}>
-            {t("common:Register")}
-          </button>
-          <button
-            className={`w-[220px] h-[70px] border-solid border-2 border-[#828282] rounded-[30px] bg-[#F2F2F2] text-[#828282] text-center hover:bg-[#bcc8e2b7] ${styles["section-btn"]}`}>
-            {t("common:ordernow")}
-          </button>
+          <Link href={"/register"}>
+            <button
+              className={`w-[220px] h-[70px] rounded-[30px] bg-[#D63626] text-[#FFF] text-center hover:bg-[#C43626] ${styles["section-btn"]}`}>
+              {t("common:Register")}
+            </button>
+          </Link>
+          <Link href={"/restaurants"}>
+            <button
+              className={`w-[220px] h-[70px] border-solid border-2 border-[#828282] rounded-[30px] bg-[#F2F2F2] text-[#828282] text-center hover:bg-[#bcc8e2b7] ${styles["section-btn"]}`}>
+              {t("common:ordernow")}
+            </button>
+          </Link>
         </div>
       </div>
       <div

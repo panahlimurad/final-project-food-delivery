@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import profile from '../../../../public/profile.svg'
+import profile from "../../../../public/profile.svg";
 import Link from "next/link";
 import basket from "../../assets/basket.svg";
 import SignButton from "../signInButton/SignInButton";
@@ -18,31 +18,26 @@ const Header = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
   const [showFoodyText, setShowFoodyText] = useState(true);
   const [showInput, setShowInput] = useState(false);
-  const [userToken, setUserToken] = useState(null)
+  const [userToken, setUserToken] = useState(null);
   const toggleFoodyText = () => {
     setShowFoodyText(!showFoodyText);
     setShowInput(!showInput);
   };
 
   const selUserData = useSelector((state) => state.user.data);
-  console.log("selData", selUserData);
-
-
-  const removeToken=()=>{
-    localStorage.removeItem('clientData');
-  }
+  
+  const removeToken = () => {
+    localStorage.removeItem("clientData");
+  };
 
   useEffect(() => {
     const userJSONData = localStorage.getItem("clientData");
     const userData = JSON.parse(userJSONData);
     const token = userData?.user?.access_token;
-    if(token){
-      setUserToken(token)
+    if (token) {
+      setUserToken(token);
     }
-  },[]);
-
-
-  console.log("token", userToken);
+  }, []);
 
   const [showMenu, setShowMenu] = useState(false);
 
@@ -59,6 +54,18 @@ const Header = () => {
   const links = [
     { text: "Home", href: "/" },
     { text: "Restaurants", href: "/restaurants" },
+    { text: "AboutUs", href: "/about" },
+    { text: "HowItworks", href: "/howItWorks" },
+    { text: "FAQs", href: "/FAQs" },
+  ];
+
+  const signInLinks = [
+    { text: "Home", href: "/" },
+    { text: "Restaurants", href: "/restaurants" },
+    { text: "Profile", href: "/user?page=profile" },
+    { text: "Your Basket", href: "/user?page=basket" },
+    { text: "Your Orders", href: "/user?page=orders" },
+    { text: "Checkout", href: "/user?page=checkout" },
     { text: "AboutUs", href: "/about" },
     { text: "HowItworks", href: "/howItWorks" },
     { text: "FAQs", href: "/FAQs" },
@@ -131,7 +138,7 @@ const Header = () => {
             <LangDropDown />
           </div>
 
-          {userToken ?
+          {userToken ? (
             <div className="flex gap-4">
               <div className="w-[44px] relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757] transition-transform transform hover:scale-95">
                 <span className="absolute bg-[#D63626] text-white top-[-10px] w-6 text-center right-[-4px] rounded-full text-">
@@ -144,14 +151,26 @@ const Header = () => {
                   className="rounded-full"
                   width={120}
                   height={120}
-                  src={selUserData?.user?.img_url ? selUserData?.user?.img_url : profile}
+                  src={
+                    selUserData?.user?.img_url
+                      ? selUserData?.user?.img_url
+                      : profile
+                  }
                 />
               </div>
-            </div>:null
-          }
+            </div>
+          ) : null}
         </div>
         <div className="hidden lg:block transition-opacity ease-in-out duration-300 hover:opacity-75">
-          {userToken ? <SignButton url="/login" removeToken={removeToken} text={t("Log Out")} /> : <SignButton url="/login" text={t("SignIn")} />}
+          {userToken ? (
+            <SignButton
+              url="/login"
+              removeToken={removeToken}
+              text={t("Log Out")}
+            />
+          ) : (
+            <SignButton url="/login" text={t("SignIn")} />
+          )}
         </div>
       </div>
       <div
@@ -169,27 +188,61 @@ const Header = () => {
             : "hidden"
         }`}>
         <AiOutlineClose onClick={closeMenu} size={28} />
-        <div className="text-center mt-12">
-          <SignButton url="/login" text="Sign up" />
+        <div className="text-center mt-12 flex gap-10 flex-col">
+          <div className="relative h-[44px] text-white text-xl cursor-pointer gap-6 flex justify-center items-center rounded-full bg-[#F178B6] transition-transform transform hover:scale-95">
+            <Image
+              className="rounded-full"
+              width={50}
+              height={50}
+              src={
+                selUserData?.user?.img_url
+                  ? selUserData?.user?.img_url
+                  : profile
+              }
+            />
+            <p>{selUserData?.user?.username}</p>
+          </div>
+          {userToken ? (
+            <SignButton
+              url="/login"
+              removeToken={removeToken}
+              text={t("Log Out")}
+            />
+          ) : (
+            <SignButton url="/login" text={t("SignIn")} />
+          )}
         </div>
-        <div className="hidden  gap-3 mt-6 items-center font-medium">
-          <img src="/svg/15.svg" alt="" />
-          <div className="name">Sarkhan Rahimli</div>
-        </div>
-        <ul className="font-medium text-lg mt-24 text-[#828282]">
-          {links.map((link, index) => (
-            <li
-              key={index}
-              className={`cursor-pointer mb-4 ${
-                index === activeLinkIndex ? "text-[#D63626]" : ""
-              }`}
-              onClick={() => handleLinkClick(index)}>
-              <Link className="text-lg" href={link.href}>
-                {link.text}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {userToken ? (
+          <ul className="font-medium text-lg mt-24 text-[#828282]">
+            {signInLinks.map((link, index) => (
+              <li
+                key={index}
+                className={`cursor-pointer mb-4 ${
+                  index === activeLinkIndex ? "text-[#D63626]" : ""
+                }`}
+                onClick={() => handleLinkClick(index)}>
+                <Link className="text-lg" href={link.href}>
+                  {link.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <ul className="font-medium text-lg mt-24 text-[#828282]">
+            {links.map((link, index) => (
+              <li
+                key={index}
+                className={`cursor-pointer mb-4 ${
+                  index === activeLinkIndex ? "text-[#D63626]" : ""
+                }`}
+                onClick={() => handleLinkClick(index)}>
+                <Link className="text-lg" href={link.href}>
+                  {link.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );

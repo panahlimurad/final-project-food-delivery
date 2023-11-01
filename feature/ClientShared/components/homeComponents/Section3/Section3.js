@@ -10,27 +10,26 @@ export const Section3 = () => {
         GetOffer,
         {
             onSuccess: (res) => {
-                console.log(res);
+               
             },
         }
     );
-    const newoffers = offer?.result.data;
-    console.log("a", newoffers);
+    const newoffers = offer?.result?.data;
 
     return (
         <div className="mb-44">
             {newoffers?.map((offer, index) => (
                 <div className={`flex justify-around items-center mb-10 ${styles["section-3"]}`} key={index}>
                     <div className={`w-2/5 ${styles["top-container"]}`}>
-                        <h3 className={`${styles["section3-title"]}`}>{offer.name}</h3>
-                        <p className={`${styles["section3-paragraf"]}`}>{offer.description}</p>
+                        <h3 className={`${styles["section3-title"]}`}>{offer?.name}</h3>
+                        <p className={`${styles["section3-paragraf"]}`}>{offer?.description}</p>
                     </div>
                     <div className={`w-1/3 relative mt-8 ${styles["bottom-container"]}`}>
                         <div className={`${styles["section3-container"]}`}></div>
                         <div className={`w-[626px] h-[441px] absolute z-10 top-6 -right-20 ${styles["section3-image1"]}`}>
                             <Image
-                                src={offer.img_url} // Replace with the actual image source
-                                alt={offer.name} // Use a relevant alt text
+                                src={offer.img_url}
+                                alt={offer.name} 
                                 width={498}
                                 height={472}
                                 style={{ objectFit: "cover" }}
