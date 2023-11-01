@@ -30,7 +30,7 @@ const Offers = () => {
             <title>Offers</title>
           </Head>
           <Table data={dataArray} headers={title} />
-          <EditModal/>
+          
         </div>
       </LayoutAdmin>
     </>
