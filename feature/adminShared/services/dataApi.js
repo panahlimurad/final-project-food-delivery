@@ -74,6 +74,15 @@ export const PostRestaurants = async (data) => {
     throw error;
   }
 };
+
+export const PutRestaurants = async (id) => {
+  try {
+    const response = await instanceAxiosAdmin.put(`/api/restuarants/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 export const DeleteRestaurants = async (id) => {
   try {
     const response = await instanceAxiosAdmin.delete(`/api/restuarants/${id}`);

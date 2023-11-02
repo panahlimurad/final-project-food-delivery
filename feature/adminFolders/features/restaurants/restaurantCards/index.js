@@ -4,12 +4,30 @@ import del from "../../../assets/image/productCard/delete.svg";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import { DeleteRestaurants } from "../../../../adminShared/services/dataApi";
+import EditModal from "../../../../adminShared/components/EditModal/EditModal";
+import { FORM } from "../../../utils/form";
+import { useState } from "react";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
 
 
 const RestaurantCards = ({ name, img, category, item_id,isLoading}) => {
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const openEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+  };
+
+
+
+
+
   const handleDeleteClick = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -58,8 +76,12 @@ const RestaurantCards = ({ name, img, category, item_id,isLoading}) => {
       <div onClick={handleDeleteClick} className="cursor-pointer ml-1">
         <Image src={del} alt="del" />
       </div>
-      <div className="cursor-pointer">
-        <Image src={edit}  alt="edit"/>
+      <div className="cursor-pointer" >
+        <Image src={edit}  alt="edit" onClick={() => openEditModal({ name, img, category, item_id })}/>
+        <EditModal form={FORM.RESTAURANT}
+                isEditModalOpen={isEditModalOpen}
+                openEditModal={openEditModal}
+                closeEditModal={closeEditModal}/>
       </div>
     </div>
   </div>
