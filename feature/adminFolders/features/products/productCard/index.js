@@ -5,8 +5,8 @@ import { shortText } from "../../../../adminShared/helper/shortText";
 import Swal from "sweetalert2";
 import { DeleteProduct } from "../../../../adminShared/services/dataApi";
 import EditModal from "../../../../adminShared/components/EditModal/EditModal";
-import { FORM } from "../../../utils/form";
 import { useState } from "react";
+import { EditFORM } from "../../../utils/editForm";
 
 // import CustomScrollbar from "shared/hooks/customScrollBar/customScrollBar";
 // import "react-loading-skeleton/dist/skeleton.css";
@@ -82,7 +82,7 @@ const ProductCard = ({
             <button className="cursor-pointer">
               <Image src={edit} onClick={openEditModal}/>
               <EditModal
-                form={FORM.PRODUCTS}
+                form={EditFORM.PRODUCTS}
                 isEditModalOpen={isEditModalOpen}
                 openEditModal={openEditModal}
                 closeEditModal={closeEditModal}

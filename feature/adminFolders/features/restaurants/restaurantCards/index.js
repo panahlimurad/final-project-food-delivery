@@ -5,8 +5,8 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import { DeleteRestaurants } from "../../../../adminShared/services/dataApi";
 import EditModal from "../../../../adminShared/components/EditModal/EditModal";
-import { FORM } from "../../../utils/form";
 import { useState } from "react";
+import { EditFORM } from "../../../utils/editForm";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
@@ -78,7 +78,7 @@ const RestaurantCards = ({ name, img, category, item_id,isLoading}) => {
       </div>
       <div className="cursor-pointer" >
         <Image src={edit}  alt="edit" onClick={() => openEditModal({ name, img, category, item_id })}/>
-        <EditModal form={FORM.RESTAURANT}
+        <EditModal form={EditFORM.RESTAURANT}
                 isEditModalOpen={isEditModalOpen}
                 openEditModal={openEditModal}
                 closeEditModal={closeEditModal}/>
