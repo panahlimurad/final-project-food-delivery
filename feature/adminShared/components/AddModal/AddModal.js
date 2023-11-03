@@ -30,7 +30,6 @@ export default function AddModal({
   const [addProductImage, setAddProductImage] = useState(null);
   const [lastProductImage, setlastProductImage] = useState(null);
 
-
   const handleNewProductImage = (e) => {
     const selectedFile = e.target.files[0];
     setAddProductImage(URL.createObjectURL(selectedFile));
@@ -58,12 +57,12 @@ export default function AddModal({
     const { name, value } = e.target;
     if (name === "category") {
       const selectedCategory = categoryList[1]?.data.find(
-        (category) => category.name === value
+        (category) => category.id === value
       );
 
-      const selectedName = selectedCategory ? selectedCategory.name : "";
+      const selectedName = selectedCategory ? selectedCategory.id : "";
 
-      console.log("category_id nedir", selectedCategory);
+      console.log("category_id nedir", selectedName);
 
       setCategoryData({
         ...categoryData,
@@ -71,12 +70,12 @@ export default function AddModal({
       });
     } else if (name === "rest_id") {
       const selectedCategory = restaurantList[1]?.data.find(
-        (restaurant) => restaurant.name === value
+        (restaurant) => restaurant.id === value
       );
 
-      const selectedName = selectedCategory ? selectedCategory.name : "";
+      const selectedName = selectedCategory ? selectedCategory.id : "";
 
-      console.log("rest_id nedir", selectedCategory);
+      console.log("rest_id nedir", selectedName);
 
       setCategoryData({
         ...categoryData,
@@ -119,58 +118,53 @@ export default function AddModal({
   function handleSubmit(event) {
     event.preventDefault();
     console.log("checking data for products", uploadData);
-    mutationProduct.mutate(uploadData);
     {
-      routerPath === "/admin/category" && mutation.mutate(uploadData);
+      title === "Add product" && mutationProduct.mutate(uploadData);
+    }
+    {
+      title === "Add category" && mutation.mutate(uploadData);
     }
 
     {
-      routerPath === "/admin/offers" && mutationOffer.mutate(uploadData);
+      title === "Add offer" && mutationOffer.mutate(uploadData);
     }
     {
-      routerPath === "/admin/restaurants" &&
-        mutationRestaurant.mutate(uploadData);
+      title === "Add restaurant" && mutationRestaurant.mutate(uploadData);
     }
 
     closeAddModal();
   }
 
- 
+  const {
+    data: categoryListData,
+    isLoading: categoryIsLoading,
+    isError: categoryIsError,
+    error: categoryError,
+  } = useQuery("category", GetCategory, {
+    onSuccess: (res) => {
+      console.log("categoryList", res);
+    },
+    onError: (err) => {
+      console.error("Category Query Error:", err);
+    },
+  });
 
-const {
-  data: categoryListData,
-  isLoading: categoryIsLoading,
-  isError: categoryIsError,
-  error: categoryError
-} = useQuery("category", GetCategory, {
-  onSuccess: (res) => {
-    console.log("categoryList", res);
-  },
-  onError: (err) => {
-    console.error("Category Query Error:", err);
-  }
-});
+  const {
+    data: restaurantData,
+    isLoading: restaurantIsLoading,
+    isError: restaurantIsError,
+    error: restaurantError,
+  } = useQuery("restaurant", GetRestaurants, {
+    onSuccess: (res) => {
+      console.log("restaurantList", res);
+    },
+    onError: (err) => {
+      console.error("Restaurant Query Error:", err);
+    },
+  });
 
-const {
-  data: restaurantData,
-  isLoading: restaurantIsLoading,
-  isError: restaurantIsError,
-  error: restaurantError
-} = useQuery("restaurant", GetRestaurants, {
-  onSuccess: (res) => {
-    console.log("restaurantList", res);
-  },
-  onError: (err) => {
-    console.error("Restaurant Query Error:", err);
-  }
-});
-
-const categoryList = categoryListData ? Object.values(categoryListData) : [];
-const restaurantList = restaurantData ? Object.values(restaurantData) : [];
-
-
-
-
+  const categoryList = categoryListData ? Object.values(categoryListData) : [];
+  const restaurantList = restaurantData ? Object.values(restaurantData) : [];
 
   console.log("bu neyin listidir?", categoryList);
 
@@ -318,15 +312,17 @@ const restaurantList = restaurantData ? Object.values(restaurantData) : [];
                         >
                           {title === "Add restaurant"
                             ? categoryList[1]?.data?.map((product, index) => (
-                                <option value={product.name} key={index}>
+                                <option value={product.id} key={index}>
                                   {product.name}
                                 </option>
                               ))
-                            : restaurantList[1]?.data?.map((restaurant, index) => (
-                                <option value={restaurant.name} key={index}>
-                                  {restaurant.name}
-                                </option>
-                              ))}
+                            : restaurantList[1]?.data?.map(
+                                (restaurant, index) => (
+                                  <option value={restaurant.id} key={index}>
+                                    {restaurant.name}
+                                  </option>
+                                )
+                              )}
                         </select>
                       </div>
                     );

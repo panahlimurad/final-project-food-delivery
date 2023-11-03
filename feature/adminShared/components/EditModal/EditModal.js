@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import UploadImage from "../AddModal/UploadImage";
-import {GetRestaurants} from "../../services/dataApi"
+import {GetCategory, GetProducts, GetRestaurants} from "../../services/dataApi"
 import { useQuery } from "react-query";
 
 const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => {
@@ -48,7 +48,38 @@ const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => 
     }
   });
 
+  const {
+    data: categoryListData,
+    isLoading: categoryIsLoading,
+    isError: categoryIsError,
+    error: categoryError,
+  } = useQuery("category", GetCategory, {
+    onSuccess: (res) => {
+      console.log("categoryList", res);
+    },
+    onError: (err) => {
+      console.error("Category Query Error:", err);
+    },
+  });
+
+  const {
+    data: productListData,
+    isLoading: productIsLoading,
+    isError: productIsError,
+    error: productError,
+  } = useQuery("products", GetProducts, {
+    onSuccess: (res) => {
+      console.log("productList", res);
+    },
+    onError: (err) => {
+      console.error("product Query Error:", err);
+    },
+  });
+
   const restaurantList = restaurantData ? Object.values(restaurantData) : [];
+  const categoryList = categoryListData ? Object.values(categoryListData) : [];
+  const productList = productListData ? Object.values(productListData) : [];
+  console.log("productList in edit", productList);
 
   console.log('list in edit',restaurantList);
 
