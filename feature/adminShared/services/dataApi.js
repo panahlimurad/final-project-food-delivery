@@ -115,6 +115,16 @@ export const GetRestaurants = async () => {
     throw error;
   }
 };
+
+export const GetRestaurantsById = async (id) => {
+  try {
+    const response = await instanceAxiosAdmin.get(`/api/restuarants/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const GetProducts = async () => {
   try {
     const response = await instanceAxiosAdmin.get("/api/products");
