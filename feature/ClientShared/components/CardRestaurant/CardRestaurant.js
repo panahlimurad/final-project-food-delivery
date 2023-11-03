@@ -1,8 +1,5 @@
 import React from "react";
-import restLogo from "../../../../public/svg/restLogo.svg";
 import Image from "next/image";
-import { ROUTER } from "../../../../server/constant/router";
-import { useRouter } from "next/router";
 
 const CardRestaurant = ({name, img, cuisine, delivery_min,category_id , delivery_price, item_id,isLoading}) => {
   console.log("name", name);
@@ -25,7 +22,7 @@ const CardRestaurant = ({name, img, cuisine, delivery_min,category_id , delivery
       </div>
       <div className="font-bold text-xl text-[#4F4F4F]">{name}</div>
       <div className="text-base font-normal text-[#828282]">
-        <p>{category_id}</p>
+        <p>{cuisine}</p>
       </div>
       <div className="flex justify-between w-[200px]">
         <div className="font-bold text-base text-[#4F4F4F]">{delivery_price} Delivery</div>

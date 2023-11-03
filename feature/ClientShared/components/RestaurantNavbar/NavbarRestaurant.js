@@ -1,26 +1,15 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import restIcon from "../../../../public/svg/resticon.svg";
+import React, { useState } from "react";
 import Image from "next/image";
 import { ScrollBarContainer } from "../../Scroll/Scroll";
 import { useDispatch } from "react-redux";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { GetCategory } from "../../../adminShared/services/dataApi";
-import { SORT_CATEGORY } from "../../../../redux/features/productDetails/filterSlice";
-import { selectProducts } from "../../../../redux/features/productDetails/CategorySlice";
 import { setCategory } from "../../../../redux/features/productDetails/productSlice";
-
 
 const NavbarRestaurant = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
-
-
-
-
-
-
-
   const { data, isLoading, isError, error } = useQuery(
     "category",
     GetCategory,
@@ -33,7 +22,6 @@ const NavbarRestaurant = () => {
 
 
   const dispatch = useDispatch();
-
   const selectedCategory = useSelector((state) => state.category);
 
   const handleCategoryChange = (index) => {
@@ -41,16 +29,11 @@ const NavbarRestaurant = () => {
     const SelectName=selectedCategory.name
     dispatch(setCategory(SelectName));
     console.log("SelectName", SelectName);
+    setActiveLinkIndex(index);
     // console.log("seletecedCategory", selectedCategory);
   };
   const dataArray = data ? Object.values(data) : [];
-
   console.log("data Arrays?", dataArray);
-
-  const handleClick = (index) => {
-    setActiveLinkIndex(index);
-  };
-
   return (
     <div className="mt-4">
       <ScrollBarContainer bg="#C74FEB">
@@ -61,8 +44,6 @@ const NavbarRestaurant = () => {
             {dataArray[1]?.data?.map((link, index) => (
               <button 
               onClick={()=>handleCategoryChange(index)}
-              // onClick={handleCategoryChange}
-              // onClick={() => handleCategoryChange(link.name)}
               key={index}
               values={selectedCategory}
                 className={`flex p-1 gap-3 items-center cursor-pointer 

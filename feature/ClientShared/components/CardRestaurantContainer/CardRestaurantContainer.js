@@ -1,42 +1,40 @@
-
-import Image from "next/image";
 import { GetRestaurants } from "../../../adminShared/services/dataApi";
 import CardRestaurant from "../CardRestaurant/CardRestaurant";
 import { ROUTER } from "../../../../server/constant/router";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { setCategory } from "../../../../redux/features/productDetails/productSlice";
+import { useQuery } from "react-query";
 
-export default function CardRestaurantContainer({restaurantData}) {
-  const restaurants=restaurantData?.result.data
-  console.log("restaurants" , restaurants);
+export default function CardRestaurantContainer() {
+  const { data, isLoading, isError, error } = useQuery(
+    "restaurant",
+    GetRestaurants,
+    {
+      onSuccess: (res) => {
+        console.log("query", res);
+      },
+    }
+  );
+  
+  console.log("datass", data);
 
- 
-  // const dataArray = restaurants ? Object.values(restaurants) : [];
-// console.log(dataArray);
-  // const selectedCategory = useSelector(setCategory);
-  const selectedCategory = useSelector((state) => state.category);
-
-  console.log("selectedCategory", selectedCategory);
-
-
-  const filteredRestaurants = selectedCategory
-    ? restaurants?.filter(
-        (restaurant) => {console.log("nnnnnnnnnnnnnnn",restaurant.name)}
+  const dataArray = data ? Object.values(data) : [];
+  
+  const selectedReataurants = useSelector((state) => state.category);
+  const filteredRestaurants = selectedReataurants
+    ? dataArray[1]?.data?.filter(
+        (restaurant) => restaurant.category_id === selectedReataurants
+      
       )
-    : restaurants;
-
-console.log("filter datas", filteredRestaurants);
-
-
+    : dataArray[1]?.data;
+  console.log("filteredTestaurantss", filteredRestaurants);
   const { push } = useRouter();
   return (
 
       <div className="flex flex-wrap justify-center gap-7 mt-4"> 
-        {restaurants?.map((restaurant,index) => (
+        {filteredRestaurants?.map((restaurant,index) => (
           <button   onClick={() => push(ROUTER.RESTUARANTS_ID(restaurant.id))}>
              <CardRestaurant
-          
           key={restaurant.name}
           name={restaurant.name}
           delivery_price={restaurant.delivery_price}
