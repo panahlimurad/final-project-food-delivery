@@ -5,11 +5,11 @@ import HomePage from "../pages/home/index";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 
-// export const getStaticProps = async ({ locale }) => ({
-//   props: {
-//     ...(await serverSideTranslations(locale, ["common"]))
-//   }
-// })
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common"]))
+  }
+})
 
 const Home = () => {
   // console.log("ee",data)

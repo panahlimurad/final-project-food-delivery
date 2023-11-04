@@ -5,16 +5,17 @@ import { GetOffer } from "../../../../adminShared/services/dataApi";
 import { useQuery } from "react-query";
 
 export const Section3 = () => {
-    const { data: offer } = useQuery(
+    const { data } = useQuery(
         "offer",
         GetOffer,
         {
             onSuccess: (res) => {
-               
+             
             },
         }
     );
-    const newoffers = offer?.result?.data;
+    const newoffers = data?.result?.data;
+
 
     return (
         <div className="mb-44">
