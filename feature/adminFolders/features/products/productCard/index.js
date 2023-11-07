@@ -12,14 +12,16 @@ import { EditFORM } from "../../../utils/editForm";
 // import "react-loading-skeleton/dist/skeleton.css";
 const ProductCard = ({
   name,
-  img,
+  rest_id,
+  img_url,
   price,
   description,
   product_id,
   isLoading,
 }) => {
   // const { img_url, name, price } = product;
-  console.log("product img", img);
+  // console.log("product img", img_url);
+  console.log("rest_id", img_url);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -61,7 +63,7 @@ const ProductCard = ({
     <div className="bg-white rounded-[5px] flex flex-col gap-1 p-3 md:w-auto w-[236px] mx-auto">
       <div className="w-[160px] h-[160px] mx-auto">
         <Image
-          src={img}
+          src={img_url}
           width={100}
           height={100}
           className="w-full h-full object-cover rounded-full"
@@ -86,6 +88,7 @@ const ProductCard = ({
                 isEditModalOpen={isEditModalOpen}
                 openEditModal={openEditModal}
                 closeEditModal={closeEditModal}
+                dataFromCard={{ name, img_url,rest_id, price, description, product_id }}
               />
             </button>
             <button onClick={handleDeleteClick} className="cursor-pointer">

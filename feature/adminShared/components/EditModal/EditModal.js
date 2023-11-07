@@ -1,51 +1,104 @@
 import React, { useRef, useState } from "react";
 import UploadImage from "../AddModal/UploadImage";
-import {GetCategory, GetProducts, GetRestaurants} from "../../services/dataApi"
-import { useQuery } from "react-query";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { fileStorage } from "../../../../server/configs/firebase";
+import {
+  GetCategory,
+  GetProducts,
+  GetRestaurants,
+  PutProducts,
+} from "../../services/dataApi";
+import { useMutation, useQuery } from "react-query";
+import Image from "next/image";
+import { nanoid } from "nanoid";
 
-const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => {
-  const { title, infoImg, description, initialValues, inputs, buttonTitle } = form;
+const EditModal = ({
+  isEditModalOpen,
+  openEditModal,
+  closeEditModal,
+  form,
+  dataFromCard,
+}) => {
+  const { title, infoImg, description, initialValues, inputs, buttonTitle } =
+    form;
 
-  const [selectedImage, setSelectedImage] = useState(null);
-  const fileInputRef = useRef(null);
+    
+    const [selectedImage, setSelectedImage] = useState(null);
+    const fileInputRef = useRef(null);
+    const [lastProductImage, setLastProductImage] = useState(null);
+    const [updatedImage, setUpdatedImage] = useState(null)
+    const [initialImage, setInitialImage] = useState(dataFromCard.img_url)
+
+  const [editedData, setEditedData] = useState(dataFromCard)
+
+  const { product_id, ...dataToUpdate } = editedData
+
+console.log("edited data rest_id", editedData);
+
+  console.log("edit olunmus data", dataToUpdate);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  console.log("id-miz gelirmi?", editedData.product_id);
+
+  const mutationProduct = useMutation((data) => PutProducts(editedData.product_id, dataToUpdate), {
+    onError: (error) => {
+      console.log("Error", error);
+    },
+    onSuccess: (data, variables) => {
+      console.log("Product Updated:", data); 
+      console.log("Variables passed:", variables); 
+      
+    },
+  });
   
-  const [addProductImage, setAddProductImage] = useState(null);
-  const [lastProductImage, setlastProductImage] = useState(null);
+  const handleProductUpdate = (e) => {
+    e.preventDefault()
+    console.log("yeni datalarimiz gelirmi?",dataToUpdate);
+    mutationProduct.mutate(dataToUpdate);
+  };
+  
 
   const handleNewProductImage = (e) => {
     const selectedFile = e.target.files[0];
-    setAddProductImage(URL.createObjectURL(selectedFile));
     const newUUID = nanoid();
     const imageRef = ref(fileStorage, `images/${selectedFile.name + newUUID}`);
+
     uploadBytes(imageRef, selectedFile)
       .then((snapshot) => {
         getDownloadURL(snapshot.ref)
           .then((downloadURL) => {
-            setlastProductImage(downloadURL);
-            console.log("succes", downloadURL);
+            console.log("New image URL:", downloadURL);
+            setUpdatedImage(downloadURL); 
+            console.log("Image successfully uploaded:", downloadURL);
           })
           .catch((error) => {
-            console.log("error", error);
+            console.log("Error getting the image URL:", error);
           });
       })
       .catch((error) => {
-        console.log("error", error);
+        console.log("Error uploading the image:", error);
       });
   };
-
 
   const {
     data: restaurantData,
     isLoading: restaurantIsLoading,
     isError: restaurantIsError,
-    error: restaurantError
+    error: restaurantError,
   } = useQuery("restaurant", GetRestaurants, {
     onSuccess: (res) => {
       console.log("restaurantList", res);
     },
     onError: (err) => {
       console.error("Restaurant Query Error:", err);
-    }
+    },
   });
 
   const {
@@ -81,7 +134,7 @@ const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => 
   const productList = productListData ? Object.values(productListData) : [];
   console.log("productList in edit", productList);
 
-  console.log('list in edit',restaurantList);
+  console.log("list in edit", restaurantList);
 
   const handleButtonClick = () => {
     // Trigger the file input click event
@@ -119,17 +172,33 @@ const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => 
             <div className="mb-4">
               {" "}
               <div className="text-lg mb-4">{infoImg}</div>
-              {addProductImage && (
-                <div className="w-40 h-20 ">
-                  <Image
-                    src={addProductImage}
-                    alt="Selected"
-                    width={80}
-                    height={40}
-                    className="w-full h-full"
-                  />
-                </div>
-              )}
+              {updatedImage ? ( 
+        <div className="w-40 h-20 ">
+          <Image
+            src={updatedImage} 
+            value={updatedImage}
+            alt="Selected"
+            width={80}
+            height={40}
+            className="w-full h-full"
+          />
+        </div>
+      ) : initialImage ? (
+        <div className="w-40 h-20">
+          <Image
+            src={initialImage}
+            alt="Selected"
+            width={80}
+            height={40}
+            className="w-full h-full"
+          />
+        </div>
+      ) : (
+        
+        <div className="w-40 h-20">
+          <p>No image available</p>
+        </div>
+      )}
             </div>
             <div className="flex-1">
               <UploadImage
@@ -159,8 +228,8 @@ const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => 
                           type="text"
                           name={field.name}
                           id={field.name}
-                          // onChange={handleInputChange}
-                          // value={categoryData[field.name]}
+                          value={editedData[field.name]}
+                          onChange={handleInputChange}
                           className="bg-[#5A5B70] outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         />
                       </div>
@@ -177,8 +246,8 @@ const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => 
                         <textarea
                           id={field.name}
                           name={field.name}
-                          // onChange={handleInputChange}
-                          // value={categoryData[field.name]}
+                          value={editedData[field.name]}
+                          onChange={handleInputChange}
                           className="bg-[#5A5B70] outline-none w-full rounded-lg p-4 mt-3 h-[133px] resize-none focus:border"
                         ></textarea>
                       </div>
@@ -196,7 +265,8 @@ const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => 
                           type="text"
                           name={field.name}
                           id={field.name}
-                          // value={categoryData[field.name]}
+                          value={editedData[field.name]}
+                          onChange={handleInputChange}
                           className="bg-[#5A5B70] outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         />
                       </div>
@@ -213,23 +283,27 @@ const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => 
                         <select
                           type="text"
                           name={field.name}
-                          // value={categoryData[field.name]}
-                          // onChange={handleInputChange}
+                          value={editedData[field.name]}
+                          onChange={handleInputChange}
                           id={field.name}
                           autoComplete={field.name}
                           className="bg-[#5A5B70] outline-none w-full rounded-lg px-4 mt-3 h-[46px] focus:border"
                         >
-                          {/* {title === "Add restaurant"
-                            ? categoryList[1]?.data?.map((product, index) => (
-                                <option value={product.name} key={index}>
-                                  {product.name}
-                                </option>
-                              ))
-                            : restaurantList[1]?.data?.map((restaurant, index) => (
-                                <option value={restaurant.name} key={index}>
+                          {title === "Edit restaurant" &&
+                            categoryList[1]?.data?.map((product, index) => (
+                              <option value={product.id} key={index}>
+                                {product.name}
+                              </option>
+                            ))}
+                          {title === "Edit product" &&
+                          
+                            restaurantList[1]?.data?.map(
+                              (restaurant, index) => (
+                                <option value={restaurant.id} key={index}>
                                   {restaurant.name}
                                 </option>
-                              ))} */}
+                              )
+                            )}
                         </select>
                       </div>
                     );
@@ -248,7 +322,7 @@ const EditModal = ({ isEditModalOpen, openEditModal, closeEditModal, form }) => 
               {"Cancel"}
             </button>
             <button
-              // onClick={handleSubmit}
+              onClick={handleProductUpdate}
               className="lg:min-w-[400px] min-w-auto px-5 w-auto h-12 rounded-xl bg-[#C035A2] text-white shadow-md hover:bg-purple"
             >
               {buttonTitle}
