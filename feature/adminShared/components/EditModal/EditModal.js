@@ -59,9 +59,10 @@ console.log("edited data rest_id", editedData);
   });
   
   const handleProductUpdate = (e) => {
-    e.preventDefault()
+   
     console.log("yeni datalarimiz gelirmi?",dataToUpdate);
     mutationProduct.mutate(dataToUpdate);
+    closeEditModal()
   };
   
 
@@ -299,7 +300,7 @@ console.log("edited data rest_id", editedData);
                           
                             restaurantList[1]?.data?.map(
                               (restaurant, index) => (
-                                <option value={restaurant.id} key={index}>
+                                <option value={restaurant.id} key={index} selected={restaurant.id === editedData.rest_id}>
                                   {restaurant.name}
                                 </option>
                               )
