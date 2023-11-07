@@ -21,7 +21,7 @@ const ProductCard = ({
 }) => {
   // const { img_url, name, price } = product;
   // console.log("product img", img_url);
-  console.log("rest_id", img_url);
+  console.log("rest_id", rest_id);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 

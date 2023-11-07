@@ -72,6 +72,7 @@ const ProductsContainer = () => {
                 key={product.id}
                 name={product.name}
                 img_url={product.img_url}
+                rest_id={product.rest_id}
                 price={product.price}
                 product_id={product.id}
                 description={product.description}
