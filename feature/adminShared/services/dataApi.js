@@ -83,6 +83,17 @@ export const PutRestaurants = async (id) => {
     throw error;
   }
 };
+
+export const PutProducts = async (productId, updatedData) => {
+  try {
+    const response = await instanceAxiosAdmin.put(`/api/products/${productId}`, updatedData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 export const DeleteRestaurants = async (id) => {
   try {
     const response = await instanceAxiosAdmin.delete(`/api/restuarants/${id}`);

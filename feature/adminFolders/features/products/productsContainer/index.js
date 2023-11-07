@@ -71,7 +71,7 @@ const ProductsContainer = () => {
               <ProductCard
                 key={product.id}
                 name={product.name}
-                img={product.img_url}
+                img_url={product.img_url}
                 price={product.price}
                 product_id={product.id}
                 description={product.description}
