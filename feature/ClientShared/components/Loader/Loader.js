@@ -1,10 +1,11 @@
 import React from 'react'
+import spinner from '../../../../public/svg/Spinners.gif'
+import Image from 'next/image'
 const LoaderClient = () => {
   return (
-    <div className='w-[50%] h-full flex items-center justify-center'>
-       <div className='w-20 h-20 rounded-full text-white shadow bg-[#eb5757] flex items-center justify-center'>
-       Loading...
-       </div>
+    <div className=' h-full flex items-center justify-center'>
+      
+       <Image src={spinner} alt="Example GIF"/>
     </div>
   )
 }
