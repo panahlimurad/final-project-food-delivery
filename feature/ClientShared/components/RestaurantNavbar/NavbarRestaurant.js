@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { GetCategory } from "../../../adminShared/services/dataApi";
-import { setCategory } from "../../../../redux/features/productDetails/productSlice";
+import { setCategory } from "../../../../redux/app/features/productDetails/productSlice";
 
 const NavbarRestaurant = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);

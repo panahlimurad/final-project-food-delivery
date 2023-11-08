@@ -9,7 +9,7 @@ import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import {dataUser} from '../../../../redux/features/userDetails/userSlice'
+import {dataUser} from '../../../../redux/app/features/userDetails/userSlice'
 
 
 
@@ -28,7 +28,7 @@ const ProfilePart = () => {
   });
 
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const fileInputRef = useRef(null);
   const [email, setEmail] = useState("");
   const [addProductImage, setAddProductImage] = useState(null);
@@ -55,7 +55,7 @@ const ProfilePart = () => {
 
   const mutation = useMutation((data) => PutUser(data), {
     onSuccess: (responseData) => {
-      dispatch(dataUser(responseData))
+      // dispatch(dataUser(responseData))
       toast.success("You have successfully created a profile",{autoClose:2000})
       router.push("/")
       console.log(responseData);
@@ -71,7 +71,7 @@ const ProfilePart = () => {
   }
 
   const handleButtonClick = () => {
-    // Trigger the file input click event
+    
     fileInputRef.current.click();
   };
 

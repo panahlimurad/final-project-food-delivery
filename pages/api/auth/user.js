@@ -41,9 +41,9 @@ export default async function handler(req, res) {
 
   if (req.method === "PUT") {
     try {
-      const { email, username, fullname, img_url, phone } = req.body ?? {};
+      const { name, email, username, fullname, img_url, phone } = req.body ?? {};
 
-      if (!email || !username || !fullname || !phone) {
+      if (!name || !email || !username || !fullname || !phone) {
         res.status(404).json({ error: "Please fill to fields" });
       }
 
@@ -52,6 +52,7 @@ export default async function handler(req, res) {
       };
 
       const customClaims = {
+        name,
         username,
         fullname,
         img_url,

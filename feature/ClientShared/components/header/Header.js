@@ -12,6 +12,8 @@ import { motion } from "framer-motion";
 import LangDropDown from "../../../adminShared/components/LangDropDown/LangDropDown";
 import { useTranslation } from "next-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { useQuery, useQueryClient } from "react-query";
+import { GetBasket, GetUser } from "../../../adminShared/services/dataApi";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -25,7 +27,32 @@ const Header = () => {
   };
 
   const selUserData = useSelector((state) => state.user.data);
+
+  const selBasket = useSelector((state) => state.basket.data);
+  // console.log("selBasket", selBasket);
+  const basketItem = selBasket?.result?.data?.items?.length;
+
+  const { data: basketData, isLoading: isBasketLoading, isError: isBasketError, error: basketError } = useQuery("basket", GetBasket, {
+    onSuccess: (res) => {
+      console.log("basket", res);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
   
+  const { data: userData, isLoading: isUserLoading, isError: isUserError, error: userError } = useQuery("user", GetUser, {
+    onSuccess: (res) => {
+      console.log("user", res);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
+
+  const basketCount = basketData?.result?.data?.items?.length;
+   
   const removeToken = () => {
     localStorage.removeItem("clientData");
   };
@@ -142,7 +169,7 @@ const Header = () => {
             <div className="flex gap-4">
               <div className="w-[44px] relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757] transition-transform transform hover:scale-95">
                 <span className="absolute bg-[#D63626] text-white top-[-10px] w-6 text-center right-[-4px] rounded-full text-">
-                  0
+                  {basketCount}
                 </span>
                 <Image src={basket} />
               </div>
@@ -152,8 +179,8 @@ const Header = () => {
                   width={120}
                   height={120}
                   src={
-                    selUserData?.user?.img_url
-                      ? selUserData?.user?.img_url
+                    userData?.user?.img_url
+                      ? userData?.user?.img_url
                       : profile
                   }
                 />
@@ -195,12 +222,12 @@ const Header = () => {
               width={50}
               height={50}
               src={
-                selUserData?.user?.img_url
-                  ? selUserData?.user?.img_url
+                userData?.user?.img_url
+                  ? userData?.user?.img_url
                   : profile
               }
             />
-            <p>{selUserData?.user?.username}</p>
+            <p>{userData?.user?.username}</p>
           </div>
           {userToken ? (
             <SignButton

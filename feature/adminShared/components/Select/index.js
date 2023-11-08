@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { GetCategory } from "../../services/dataApi";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setCategory } from "../../../../redux/features/productDetails/productSlice";
+import { setCategory } from "../../../../redux/app/features/productDetails/productSlice";
 
 const Select = () => {
   const { data, isLoading, isError, error } = useQuery(
