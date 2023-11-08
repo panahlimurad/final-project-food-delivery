@@ -15,7 +15,7 @@ import { GetRestaurants } from "../../../../adminShared/services/dataApi";
 import { useQuery } from "react-query";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { setCategory } from "../../../../../redux/features/productDetails/productSlice";
+// import { setCategory } from "../../../../../redux/features/productDetails/productSlice";
 
 const RestaurantContainer = () => {
   const { data, isLoading, isError, error } = useQuery(

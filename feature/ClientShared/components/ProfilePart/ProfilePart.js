@@ -9,7 +9,7 @@ import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import {dataUser} from '../../../../redux/app/features/userDetails/userSlice'
+import {dataUser} from '../../../../redux/features/userDetails/userSlice'
 
 
 

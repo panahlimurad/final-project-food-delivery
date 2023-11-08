@@ -7,7 +7,7 @@ import deleteItem from "../../../public/svg/delete.svg";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { DeleteAllBasket, GetBasket } from "../../adminShared/services/dataApi";
 import { useDispatch, useSelector } from "react-redux";
-import { setBasket } from "../../../redux/app/features/basketDetails/basketSlice";
+import { setBasket } from "../../../redux/features/basketDetails/basketSlice";
 import Link from "next/link";
 
 export const Basket = ({ datas }) => {
