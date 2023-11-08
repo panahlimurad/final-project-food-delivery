@@ -46,6 +46,9 @@ export const PutUser = async (data) => {
     throw error;
   }
 };
+
+
+
 export const PostOffer = async (data) => {
   try {
     const response = await instanceAxiosAdmin.post("/api/offer", data);
@@ -111,13 +114,73 @@ export const DeleteProduct = async (id) => {
   }
 };
 export const PostBasket = async (data) => {
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
   try {
-    const response = await instanceAxiosAdmin.post("/api/basket/add", data);
+    const response = await instanceAxiosAdmin.post("/api/basket/add", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error;
   }
 };
+
+export const PostOrder = async (data) => {
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
+  try {
+    const response = await instanceAxiosAdmin.post("/api/order/add", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const DeleteBasket = async (data) => {
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
+  
+  try {
+    const response = await instanceAxiosAdmin.delete("/api/basket/delete", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const DeleteAllBasket = async (data) => {
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
+  
+  try {
+    const response = await instanceAxiosAdmin.delete("/api/basket/clear", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
 export const GetRestaurants = async () => {
   try {
     const response = await instanceAxiosAdmin.get("/api/restuarants");
@@ -175,10 +238,16 @@ export const GetOffer = async () => {
     throw error;
   }
 };
-// DONT WORK YET
-export const GetBasket = async (endpoint) => {
+
+
+export const GetBasket = async () => {
+  
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
+
   try {
-    const response = await instanceAxiosAdmin.get(endpoint, {
+    const response = await instanceAxiosAdmin.get("/api/basket", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
