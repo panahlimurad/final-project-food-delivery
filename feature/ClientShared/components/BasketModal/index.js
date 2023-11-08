@@ -15,8 +15,8 @@ function BasketModal({ setActiveModal, activeModal,datas }) {
           <div className=" flex  justify-end mb-6 pr-2 ">
             <button onClick={handleClose} className={`${styles.closeModal}`}>x</button>
           </div>
-{datas.map((data,index)=>{
           <ScrollBarContainer>
+{datas.map((data,index)=>{
 
           <table className="w-full h-full">
             <tbody>
@@ -31,8 +31,8 @@ function BasketModal({ setActiveModal, activeModal,datas }) {
               
             </tbody>
           </table>
-          </ScrollBarContainer>
 })}
+          </ScrollBarContainer>
           <div className='flex items-center justify-center mt-8 relative mb-6'>
                 <button className={`${styles["basket-btn1"]}`}>Checkout</button>
                 <button className={`${styles["basket-totalAmount"]}`}>$37.40</button>
