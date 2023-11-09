@@ -12,7 +12,7 @@ import { EditFORM } from "../../../utils/editForm";
 
 
 
-const RestaurantCards = ({ name, img, category, item_id,isLoading}) => {
+const RestaurantCards = ({ name, img_url, category, item_id,isLoading}) => {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -57,7 +57,7 @@ const RestaurantCards = ({ name, img, category, item_id,isLoading}) => {
     xs:w-auto w-[247px] xs:m-0 mx-auto">
     <div className="w-[65px] h-[65px]">
       <Image
-      src={img}
+      src={img_url}
       width={100}
       height={100}
         alt="Res"
@@ -77,11 +77,12 @@ const RestaurantCards = ({ name, img, category, item_id,isLoading}) => {
         <Image src={del} alt="del" />
       </div>
       <div className="cursor-pointer" >
-        <Image src={edit}  alt="edit" onClick={() => openEditModal({ name, img, category, item_id })}/>
+        <Image src={edit}  alt="edit" onClick={openEditModal()}/>
         <EditModal form={EditFORM.RESTAURANT}
                 isEditModalOpen={isEditModalOpen}
                 openEditModal={openEditModal}
-                closeEditModal={closeEditModal}/>
+                closeEditModal={closeEditModal}
+                dataFromCard={{ name, img_url, category, item_id }}/>
       </div>
     </div>
   </div>
