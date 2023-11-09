@@ -65,7 +65,7 @@ console.log("bu nedir?", filteredRestaurants);
           <RestaurantCards
             key={restaurant.id}
             name={restaurant.name}
-            img={restaurant.img_url}
+            img_url={restaurant.img_url}
             item_id={restaurant.id}
             category={restaurant.category_id}
           />

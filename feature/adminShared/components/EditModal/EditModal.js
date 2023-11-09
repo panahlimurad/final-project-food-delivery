@@ -33,7 +33,7 @@ const EditModal = ({
 
   const { product_id, ...dataToUpdate } = editedData
 
-console.log("edited data rest_id", editedData);
+console.log("edited data rest_id", dataFromCard);
 
   console.log("edit olunmus data", dataToUpdate);
 
