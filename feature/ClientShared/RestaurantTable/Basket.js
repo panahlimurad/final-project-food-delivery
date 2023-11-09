@@ -3,21 +3,27 @@ import ScrollableTable, { Td, Th } from "../ScrollableTable/ScrollableTable";
 import Image from "next/image";
 import styles from "../../../pages/restaurants/[id]/AboutRestaurants.module.css";
 import add from "../../../public/svg/basket1.svg";
-import deleteItem from "../../../public/svg/delete.svg";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { DeleteAllBasket, GetBasket } from "../../adminShared/services/dataApi";
 import { useDispatch, useSelector } from "react-redux";
-import { setBasket } from "../../../redux/features/basketDetails/basketSlice";
 import Link from "next/link";
 
 export const Basket = ({ datas }) => {
-  //   console.log("baskey=t", datas);
-  const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
-  const selBasket = useSelector((state) => state.basket.data);
-  const basketItem = selBasket?.result?.data?.items?.length;
-  const totalAmmount = selBasket?.result?.data?.total_amount;
+  
+  const { data, isLoading, isError, error } = useQuery("basket", GetBasket, {
+    onSuccess: (res) => {
+      // dispatch(setBasket(res));
+      queryClient.invalidateQueries(["basket"]);
+    },
+  });
+  const dataArray = data ? Object.values(data.result) : [];
+
+
+  // const selBasket = useSelector((state) => state.basket.data);
+  // const basketItem = selBasket?.result?.data?.items?.length;
+  // const totalAmmount = selBasket?.result?.data?.total_amount;
 
   const deleteMutationAllBasket = useMutation((data)=> DeleteAllBasket(data),{
     onSuccess: (responseData) => {
@@ -33,14 +39,8 @@ export const Basket = ({ datas }) => {
     deleteMutationAllBasket.mutate({basket_id : data?.result?.data?.id})
   }
 
-  const { data, isLoading, isError, error } = useQuery("basket", GetBasket, {
-    onSuccess: (res) => {
-      dispatch(setBasket(res));
-      queryClient.invalidateQueries(["basket"]);
-    },
-  });
-  const dataArray = data ? Object.values(data.result) : [];
-
+  const totalPrice = dataArray[0]?.total_amount
+  const total_item = dataArray[0]?.total_item
   // console.log("dataArray", dataArray[0]?.items);
 
   return (
@@ -55,7 +55,7 @@ export const Basket = ({ datas }) => {
                   className="w-[40%] h-[45px] flex gap-4 items-center"
                   style={{ color: "#D63626" }}>
                   <Image src={add} alt="basket" />
-                  <p>{basketItem} item</p>
+                  <p>{total_item} item</p>
                 </div>
                 <button onClick={()=>deleteAllBasket(data)} className="border-2 p-1 text-base rounded-md bg-white">
                   Clear All
@@ -99,7 +99,7 @@ export const Basket = ({ datas }) => {
           href="/user?page=checkout">
           <button>Checkout</button>
           <button className={`${styles["basket-totalAmount"]}`}>
-            ${totalAmmount}
+            ${totalPrice}
           </button>
         </Link>
       </div>
