@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {setCheckOrderTrue} from '../../../../redux/features/checkOrder/checkOrderSlice'
 import {
   GetBasket,
   GetUser,
   PostOrder,
 } from "../../../adminShared/services/dataApi";
+import { toast } from "react-toastify";
 
 const CheckoutPart = () => {
   const { data, isLoading, isError, error } = useQuery("user", GetUser, {
@@ -32,6 +34,8 @@ const CheckoutPart = () => {
   });
 
   // console.log(basketData.result.data.id);
+  const isCheckOrder = useSelector((state) => state.checkOrder.checkOrderState);
+  const dispatch = useDispatch();
   const basketId = basketData?.result?.data?.id;
 
   const [address, setAddress] = useState("");
@@ -53,20 +57,18 @@ const CheckoutPart = () => {
     }
   }, [data]);
 
-  console.log("phone", phone);
-  console.log("address", address);
-
   const [userData, setUserData] = useState({
     contact: "",
     delivery_address: "",
-    payment_method: "",
+    payment_method: null,
   });
 
   const newData = { ...userData, basket_id:basketId };
 
   const mutation = useMutation((data) => PostOrder(data), {
     onSuccess: (responseData) => {
-      // toast.success("You have successfully created a profile",{autoClose:2000})
+      toast.success("You have successfully created a order",{autoClose:2000})
+      dispatch(setCheckOrderTrue())
       // router.push("/")
       console.log(responseData);
     },
@@ -74,6 +76,8 @@ const CheckoutPart = () => {
       console.log("Error", error);
     },
   });
+7
+  console.log("state", isCheckOrder);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -154,11 +158,11 @@ const CheckoutPart = () => {
                       type="radio"
                       className="form-radio h-5 w-5  text-green-500"
                       name="payment_method"
-                      value="0"
+                      value={0}
                       onChange={(event) => {
                         setUserData({
                           ...userData,
-                          [event.target.name]: event.target.value,
+                          [event.target.name]: parseInt(event.target.value),
                         });
                       }}
                     />
@@ -172,11 +176,11 @@ const CheckoutPart = () => {
                       type="radio"
                       className="form-radio h-5 w-5  text-green-500"
                       name="payment_method"
-                      value="1"
+                      value={1}
                       onChange={(event) => {
                         setUserData({
                           ...userData,
-                          [event.target.name]: event.target.value,
+                          [event.target.name]: parseInt(event.target.value),
                         });
                       }}
                     />
