@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import profile from "../../../../public/profile.svg";
 import Link from "next/link";
 import basket from "../../assets/basket.svg";
@@ -23,9 +23,24 @@ const Header = () => {
 
   const {pathname}  = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef();
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const closeMenus = (e) => {
+    if (menuRef.current && !menuRef.current.contains(e.target)) {
+      setIsMenuOpen(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('mousedown', closeMenus);
+
+    return () => {
+      document.removeEventListener('mousedown', closeMenus);
+    };
+  }, []);
+
   const { t } = useTranslation();
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
   const [showFoodyText, setShowFoodyText] = useState(true);
@@ -216,11 +231,9 @@ const Header = () => {
               ): null}
 
 {isMenuOpen && (
-        <div className="menu right-3 sm:right-5 lg:right-16 mt-16 bg-white z-10 px-10 absolute">
+        <div ref={menuRef} className="menu right-3 sm:right-5 lg:right-16 mt-16 bg-white z-10 px-10 pt-4 absolute">
           
-    <button onClick={toggleMenu} className="close-button mt-6 ml-20">
-    <AiOutlineClose/>
-    </button>
+  
         <ul >
 
           <li className={`mb-3 ${pathname === "/user/profile" ? styles.active : ""}`} 
