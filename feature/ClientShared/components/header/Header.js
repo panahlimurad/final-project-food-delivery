@@ -231,7 +231,7 @@ const Header = () => {
               ): null}
 
 {isMenuOpen && (
-        <div ref={menuRef} className="menu right-3 sm:right-5 lg:right-16 mt-16 bg-white z-10 px-10 pt-4 absolute">
+        <div ref={menuRef} className="menu right-3 sm:right-5 lg:right-16 mt-16 bg-white z-50 px-10 pt-4 absolute">
           
   
         <ul >

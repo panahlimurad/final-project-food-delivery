@@ -3,10 +3,28 @@ import deleteBtn from "../../../../feature/adminFolders/assets/image/orders/dele
 import eyes from "../../../../feature/adminFolders/assets/image/orders/eyes.svg";
 import Image from "next/image";
 import { ScrollBarContainer } from '../../Scroll/Scroll'
-import pizza from '../../../../public/svg/pizza.svg'
-
+import { GetOrder } from '../../../adminShared/services/dataApi';
+import { useQuery } from 'react-query';
 import Modal from './Modal';
 const YourOrder = () => {
+ 
+  const { data, isLoading, isError, error } = useQuery(
+    "orders",
+    GetOrder,
+    {
+      onSuccess: (res) => {
+        console.log("query", res);
+      },
+    }
+  );
+  
+  console.log("datass", data);
+  
+  const dataArray = data ? Object.values(data) : [];
+  const OrderData=dataArray[1]?.data
+  console.log("jd", OrderData);
+
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -16,6 +34,12 @@ const YourOrder = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+const handleData=(data)=>{
+console.log("clickdata", data.products);
+return data.products
+}
+
+
   return (
       <div className='sm:bg-[#F3F4F6] px-8  py-8 h-auto '>
 <h1 className='color-[#4F4F4F] font-semibold text-3xl leading-6  font-sans mb-8 ml-3'>Your Order</h1>
@@ -46,20 +70,25 @@ const YourOrder = () => {
                      </th>
                    </tr>
                  </thead>
+
                  <tbody>
-                   <tr className="border-b  text-center">
+                 {OrderData?.map((order,index)=>(
+// console.log("orders", order),
+                   <tr className="border-b  text-center" key={order.id}>
                      <td className="whitespace-nowrap px-6 py-4 font-medium  ">
-                       1
+                       {order.id}
                      </td>
                      <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  font-['Open_Sans'] ">Otto</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@mdo</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Mark</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Otto</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans']  ">@mdo</td>
+                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">{order.delivery_address}</td>
+                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">{order.amount}</td>
+                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">{order.payment_method==0 ? "pay at the door" : "pay at the door by credit card" }</td>
+                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans']  ">{order.contact}</td>
                      <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                      <button onClick={openModal}>
+                      <button onClick={()=>handleData(order)}>
+             
+                       <Image src={eyes} alt=".." onClick={openModal} order={order} />
 
-                       <Image src={eyes} alt=".." />
+                      
                       </button>
                      </td>
                      
@@ -67,205 +96,15 @@ const YourOrder = () => {
                        <Image src={deleteBtn} alt=".." />
                      </td>
                    </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       2
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Thornton</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@fat</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Jacob</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Thornton</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@fat</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4 font-medium">
-                       3
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       4
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       5
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       6
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       7
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       8
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       9
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       10
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       10
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       10
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium ">
-                       10
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={eyes} alt=".." />
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide   cursor-pointer">
-                       <Image src={deleteBtn} alt=".." />
-                     </td>
-                   </tr>
+                  
+                 ))}
             </tbody>
                </table>
 </div>
 </ScrollBarContainer>
        </div>
 
- <Modal isOpen={isModalOpen} onClose={closeModal} className="w-full">
+ <Modal isOpen={isModalOpen} onClose={closeModal}  className="w-full">
    <div className=" sm:overflow-x-hidden  overflow-x-auto  bg-[#FFFFFF]  ">
 
     <table class="text-left text-black text-sm font-light">
@@ -291,66 +130,23 @@ const YourOrder = () => {
                    </tr>
                  </thead>
                  <tbody>
+
+
                    <tr className="border-b  text-center">
                      <td className="whitespace-nowrap px-6 py-4 font-medium  ">
-                     <Image src={pizza}/>
+                     {/* <Image src={pizza}/> */}
                        
                      </td>
                      <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  font-['Open_Sans'] ">Otto</td>
                      <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@mdo</td>
                      <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Mark</td>
                      <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Otto</td>
-                     
-                     
-                     
                    </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                       <Image src={pizza}/>
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Thornton</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@fat</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Jacob</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Thornton</td>
-                     
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4 font-medium">
-                     <Image src={pizza}/>
-                       
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                     <Image src={pizza}/>
-                       
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     
-                   </tr>
-                   <tr className="border-b  text-center">
-                     <td className="whitespace-nowrap px-6 py-4  font-medium">
-                     <Image src={pizza}/>
-                       
-                     </td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">@twitter</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Larry</td>
-                     <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">Wild</td>
-                     
-                   </tr>
+                  
+                  
                   
                    
-                  
-                  
+              
             </tbody>
                </table>
 
@@ -361,3 +157,10 @@ const YourOrder = () => {
 }
 
 export default YourOrder
+
+
+
+
+
+
+

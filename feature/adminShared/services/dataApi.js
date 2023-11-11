@@ -238,10 +238,38 @@ export const GetOffer = async () => {
     throw error;
   }
 };
-
+export const GetOrder = async () => {
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
+  try {
+    const response = await instanceAxiosAdmin.get("/api/order",{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const GetOrderId = async (id) => {
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
+  try {
+    const response = await instanceAxiosAdmin.get(`/api/order/${id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const GetBasket = async () => {
-  
   const userJSONData = localStorage.getItem("clientData");
   const userData = JSON.parse(userJSONData);
   const token = userData?.user?.access_token;
