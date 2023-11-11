@@ -6,7 +6,7 @@
 
 import ProductCard from "../productCard";
 import { GetProducts } from "../../../../adminShared/services/dataApi";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
@@ -31,14 +31,15 @@ const ProductsContainer = () => {
   //   dispatch(getAsyncProduct());
   // }, [dispatch]);
 
-  
+const queryClient = useQueryClient()  
 
   const { data, isLoading, isError, error } = useQuery(
     "products",
     GetProducts,
     {
       onSuccess: (res) => {
-        
+        // console.log("Data:", res)
+        queryClient.invalidateQueries(["products"])
       },
     }
   );
@@ -74,7 +75,7 @@ const ProductsContainer = () => {
                 img_url={product.img_url}
                 rest_id={product.rest_id}
                 price={product.price}
-                product_id={product.id}
+                item_id={product.id}
                 description={product.description}
               />
             </motion.div>

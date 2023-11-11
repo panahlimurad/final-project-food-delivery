@@ -7,10 +7,12 @@ import {
   GetProducts,
   GetRestaurants,
   PutProducts,
+  PutRestaurants,
 } from "../../services/dataApi";
 import { useMutation, useQuery } from "react-query";
 import Image from "next/image";
 import { nanoid } from "nanoid";
+import { useRouter } from "next/router";
 
 const EditModal = ({
   isEditModalOpen,
@@ -28,14 +30,16 @@ const EditModal = ({
     const [lastProductImage, setLastProductImage] = useState(null);
     const [updatedImage, setUpdatedImage] = useState(null)
     const [initialImage, setInitialImage] = useState(dataFromCard.img_url)
+    const router = useRouter();
+    const routerPath = router.pathname;
 
   const [editedData, setEditedData] = useState(dataFromCard)
 
-  const { product_id, ...dataToUpdate } = editedData
+  const { item_id, ...dataToUpdate } = editedData
 
-console.log("edited data rest_id", dataFromCard);
+// console.log("edited data rest_id", dataFromCard);
 
-  console.log("edit olunmus data", dataToUpdate);
+//   console.log("edit olunmus data", dataToUpdate);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,9 +49,9 @@ console.log("edited data rest_id", dataFromCard);
     }));
   };
 
-  console.log("id-miz gelirmi?", editedData.product_id);
+  // console.log("id-miz gelirmi?", editedData.item_id);
 
-  const mutationProduct = useMutation((data) => PutProducts(editedData.product_id, dataToUpdate), {
+  const mutationProduct = useMutation((data) => PutProducts(editedData.item_id, dataToUpdate), {
     onError: (error) => {
       console.log("Error", error);
     },
@@ -57,11 +61,34 @@ console.log("edited data rest_id", dataFromCard);
       
     },
   });
-  
+
+  const mutationRestaurant = useMutation((data) => PutRestaurants(editedData.item_id, dataToUpdate), {
+    onError: (error) => {
+      console.log("Error", error);
+    },
+    onSuccess: (data, variables) => {
+      console.log("Product Updated:", data); 
+      console.log("Variables passed:", variables); 
+      
+    },
+  });
+  // console.log("reouter nedir?", routerPath);
   const handleProductUpdate = (e) => {
+    e.preventDefault()
    
-    console.log("yeni datalarimiz gelirmi?",dataToUpdate);
-    mutationProduct.mutate(dataToUpdate);
+    // console.log("yeni datalarimiz gelirmi?",dataToUpdate);
+    
+
+    {
+      routerPath === "/admin/products" && mutationProduct.mutate(dataToUpdate);
+    }
+
+    {
+      routerPath === "/admin/restaurants" && mutationRestaurant.mutate(dataToUpdate)
+      
+    }
+
+    
     closeEditModal()
   };
   
@@ -133,9 +160,9 @@ console.log("edited data rest_id", dataFromCard);
   const restaurantList = restaurantData ? Object.values(restaurantData) : [];
   const categoryList = categoryListData ? Object.values(categoryListData) : [];
   const productList = productListData ? Object.values(productListData) : [];
-  console.log("productList in edit", productList);
+  // console.log("productList in edit", productList);
 
-  console.log("list in edit", restaurantList);
+  // console.log("list in edit", restaurantList);
 
   const handleButtonClick = () => {
     // Trigger the file input click event
@@ -167,7 +194,7 @@ console.log("edited data rest_id", dataFromCard);
             &times;
           </div>
         )}
-        <form>
+        <form >
           <div className="title font-medium text-2xl mb-2"> {title}</div>
           <div className="lg:flex justify-between gap-24">
             <div className="mb-4">
