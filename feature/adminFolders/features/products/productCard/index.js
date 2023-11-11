@@ -16,12 +16,12 @@ const ProductCard = ({
   img_url,
   price,
   description,
-  product_id,
+  item_id,
   isLoading,
 }) => {
   // const { img_url, name, price } = product;
   // console.log("product img", img_url);
-  console.log("rest_id", rest_id);
+  // console.log("rest_id", rest_id);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -46,8 +46,8 @@ const ProductCard = ({
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await DeleteProduct(product_id);
-          Swal.fire("Deleted!", "Your restaurant has been deleted.", "success");
+          await DeleteProduct(item_id);
+          Swal.fire("Deleted!", "Your product has been deleted.", "success");
         } catch (error) {
           Swal.fire(
             "Error",
@@ -88,7 +88,7 @@ const ProductCard = ({
                 isEditModalOpen={isEditModalOpen}
                 openEditModal={openEditModal}
                 closeEditModal={closeEditModal}
-                dataFromCard={{ name, img_url,rest_id, price, description, product_id }}
+                dataFromCard={{ name, img_url,rest_id, price, description, item_id }}
               />
             </button>
             <button onClick={handleDeleteClick} className="cursor-pointer">

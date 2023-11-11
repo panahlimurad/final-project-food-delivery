@@ -78,9 +78,9 @@ export const PostRestaurants = async (data) => {
   }
 };
 
-export const PutRestaurants = async (id) => {
+export const PutRestaurants = async (id,  updatedData) => {
   try {
-    const response = await instanceAxiosAdmin.put(`/api/restuarants/${id}`);
+    const response = await instanceAxiosAdmin.put(`/api/restuarants/${id}`,  updatedData);
     return response.data;
   } catch (error) {
     throw error;

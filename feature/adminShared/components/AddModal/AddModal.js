@@ -62,7 +62,7 @@ export default function AddModal({
 
       const selectedName = selectedCategory ? selectedCategory.id : "";
 
-      console.log("category_id nedir", selectedName);
+      //console.log("category_id nedir", selectedName);
 
       setCategoryData({
         ...categoryData,
@@ -75,7 +75,7 @@ export default function AddModal({
 
       const selectedName = selectedCategory ? selectedCategory.id : "";
 
-      console.log("rest_id nedir", selectedName);
+      //console.log("rest_id nedir", selectedName);
 
       setCategoryData({
         ...categoryData,
@@ -117,7 +117,7 @@ export default function AddModal({
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("checking data for products", uploadData);
+    // console.log("checking data for products", uploadData);
     {
       title === "Add product" && mutationProduct.mutate(uploadData);
     }
@@ -166,7 +166,7 @@ export default function AddModal({
   const categoryList = categoryListData ? Object.values(categoryListData) : [];
   const restaurantList = restaurantData ? Object.values(restaurantData) : [];
 
-  console.log("bu neyin listidir?", categoryList);
+  //console.log("bu neyin listidir?", categoryList);
 
   const mutationImg = useMutation((data) => PostImg(data), {
     onError: (error) => {

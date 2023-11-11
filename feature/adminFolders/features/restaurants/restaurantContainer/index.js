@@ -12,18 +12,22 @@
 import RestaurantCards from "../restaurantCards";
 
 import { GetRestaurants } from "../../../../adminShared/services/dataApi";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 // import { setCategory } from "../../../../../redux/features/productDetails/productSlice";
 
 const RestaurantContainer = () => {
+
+  const queryClient = useQueryClient()  
+
   const { data, isLoading, isError, error } = useQuery(
     "restaurant",
     GetRestaurants,
     {
       onSuccess: (res) => {
-        console.log("query", res);
+        queryClient.invalidateQueries(["restaurant"])
+        // console.log("query", res);
       },
     }
   );
@@ -42,7 +46,7 @@ const RestaurantContainer = () => {
     : dataArray[1]?.data;
 // console.log("reduxdan gelen", filteredRestaurants);
 
-console.log("bu nedir?", filteredRestaurants);
+//console.log("bu nedir?", filteredRestaurants);
 
   // const restaurantList = useSelector(selRestaurantList);
   // const isLoading = useSelector(selIsLoading);
@@ -66,8 +70,12 @@ console.log("bu nedir?", filteredRestaurants);
             key={restaurant.id}
             name={restaurant.name}
             img_url={restaurant.img_url}
+            cuisine={restaurant.cuisine}
+            delivery_min={restaurant.delivery_min}
+            delivery_price={restaurant.delivery_price}
             item_id={restaurant.id}
             category={restaurant.category_id}
+            address={restaurant.address}
           />
         </motion.div>
       ))}

@@ -12,7 +12,7 @@ import { EditFORM } from "../../../utils/editForm";
 
 
 
-const RestaurantCards = ({ name, img_url, category, item_id,isLoading}) => {
+const RestaurantCards = ({ name, img_url, category, delivery_min, delivery_price, cuisine, item_id, address,isLoading}) => {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -41,7 +41,7 @@ const RestaurantCards = ({ name, img_url, category, item_id,isLoading}) => {
       if (result.isConfirmed) {
         try {
           await DeleteRestaurants(item_id);
-          console.log("restoran id-si", item_id);
+          // console.log("restoran id-si", item_id);
           Swal.fire("Deleted!", "Your restaurant has been deleted.", "success");
           
         } catch (error) {
@@ -77,12 +77,12 @@ const RestaurantCards = ({ name, img_url, category, item_id,isLoading}) => {
         <Image src={del} alt="del" />
       </div>
       <div className="cursor-pointer" >
-        <Image src={edit}  alt="edit" onClick={openEditModal()}/>
+        <Image src={edit}  alt="edit" onClick={openEditModal}/>
         <EditModal form={EditFORM.RESTAURANT}
                 isEditModalOpen={isEditModalOpen}
                 openEditModal={openEditModal}
                 closeEditModal={closeEditModal}
-                dataFromCard={{ name, img_url, category, item_id }}/>
+                dataFromCard={{ name, img_url, delivery_min, delivery_price, address, cuisine, category, item_id }}/>
       </div>
     </div>
   </div>
