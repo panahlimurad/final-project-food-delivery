@@ -13,6 +13,8 @@ import { useMutation, useQuery } from "react-query";
 import Image from "next/image";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
+import _ from "lodash";
+
 
 const EditModal = ({
   isEditModalOpen,
@@ -41,13 +43,13 @@ const EditModal = ({
 
 //   console.log("edit olunmus data", dataToUpdate);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+const handleInputChange = _.debounce((e) => {
+  const { name, value } = e.target;
+  setEditedData((prevData) => ({
+    ...prevData,
+    [name]: value,
+  }));
+}, 1000);
 
   // console.log("id-miz gelirmi?", editedData.item_id);
 
@@ -120,42 +122,21 @@ const EditModal = ({
     isLoading: restaurantIsLoading,
     isError: restaurantIsError,
     error: restaurantError,
-  } = useQuery("restaurant", GetRestaurants, {
-    onSuccess: (res) => {
-      console.log("restaurantList", res);
-    },
-    onError: (err) => {
-      console.error("Restaurant Query Error:", err);
-    },
-  });
+  } = useQuery("restaurant", GetRestaurants);
 
   const {
     data: categoryListData,
     isLoading: categoryIsLoading,
     isError: categoryIsError,
     error: categoryError,
-  } = useQuery("category", GetCategory, {
-    onSuccess: (res) => {
-      console.log("categoryList", res);
-    },
-    onError: (err) => {
-      console.error("Category Query Error:", err);
-    },
-  });
+  } = useQuery("category", GetCategory);
 
   const {
     data: productListData,
     isLoading: productIsLoading,
     isError: productIsError,
     error: productError,
-  } = useQuery("products", GetProducts, {
-    onSuccess: (res) => {
-      console.log("productList", res);
-    },
-    onError: (err) => {
-      console.error("product Query Error:", err);
-    },
-  });
+  } = useQuery("products", GetProducts);
 
   const restaurantList = restaurantData ? Object.values(restaurantData) : [];
   const categoryList = categoryListData ? Object.values(categoryListData) : [];
