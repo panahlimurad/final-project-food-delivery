@@ -140,28 +140,14 @@ export default function AddModal({
     isLoading: categoryIsLoading,
     isError: categoryIsError,
     error: categoryError,
-  } = useQuery("category", GetCategory, {
-    onSuccess: (res) => {
-      console.log("categoryList", res);
-    },
-    onError: (err) => {
-      console.error("Category Query Error:", err);
-    },
-  });
+  } = useQuery("category", GetCategory);
 
   const {
     data: restaurantData,
     isLoading: restaurantIsLoading,
     isError: restaurantIsError,
     error: restaurantError,
-  } = useQuery("restaurant", GetRestaurants, {
-    onSuccess: (res) => {
-      console.log("restaurantList", res);
-    },
-    onError: (err) => {
-      console.error("Restaurant Query Error:", err);
-    },
-  });
+  } = useQuery("restaurant", GetRestaurants);
 
   const categoryList = categoryListData ? Object.values(categoryListData) : [];
   const restaurantList = restaurantData ? Object.values(restaurantData) : [];
