@@ -53,10 +53,3 @@ export default function CardRestaurantContainer() {
     
   );
 }
-
-
-
-
-
-
-

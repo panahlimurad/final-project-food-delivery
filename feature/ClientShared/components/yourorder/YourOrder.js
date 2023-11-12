@@ -13,16 +13,16 @@ const YourOrder = () => {
     GetOrder,
     {
       onSuccess: (res) => {
-        console.log("query", res);
+        // console.log("query", res);
       },
     }
   );
   
-  console.log("datass", data);
+  // console.log("datass", data);
   
   const dataArray = data ? Object.values(data) : [];
   const OrderData=dataArray[1]?.data
-  console.log("jd", OrderData);
+  // console.log("jd", OrderData);
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,8 +34,10 @@ const YourOrder = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  
 const handleData=(data)=>{
-console.log("clickdata", data.products);
+// console.log("clickdata", data.products);
 return data.products
 }
 
