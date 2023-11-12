@@ -27,15 +27,15 @@ export const Basket = ({ datas }) => {
 
   const deleteMutationAllBasket = useMutation((data)=> DeleteAllBasket(data),{
     onSuccess: (responseData) => {
-      console.log("deleteAll", responseData);
+      // console.log("deleteAll", responseData);
     },
     onError: (error) => {
-      console.log("Error", error);
+      // console.log("Error", error);
     },
   })
 
   const deleteAllBasket = (data)=>{
-    console.log("delAll", data.result.data.id);
+    // console.log("delAll", data.result.data.id);
     deleteMutationAllBasket.mutate({basket_id : data?.result?.data?.id})
   }
 

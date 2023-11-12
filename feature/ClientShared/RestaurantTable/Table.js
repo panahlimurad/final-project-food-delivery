@@ -19,10 +19,10 @@ export const Table = ({ setActiveModal, datas }) => {
 
   const deleteMutation = useMutation((data) => DeleteBasket(data),{
     onSuccess:(res)=>{
-      console.log("delete", res);
+      // console.log("delete", res);
     },
     onError:(err)=>{
-      console.log("del", err);
+      // console.log("del", err);
     }
   })
 
@@ -31,21 +31,21 @@ export const Table = ({ setActiveModal, datas }) => {
     dispatch(setCheckOrderFalse())
   }
   
-  console.log("state", isCheckOrder);
+  // console.log("state", isCheckOrder);
   
   const mutation = useMutation((data) => PostBasket(data), {
     onSuccess: (responseData) => {
       // console.log("postBasket", responseData);
     },
     onError: (error) => {
-      console.log("Error", error);
+      // console.log("Error", error);
     },
   });
 
   const handleDeleteProduct = (data)=>{
     const deleteProduct = {product_id: data?.id}
 
-console.log("del", data?.id);
+// console.log("del", data?.id);
     deleteMutation.mutate(deleteProduct)
   
   }

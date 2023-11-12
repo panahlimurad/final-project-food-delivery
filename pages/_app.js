@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Loader from '../feature/ClientShared/components/Loader/Loader'
+import Loaders from '../feature/ClientShared/components/Loader/Loaders'
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
         <Provider store={store}>
       <QueryClientProvider client={queryClient}>
 
-      {loading && <Loader />}
+      {loading && <Loaders />}
         <Component {...pageProps} />
         <ToastContainer/>
       </QueryClientProvider>

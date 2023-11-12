@@ -23,7 +23,7 @@ const AboutRestaurants = () => {
     () => GetRestaurantsById(id),
     {
       onSuccess: (res) => {
-        console.log("query", res);
+        // console.log("query", res);
       },
     }
   );

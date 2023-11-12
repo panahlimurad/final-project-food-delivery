@@ -15,7 +15,7 @@ const NavbarRestaurant = () => {
     GetCategory,
     {
       onSuccess: (res) => {
-        console.log(res);
+        // console.log(res);
       },
     }
   );
@@ -28,12 +28,12 @@ const NavbarRestaurant = () => {
     const selectedCategory = dataArray[1]?.data[index]
     const SelectName=selectedCategory.name
     dispatch(setCategory(SelectName));
-    console.log("SelectName", SelectName);
+    // console.log("SelectName", SelectName);
     setActiveLinkIndex(index);
     // console.log("seletecedCategory", selectedCategory);
   };
   const dataArray = data ? Object.values(data) : [];
-  console.log("data Arrays?", dataArray);
+  // console.log("data Arrays?", dataArray);
   return (
     <div className="mt-4">
       <ScrollBarContainer bg="#C74FEB">
