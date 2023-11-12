@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 const CardRestaurant = ({name, img, cuisine, delivery_min,category_id , delivery_price, item_id,isLoading}) => {
-  console.log("name", name);
+  // console.log("name", name);
   
   return (
     <div
