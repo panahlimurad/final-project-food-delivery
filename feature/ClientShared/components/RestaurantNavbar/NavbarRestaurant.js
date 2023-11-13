@@ -13,11 +13,6 @@ const NavbarRestaurant = () => {
   const { data, isLoading, isError, error } = useQuery(
     "category",
     GetCategory,
-    {
-      onSuccess: (res) => {
-        // console.log(res);
-      },
-    }
   );
 
 

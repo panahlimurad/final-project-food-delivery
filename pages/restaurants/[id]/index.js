@@ -21,11 +21,6 @@ const AboutRestaurants = () => {
   const { data, isLoading, isError, error } = useQuery(
     ["restaurant", id],
     () => GetRestaurantsById(id),
-    {
-      onSuccess: (res) => {
-        // console.log("query", res);
-      },
-    }
   );
   const dataArray = data ? Object.values(data.result) : [];
 
