@@ -23,13 +23,7 @@ const RestaurantContainer = () => {
 
   const { data, isLoading, isError, error } = useQuery(
     "restaurant",
-    GetRestaurants,
-    {
-      onSuccess: (res) => {
-        queryClient.invalidateQueries(["restaurant"])
-        // console.log("query", res);
-      },
-    }
+    GetRestaurants
   );
 
   

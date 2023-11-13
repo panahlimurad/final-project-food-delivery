@@ -152,7 +152,7 @@ export default function AddModal({
   const categoryList = categoryListData ? Object.values(categoryListData) : [];
   const restaurantList = restaurantData ? Object.values(restaurantData) : [];
 
-  //console.log("bu neyin listidir?", categoryList);
+  //console.log("bu neyin listidir?", restaurantData);
 
   const mutationImg = useMutation((data) => PostImg(data), {
     onError: (error) => {
