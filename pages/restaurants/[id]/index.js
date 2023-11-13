@@ -11,7 +11,9 @@ import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { GetRestaurantsById } from "../../../feature/adminShared/services/dataApi";
 
+
 const AboutRestaurants = () => {
+
   const router = useRouter();
   const { id } = router.query;
   const { back } = useRouter();
@@ -22,22 +24,20 @@ const AboutRestaurants = () => {
     ["restaurant", id],
     () => GetRestaurantsById(id),
     {
-      onSuccess: (res) => {
-        console.log("query", res);
-      },
+      // onSuccess: (res) => {
+      //   console.log("query", res);
+      // },
     }
   );
   const dataArray = data ? Object.values(data.result) : [];
 
-
   // console.log("kakkak", dataArray);
-
 
   return (
     <LayoutClient>
       {dataArray?.map((restaurant, index) => (
         <div
-        key={index}
+          key={index}
           className={`${styles["top-content"]} mt-6 pl-6 pr-6 mb-10 bg-[#FFF]`}>
           <div className={`${styles["content-image"]} flex justify-center`}>
             <Image

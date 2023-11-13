@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { GetCategory } from "../../../adminShared/services/dataApi";
 import { setCategory } from "../../../../redux/features/productDetails/productSlice";
 
+
+
 const NavbarRestaurant = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
   const { data, isLoading, isError, error } = useQuery(
@@ -15,7 +17,7 @@ const NavbarRestaurant = () => {
     GetCategory,
     {
       onSuccess: (res) => {
-        console.log(res);
+        // console.log(res);
       },
     }
   );

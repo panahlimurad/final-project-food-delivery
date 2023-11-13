@@ -15,13 +15,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useQuery, useQueryClient } from "react-query";
 import { GetBasket, GetUser } from "../../../adminShared/services/dataApi";
 import { useRouter } from "next/router";
-import styles from "../sideBar/sideBar.module.css"
+import styles from "../sideBar/sideBar.module.css";
 const Header = () => {
-  const removeLocalUser = ()=>{
+  const removeLocalUser = () => {
     localStorage.removeItem("clientData");
-  }
+  };
 
-  const {pathname}  = useRouter()
+  const { pathname } = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
 
@@ -34,10 +34,10 @@ const Header = () => {
     }
   };
   useEffect(() => {
-    document.addEventListener('mousedown', closeMenus);
+    document.addEventListener("mousedown", closeMenus);
 
     return () => {
-      document.removeEventListener('mousedown', closeMenus);
+      document.removeEventListener("mousedown", closeMenus);
     };
   }, []);
 
@@ -57,27 +57,36 @@ const Header = () => {
   // console.log("selBasket", selBasket);
   const basketItem = selBasket?.result?.data?.items?.length;
 
-  const { data: basketData, isLoading: isBasketLoading, isError: isBasketError, error: basketError } = useQuery("basket", GetBasket, {
-    onSuccess: (res) => {
-      console.log("basket", res);
-    },
-    onError: (err) => {
-      console.log(err);
-    },
-  });
-  
-  const { data: userData, isLoading: isUserLoading, isError: isUserError, error: userError } = useQuery("user", GetUser, {
-    onSuccess: (res) => {
-      console.log("user", res);
-    },
-    onError: (err) => {
-      console.log(err);
-    },
+  const {
+    data: basketData,
+    isLoading: isBasketLoading,
+    isError: isBasketError,
+    error: basketError,
+  } = useQuery("basket", GetBasket, {
+    // onSuccess: (res) => {
+
+    // },
+    // onError: (err) => {
+    //   console.log(err);
+    // },
   });
 
+  const {
+    data: userData,
+    isLoading: isUserLoading,
+    isError: isUserError,
+    error: userError,
+  } = useQuery("user", GetUser, {
+    // onSuccess: (res) => {
+    //   console.log("user", res);
+    // },
+    // onError: (err) => {
+    //   console.log(err);
+    // },
+  });
 
   const basketCount = basketData?.result?.data?.items?.length;
-   
+
   const removeToken = () => {
     localStorage.removeItem("clientData");
   };
@@ -192,143 +201,103 @@ const Header = () => {
 
           {userToken ? (
             <div className="flex gap-4">
-               <Link
-              className="text-link"
-              href={"/user?page=basket"}
-            >
-
-              <div className="w-[44px] relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757] transition-transform transform hover:scale-95">
-                <span className="absolute bg-[#D63626] text-white top-[-10px] w-6 text-center right-[-4px] rounded-full text-">
-                  {basketCount}
-                </span>
-                <Image src={basket} />
-              </div>
-            </Link>
-
-
+              <Link className="text-link" href={"/user?page=basket"}>
+                <div className="w-[44px] relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757] transition-transform transform hover:scale-95">
+                  <span className="absolute bg-[#D63626] text-white top-[-10px] w-6 text-center right-[-4px] rounded-full text-">
+                    {basketCount}
+                  </span>
+                  <Image src={basket} />
+                </div>
+              </Link>
 
               {userToken ? (
-              <div className="w-[44px] relative h-[44px] text-white text-xl cursor-pointer flex justify-center items-center rounded-full bg-[#F178B6] transition-transform transform hover:scale-95">
-               <button onClick={toggleMenu} url="/login"
-              removeToken={removeToken}
-              >
-                
-                 <Image
-                  className="rounded-full"
-                  width={120}
-                  height={120}
-                  src={
-                    userData?.user?.img_url
-                      ? userData?.user?.img_url
-                      : profile
-                  }
-                />
+                <div className="w-[44px] relative h-[44px] text-white text-xl cursor-pointer flex justify-center items-center rounded-full bg-[#F178B6] transition-transform transform hover:scale-95">
+                  <button
+                    onClick={toggleMenu}
+                    url="/login"
+                    removeToken={removeToken}>
+                    <Image
+                      className="rounded-full"
+                      width={120}
+                      height={120}
+                      src={
+                        userData?.user?.img_url
+                          ? userData?.user?.img_url
+                          : profile
+                      }
+                    />
+                  </button>
+                </div>
+              ) : null}
 
-               </button>
-
-              </div>
-              
-              ): null}
-
-{isMenuOpen && (
-        <div ref={menuRef} className="menu right-3 sm:right-5 lg:right-16 mt-16 bg-white z-10 px-10 pt-4 absolute">
-          
-  
-        <ul >
-
-          <li className={`mb-3 ${pathname === "/user/profile" ? styles.active : ""}`} 
-          >
-            <Link
-              href={"/user?page=profile"}
-            >
-              <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 ">
-                
-                Profile
-              </div>
-            </Link>
-          </li>
-          <li className={`mb-3 ${pathname === "/user/basket" ? styles.active : ""}`} 
-          >
-            <Link
-              className="text-link"
-              href={"/user?page=basket"}
-            >
-              <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
-                
-
-                Your Basket
-              </div>
-            </Link>
-          </li>
-          <li className={`mb-3 ${pathname === "/user/orders" ? styles.active : ""}`} 
-          >
-            <Link
-              className="text-link"
-              href={"/user?page=orders"}
-            >
-              <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
-                
-
-                Your Orders
-              </div>
-            </Link>
-          </li>
-          <li className={`mb-3 ${pathname === "/user/checkout" ? styles.active : ""}`} 
-          >
-            <Link
-              className="text-link"
-              href={"/user?page=checkout"}
-            >
-              <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
-                
-
-                Checkout
-              </div>
-            </Link>
-          </li>
-          <li className={`mb-3 ${pathname === "/login" ? styles.active : ""}`} 
-          >
-            <Link
-              className="text-link"
-              href={"/login"}
-              onClick={removeLocalUser}
-            >
-              <div className="flex items-center gap-5 p-2 rounded-md  text-sm font-semibold leading-6 hover:bg-customHover transition">
-               
-                Logout
-              </div>
-            </Link>
-          </li>
-        </ul>
-
-     
-        </div>
-      )}
-
-
-
+              {isMenuOpen && (
+                <div
+                  ref={menuRef}
+                  className="menu right-3 sm:right-5 lg:right-16 mt-16 bg-white z-10 px-10 pt-4 absolute">
+                  <ul>
+                    <li
+                      className={`mb-3 ${
+                        pathname === "/user/profile" ? styles.active : ""
+                      }`}>
+                      <Link href={"/user?page=profile"}>
+                        <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 ">
+                          Profile
+                        </div>
+                      </Link>
+                    </li>
+                    <li
+                      className={`mb-3 ${
+                        pathname === "/user/basket" ? styles.active : ""
+                      }`}>
+                      <Link className="text-link" href={"/user?page=basket"}>
+                        <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
+                          Your Basket
+                        </div>
+                      </Link>
+                    </li>
+                    <li
+                      className={`mb-3 ${
+                        pathname === "/user/orders" ? styles.active : ""
+                      }`}>
+                      <Link className="text-link" href={"/user?page=orders"}>
+                        <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
+                          Your Orders
+                        </div>
+                      </Link>
+                    </li>
+                    <li
+                      className={`mb-3 ${
+                        pathname === "/user/checkout" ? styles.active : ""
+                      }`}>
+                      <Link className="text-link" href={"/user?page=checkout"}>
+                        <div className="flex items-center gap-5 p-2 rounded-md text-sm font-semibold leading-6 hover:bg-customHover transition">
+                          Checkout
+                        </div>
+                      </Link>
+                    </li>
+                    <li
+                      className={`mb-3 ${
+                        pathname === "/login" ? styles.active : ""
+                      }`}>
+                      <Link
+                        className="text-link"
+                        href={"/login"}
+                        onClick={removeLocalUser}>
+                        <div className="flex items-center gap-5 p-2 rounded-md  text-sm font-semibold leading-6 hover:bg-customHover transition">
+                          Logout
+                        </div>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           ) : null}
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div className="hidden lg:block transition-opacity ease-in-out duration-300 hover:opacity-75">
-          {userToken ? (
-            // 
-            null
-            ) : (
+          {userToken ? //
+          null : (
             <SignButton url="/login" text={t("SignIn")} />
           )}
         </div>
@@ -354,11 +323,7 @@ const Header = () => {
               className="rounded-full"
               width={50}
               height={50}
-              src={
-                userData?.user?.img_url
-                  ? userData?.user?.img_url
-                  : profile
-              }
+              src={userData?.user?.img_url ? userData?.user?.img_url : profile}
             />
             <p>{userData?.user?.username}</p>
           </div>
