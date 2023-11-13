@@ -32,6 +32,7 @@ export const Table = ({ setActiveModal, datas }) => {
     product_id: "",
   });
 
+
   const userJSONData = localStorage.getItem("clientData");
   const userData = JSON.parse(userJSONData);
   const token = userData?.user?.access_token;
@@ -71,13 +72,20 @@ export const Table = ({ setActiveModal, datas }) => {
 
   // console.log("state", isCheckOrder);
 
+  const handleFalse=()=>{
+
+    dispatch(setCheckOrderFalse())
+  }
+  
+  // console.log("state", isCheckOrder);
+  
   const mutation = useMutation((data) => PostBasket(data), {
     onSuccess: (responseData) => {
       dispatch(setCheckOrderFalse())
       queryClient.invalidateQueries({ queryKey: ["basket"] });
     },
     onError: (error) => {
-      console.log("Error", error);
+      // console.log("Error", error);
     },
   });
 

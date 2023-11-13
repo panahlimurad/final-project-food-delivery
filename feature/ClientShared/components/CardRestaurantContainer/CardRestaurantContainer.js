@@ -11,14 +11,9 @@ export default function CardRestaurantContainer() {
   const { data, isLoading, isError, error } = useQuery(
     "restaurant",
     GetRestaurants,
-    {
-      onSuccess: (res) => {
-        console.log("query", res);
-      },
-    }
   );
   
-  console.log("datass", data);
+  // console.log("datass", data);
 
   const dataArray = data ? Object.values(data) : [];
   
@@ -29,7 +24,7 @@ export default function CardRestaurantContainer() {
       
       )
     : dataArray[1]?.data;
-  console.log("filteredTestaurantss", filteredRestaurants);
+  // console.log("filteredTestaurantss", filteredRestaurants);
   const { push } = useRouter();
   return (
 
@@ -55,10 +50,3 @@ export default function CardRestaurantContainer() {
     
   );
 }
-
-
-
-
-
-
-

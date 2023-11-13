@@ -22,13 +22,7 @@ const AboutRestaurants = () => {
   // console.log("id", id);
   const { data, isLoading, isError, error } = useQuery(
     ["restaurant", id],
-    () => GetRestaurantsById(id),
-    {
-      // onSuccess: (res) => {
-      //   console.log("query", res);
-      // },
-    }
-  );
+    () => GetRestaurantsById(id));
   const dataArray = data ? Object.values(data.result) : [];
 
   // console.log("kakkak", dataArray);

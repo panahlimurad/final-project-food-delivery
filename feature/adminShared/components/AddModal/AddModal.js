@@ -62,7 +62,7 @@ export default function AddModal({
 
       const selectedName = selectedCategory ? selectedCategory.id : "";
 
-      console.log("category_id nedir", selectedName);
+      //console.log("category_id nedir", selectedName);
 
       setCategoryData({
         ...categoryData,
@@ -75,7 +75,7 @@ export default function AddModal({
 
       const selectedName = selectedCategory ? selectedCategory.id : "";
 
-      console.log("rest_id nedir", selectedName);
+      //console.log("rest_id nedir", selectedName);
 
       setCategoryData({
         ...categoryData,
@@ -117,7 +117,7 @@ export default function AddModal({
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("checking data for products", uploadData);
+    // console.log("checking data for products", uploadData);
     {
       title === "Add product" && mutationProduct.mutate(uploadData);
     }
@@ -140,33 +140,19 @@ export default function AddModal({
     isLoading: categoryIsLoading,
     isError: categoryIsError,
     error: categoryError,
-  } = useQuery("category", GetCategory, {
-    onSuccess: (res) => {
-      console.log("categoryList", res);
-    },
-    onError: (err) => {
-      console.error("Category Query Error:", err);
-    },
-  });
+  } = useQuery("category", GetCategory);
 
   const {
     data: restaurantData,
     isLoading: restaurantIsLoading,
     isError: restaurantIsError,
     error: restaurantError,
-  } = useQuery("restaurant", GetRestaurants, {
-    onSuccess: (res) => {
-      console.log("restaurantList", res);
-    },
-    onError: (err) => {
-      console.error("Restaurant Query Error:", err);
-    },
-  });
+  } = useQuery("restaurant", GetRestaurants);
 
   const categoryList = categoryListData ? Object.values(categoryListData) : [];
   const restaurantList = restaurantData ? Object.values(restaurantData) : [];
 
-  console.log("bu neyin listidir?", categoryList);
+  //console.log("bu neyin listidir?", restaurantData);
 
   const mutationImg = useMutation((data) => PostImg(data), {
     onError: (error) => {

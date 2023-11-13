@@ -7,12 +7,7 @@ const CategoryTable = () => {
 
   const { data, isLoading, isError, error } = useQuery(
     "category",
-    GetCategory,
-    {
-      onSuccess: (res) => {
-        console.log(res);
-      },
-    }
+    GetCategory
   );
   const dataArray = data ? Object.values(data) : [];
 
