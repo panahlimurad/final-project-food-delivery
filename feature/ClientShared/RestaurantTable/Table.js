@@ -3,28 +3,74 @@ import ScrollableTable, { Td, Th } from "../ScrollableTable/ScrollableTable";
 import Image from "next/image";
 import styles from "../../../pages/restaurants/[id]/AboutRestaurants.module.css";
 import add from "../../../public/svg/basket.svg";
-import { DeleteBasket, PostBasket } from "../../adminShared/services/dataApi";
-import { useMutation } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
-import {setCheckOrderFalse} from '../../../redux/features/checkOrder/checkOrderSlice'
+import {
+  DeleteBasket,
+  GetBasket,
+  PostBasket,
+} from "../../adminShared/services/dataApi";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useDispatch } from "react-redux";
+import { setCheckOrderFalse } from "../../../redux/features/checkOrder/checkOrderSlice";
+import axios from "axios";
 
 export const Table = ({ setActiveModal, datas }) => {
 
-  const isCheckOrder = useSelector((state) => state.checkOrder.checkOrderState);
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
+  const { data, isLoading, isError, error } = useQuery("basket", GetBasket, {
+    // onSuccess: (res) => {
+    //   queryClient.invalidateQueries(["basket"]);
+    // },
+  });
+  const dataArray = data ? Object.values(data.result) : [];
+
+  const totalPrice = dataArray[0]?.total_amount;
+  const total_item = dataArray[0]?.total_item;
 
   const [cartId, setCartId] = useState({
     product_id: "",
   });
 
-  const deleteMutation = useMutation((data) => DeleteBasket(data),{
-    onSuccess:(res)=>{
-      // console.log("delete", res);
+
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
+
+  const { mutate: delProductToBasket } = useMutation({
+    mutationFn: async (productId) =>
+      await axios.delete("/api/basket/delete", {
+        data: {
+          product_id: productId,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["basket"]);
     },
-    onError:(err)=>{
-      // console.log("del", err);
-    }
-  })
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+
+  // const deleteMutation = useMutation((data) => DeleteBasket(data), {
+  //   onSuccess: (res) => {
+  //     console.log("delete", res);
+  //   },
+  //   onError: (err) => {
+  //     console.log("del", err);
+  //   },
+  // });
+
+  // const handleFalse=()=>{
+
+  //   dispatch(setCheckOrderFalse())
+  // }
+
+  // console.log("state", isCheckOrder);
 
   const handleFalse=()=>{
 
@@ -35,30 +81,28 @@ export const Table = ({ setActiveModal, datas }) => {
   
   const mutation = useMutation((data) => PostBasket(data), {
     onSuccess: (responseData) => {
-      // console.log("postBasket", responseData);
+      dispatch(setCheckOrderFalse())
+      queryClient.invalidateQueries({ queryKey: ["basket"] });
     },
     onError: (error) => {
       // console.log("Error", error);
     },
   });
 
-  const handleDeleteProduct = (data)=>{
-    const deleteProduct = {product_id: data?.id}
-
-// console.log("del", data?.id);
-    deleteMutation.mutate(deleteProduct)
-  
-  }
+  const handleDeleteProduct = (delData) => {
+    delProductToBasket(delData?.id);
+  };
 
   const handleAddToCart = (data) => {
     const updatedCartId = { product_id: data?.id };
     // setCartId(updatedCartId);
-    
+
     mutation.mutate(updatedCartId);
-    // setActiveModal(true);
   };
 
-  
+  const openModal = () => {
+    setActiveModal(true);
+  };
 
   return (
     <div
@@ -97,10 +141,7 @@ export const Table = ({ setActiveModal, datas }) => {
               </Td>
               <Td>
                 <button
-                  onClick={() => {
-                    handleFalse()
-                    handleDeleteProduct(data)}
-                  }
+                  onClick={() => handleDeleteProduct(data)}
                   className={`w-[28px] h-[28px] xl:w-[40px] xl:h-[40px] rounded-full border-2 border-[#BDBDBD] text-[#828282] text-lg hover:bg-[#eb5757]`}>
                   -
                 </button>
@@ -116,17 +157,19 @@ export const Table = ({ setActiveModal, datas }) => {
           ))}
         </tbody>
       </ScrollableTable>
-      <div
+      <button
+        onClick={openModal}
         className={`flex items-center justify-center mt-20 relative mb-6 ${styles["btn-content"]}`}>
         <div className="flex items-center gap-4">
           <Image src={add} alt="add" />
           <div className="flex gap-1 pt-2">
-            <span>3</span>
-            <p> items</p>
+            <p>{total_item} items</p>
           </div>
         </div>
-        <button className={`${styles["basket-totalAmount"]}`}>$37.40</button>
-      </div>
+        <button className={`${styles["basket-totalAmount"]}`}>
+          {totalPrice} $
+        </button>
+      </button>
     </div>
   );
 };

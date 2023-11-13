@@ -145,22 +145,22 @@ export const PostOrder = async (data) => {
   }
 };
 
-export const DeleteBasket = async (data) => {
-  const userJSONData = localStorage.getItem("clientData");
-  const userData = JSON.parse(userJSONData);
-  const token = userData?.user?.access_token;
+// export const DeleteBasket = async (data) => {
+//   const userJSONData = localStorage.getItem("clientData");
+//   const userData = JSON.parse(userJSONData);
+//   const token = userData?.user?.access_token;
   
-  try {
-    const response = await instanceAxiosAdmin.delete("/api/basket/delete", data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
+//   try {
+//     const response = await instanceAxiosAdmin.delete("/api/basket/delete", data, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const DeleteAllBasket = async (data) => {
   const userJSONData = localStorage.getItem("clientData");

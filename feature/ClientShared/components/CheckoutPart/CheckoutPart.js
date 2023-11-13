@@ -11,12 +11,12 @@ import { toast } from "react-toastify";
 
 const CheckoutPart = () => {
   const { data, isLoading, isError, error } = useQuery("user", GetUser, {
-    onSuccess: (res) => {
-      console.log("user", res);
-    },
-    onError: (err) => {
-      console.log(err);
-    },
+    // onSuccess: (res) => {
+    //   console.log("user", res);
+    // },
+    // onError: (err) => {
+    //   console.log(err);
+    // },
   });
 
   const {
@@ -25,16 +25,16 @@ const CheckoutPart = () => {
     isError: isBasketError,
     error: basketError,
   } = useQuery("basket", GetBasket, {
-    onSuccess: (res) => {
-      console.log("basket", res);
-    },
-    onError: (err) => {
-      console.log(err);
-    },
+    // onSuccess: (res) => {
+    //   console.log("basket", res);
+    // },
+    // onError: (err) => {
+    //   console.log(err);
+    // },
   });
 
   // console.log(basketData.result.data.id);
-  const isCheckOrder = useSelector((state) => state.checkOrder.checkOrderState);
+  
   const dispatch = useDispatch();
   const basketId = basketData?.result?.data?.id;
 
@@ -76,12 +76,10 @@ const CheckoutPart = () => {
       console.log("Error", error);
     },
   });
-7
-  console.log("state", isCheckOrder);
+
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("newData", newData);
     mutation.mutate(newData);
   }
 

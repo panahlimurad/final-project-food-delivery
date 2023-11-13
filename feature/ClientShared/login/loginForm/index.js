@@ -34,7 +34,7 @@ const LoginForm = () => {
     onSuccess: (responseData) => {
      toast.success("You are successfully logged in",{autoClose:2000})
       writeToLocalStorage(responseData);
-      console.log(responseData);
+      // console.log(responseData);
       router.push("/user?page=profile");
     },
     onError: (error) => {

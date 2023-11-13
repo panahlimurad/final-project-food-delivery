@@ -12,11 +12,17 @@ export const Basket = ({ datas }) => {
   const queryClient = useQueryClient();
 
   
-  const { data, isLoading, isError, error } = useQuery("basket", GetBasket, {
-    onSuccess: (res) => {
-      // dispatch(setBasket(res));
-      queryClient.invalidateQueries(["basket"]);
+  
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['basket'],
+    queryFn: async () => {
+      const { data } = await GetBasket()
+      return data
     },
+    // onSuccess: (res) => {
+    //   // dispatch(setBasket(res));
+    //   // queryClient.invalidateQueries(["basket"]);
+    // },
   });
   const dataArray = data ? Object.values(data.result) : [];
 
@@ -26,12 +32,14 @@ export const Basket = ({ datas }) => {
   // const totalAmmount = selBasket?.result?.data?.total_amount;
 
   const deleteMutationAllBasket = useMutation((data)=> DeleteAllBasket(data),{
-    onSuccess: (responseData) => {
-      // console.log("deleteAll", responseData);
-    },
-    onError: (error) => {
-      // console.log("Error", error);
-    },
+
+    // onSuccess: (responseData) => {
+    //   console.log("deleteAll", responseData);
+    // },
+    // onError: (error) => {
+    //   console.log("Error", error);
+    // },
+
   })
 
   const deleteAllBasket = (data)=>{

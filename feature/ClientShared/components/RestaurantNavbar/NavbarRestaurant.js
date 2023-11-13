@@ -8,12 +8,13 @@ import { useSelector } from "react-redux";
 import { GetCategory } from "../../../adminShared/services/dataApi";
 import { setCategory } from "../../../../redux/features/productDetails/productSlice";
 
+
+
 const NavbarRestaurant = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
   const { data, isLoading, isError, error } = useQuery(
     "category",
-    GetCategory,
-  );
+    GetCategory);
 
 
   const dispatch = useDispatch();

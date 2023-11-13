@@ -13,10 +13,13 @@ import Link from "next/link";
 const Basket = () => {
   const queryClient = useQueryClient();
 
+  queryClient.invalidateQueries({ queryKey: ['basket'] })
+
   const { data, isLoading, isError, error } = useQuery("basket", GetBasket, {
-    onSuccess: (res) => {
-      queryClient.invalidateQueries(["basket"]);
-    },
+    // queryKey: ['basket'],
+    // onSuccess: (res) => {
+    //   queryClient.invalidateQueries(["basket"]);
+    // },
   });
   const dataArray = data ? Object.values(data.result) : [];
 
@@ -24,12 +27,12 @@ const Basket = () => {
   const total_item = dataArray[0]?.total_item;
 
   const mutation = useMutation((data) => PostBasket(data), {
-    onSuccess: (responseData) => {
-      // console.log("postBasket", responseData);
-    },
-    onError: (error) => {
-      console.log("Error", error);
-    },
+    // onSuccess: (responseData) => {
+    //   console.log("postBasket", responseData);
+    // },
+    // onError: (error) => {
+    //   console.log("Error", error);
+    // },
   });
 
   const handleAddToCart = (data) => {

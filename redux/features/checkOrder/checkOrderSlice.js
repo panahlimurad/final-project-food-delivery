@@ -16,6 +16,6 @@ const checkOrderSlice = createSlice({
   },
 });
 
-export const { setCheckOrderTrue } = checkOrderSlice.actions;
+export const { setCheckOrderTrue, setCheckOrderFalse } = checkOrderSlice.actions;
 
 export default checkOrderSlice.reducer;
