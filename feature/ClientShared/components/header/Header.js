@@ -76,14 +76,7 @@ const Header = () => {
     isLoading: isUserLoading,
     isError: isUserError,
     error: userError,
-  } = useQuery("user", GetUser, {
-    // onSuccess: (res) => {
-    //   console.log("user", res);
-    // },
-    // onError: (err) => {
-    //   console.log(err);
-    // },
-  });
+  } = useQuery("user", GetUser);
 
   const basketCount = basketData?.result?.data?.items?.length;
 
