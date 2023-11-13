@@ -43,13 +43,13 @@ const EditModal = ({
 
 //   console.log("edit olunmus data", dataToUpdate);
 
-const handleInputChange = _.debounce((e) => {
+const handleInputChange = (e) => {
   const { name, value } = e.target;
   setEditedData((prevData) => ({
     ...prevData,
     [name]: value,
   }));
-}, 1000);
+};
 
   // console.log("id-miz gelirmi?", editedData.item_id);
 
