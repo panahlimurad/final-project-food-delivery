@@ -13,7 +13,7 @@ import { useMutation, useQuery } from "react-query";
 import Image from "next/image";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
-import _ from "lodash";
+
 
 
 const EditModal = ({

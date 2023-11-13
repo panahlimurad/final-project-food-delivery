@@ -35,13 +35,7 @@ const queryClient = useQueryClient()
 
   const { data, isLoading, isError, error } = useQuery(
     "products",
-    GetProducts,
-    {
-      onSuccess: (res) => {
-        // console.log("Data:", res)
-        queryClient.invalidateQueries(["products"])
-      },
-    }
+    GetProducts
   );
 
 
