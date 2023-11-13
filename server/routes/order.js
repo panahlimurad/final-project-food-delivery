@@ -19,7 +19,6 @@ export async function handlerOrderGET(req, res, col) {
 
   try {
     const orders = await getAllData(col);
-
     res.status(200).json(response(orders));
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
