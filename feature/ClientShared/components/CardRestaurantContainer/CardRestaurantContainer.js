@@ -9,11 +9,6 @@ export default function CardRestaurantContainer() {
   const { data, isLoading, isError, error } = useQuery(
     "restaurant",
     GetRestaurants,
-    {
-      onSuccess: (res) => {
-        // console.log("query", res);
-      },
-    }
   );
   
   // console.log("datass", data);
