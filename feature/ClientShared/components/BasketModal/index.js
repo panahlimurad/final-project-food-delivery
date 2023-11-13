@@ -6,6 +6,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { GetBasket, PostBasket } from "../../../adminShared/services/dataApi";
 import Link from "next/link";
 import axios from "axios";
+import empty from '../../../../public/svg/empty.svg'
 
 function BasketModal({ setActiveModal, activeModal, datas }) {
   const handleClose = () => {
@@ -82,7 +83,7 @@ function BasketModal({ setActiveModal, activeModal, datas }) {
         <ScrollBarContainer>
           <table className="w-full h-full z-50">
             <tbody>
-              {dataArray[0]?.items?.map((data, index) => (
+              {dataArray ? (dataArray[0]?.items?.map((data, index) => (
                 <tr
                   className={`${styles.tableRow} relative  border-b-[1px] border-[#E0E0E0]`}>
                   <td className="w-[68px] pr-8 max-[981px]:pr-4 max-[380px]:pr-2 max-[380px]:w-[40px]">
@@ -123,7 +124,11 @@ function BasketModal({ setActiveModal, activeModal, datas }) {
                     </span>
                   </td>
                 </tr>
-              ))}
+              ))):(
+                <div>
+                <Image src={empty}/>
+                </div>
+              )}
             </tbody>
           </table>
         </ScrollBarContainer>

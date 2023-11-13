@@ -45,11 +45,11 @@ const CheckoutYourOrder = () => {
         </ScrollBarContainer>
 
         <hr className="mx-3 h-[1px] border text-[#E0E0E0]" />
-        <div className="flex justify-between mx-2 md:mx-5  items-center gap-4 mt-4">
+        <div className="flex justify-between mx-2 md:mx-5 items-center gap-4 mt-4">
           <ul className="text-lg font-medium">
             <li>Total</li>
           </ul>
-          <ul className="text-sm font-normal">
+          <ul className="text-lg font-normal">
             <li>{totalAmmount} $</li>
           </ul>
         </div>

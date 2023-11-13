@@ -7,10 +7,36 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { DeleteAllBasket, GetBasket } from "../../adminShared/services/dataApi";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export const Basket = ({ datas }) => {
   const queryClient = useQueryClient();
 
+
+  const userJSONData = localStorage.getItem("clientData");
+  const userData = JSON.parse(userJSONData);
+  const token = userData?.user?.access_token;
+
+  const { mutate: delProductToBasket } = useMutation({
+    mutationFn: async (productId) =>
+      await axios.delete("/api/basket/clear", {
+        data: {
+          basket_id: productId,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    onSuccess: () => {
+      toast.success("Your Basket is empty",{autoClose:2000})
+      queryClient.invalidateQueries(["basket"]);
+    },
+    onError: (error) => {
+      toast.error("Your surgery was unsuccessful")
+      console.log(error);
+    },
+  });
   
   
   const { data, isLoading, isError, error } = useQuery({
@@ -27,29 +53,13 @@ export const Basket = ({ datas }) => {
   const dataArray = data ? Object.values(data.result) : [];
 
 
-  // const selBasket = useSelector((state) => state.basket.data);
-  // const basketItem = selBasket?.result?.data?.items?.length;
-  // const totalAmmount = selBasket?.result?.data?.total_amount;
-
-  const deleteMutationAllBasket = useMutation((data)=> DeleteAllBasket(data),{
-
-    // onSuccess: (responseData) => {
-    //   console.log("deleteAll", responseData);
-    // },
-    // onError: (error) => {
-    //   console.log("Error", error);
-    // },
-
-  })
-
-  const deleteAllBasket = (data)=>{
-    // console.log("delAll", data.result.data.id);
-    deleteMutationAllBasket.mutate({basket_id : data?.result?.data?.id})
-  }
+  const handleDeleteAllProduct = (delData) => {
+  delProductToBasket(delData?.result?.data?.id);
+  };
 
   const totalPrice = dataArray[0]?.total_amount
   const total_item = dataArray[0]?.total_item
-  // console.log("dataArray", dataArray[0]?.items);
+ 
 
   return (
     <div
@@ -65,7 +75,7 @@ export const Basket = ({ datas }) => {
                   <Image src={add} alt="basket" />
                   <p>{total_item} item</p>
                 </div>
-                <button onClick={()=>deleteAllBasket(data)} className="border-2 p-1 text-base rounded-md bg-white">
+                <button onClick={()=>handleDeleteAllProduct(data)} className="border-2 p-1 text-base rounded-md bg-white">
                   Clear All
                 </button>
               </div>
