@@ -5,7 +5,6 @@ import CheckouSuccess from "../../../feature/ClientShared/components/checkoutsuc
 
 const Checkout = () => {
   const isCheckOrder = useSelector((state) => state.checkOrder.checkOrderState);
-console.log("state", isCheckOrder);
   return (
     <div className="flex w-full md:flex-nowrap flex-wrap-reverse">
       {isCheckOrder ? (

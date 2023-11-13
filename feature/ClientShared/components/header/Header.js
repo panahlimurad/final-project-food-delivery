@@ -29,7 +29,7 @@ const Header = () => {
   const { push } = useRouter();
   const dispatch = useDispatch();
   const filteredItems = useSelector(selectFilteredItems);
-  console.log("filterdata", filteredItems);
+  
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     const fetchDataFromFirebase = async () => {
@@ -87,7 +87,7 @@ const Header = () => {
   const selUserData = useSelector((state) => state.user.data);
 
   const selBasket = useSelector((state) => state.basket.data);
-  // console.log("selBasket", selBasket);
+
   const basketItem = selBasket?.result?.data?.items?.length;
 
   const {
@@ -96,12 +96,12 @@ const Header = () => {
     isError: isBasketError,
     error: basketError,
   } = useQuery("basket", GetBasket, {
-    onSuccess: (res) => {
-      console.log("basket", res);
-    },
-    onError: (err) => {
-      console.log(err);
-    },
+    // onSuccess: (res) => {
+    //   console.log("basket", res);
+    // },
+    // onError: (err) => {
+    //   console.log(err);
+    // },
   });
 
   const {
@@ -110,12 +110,12 @@ const Header = () => {
     isError: isUserError,
     error: userError,
   } = useQuery("user", GetUser, {
-    onSuccess: (res) => {
-      console.log("user", res);
-    },
-    onError: (err) => {
-      console.log(err);
-    },
+    // onSuccess: (res) => {
+    //   console.log("user", res);
+    // },
+    // onError: (err) => {
+    //   console.log(err);
+    // },
   });
 
   const basketCount = basketData?.result?.data?.items?.length;
