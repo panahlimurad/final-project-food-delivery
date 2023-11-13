@@ -9,7 +9,7 @@ import { setCategory } from "../../../../redux/features/productDetails/productSl
 
 export default function CardRestaurantContainer({restaurantData}) {
   const restaurants=restaurantData?.result.data
-  // console.log("restaurants" , restaurants);
+  console.log("restaurants" , restaurants);
 
  
   // const dataArray = restaurants ? Object.values(restaurants) : [];

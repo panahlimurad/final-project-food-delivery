@@ -142,15 +142,15 @@ export default function AddModal({
     error: categoryError,
   } = useQuery("category", GetCategory);
 
-  // const {
-  //   data: restaurantData,
-  //   isLoading: restaurantIsLoading,
-  //   isError: restaurantIsError,
-  //   error: restaurantError,
-  // } = useQuery("restaurant", GetRestaurants);
+  const {
+    data: restaurantData,
+    isLoading: restaurantIsLoading,
+    isError: restaurantIsError,
+    error: restaurantError,
+  } = useQuery("restaurant", GetRestaurants);
 
   const categoryList = categoryListData ? Object.values(categoryListData) : [];
-  // const restaurantList = restaurantData ? Object.values(restaurantData) : [];
+  const restaurantList = restaurantData ? Object.values(restaurantData) : [];
 
   //console.log("bu neyin listidir?", restaurantData);
 
@@ -287,7 +287,7 @@ export default function AddModal({
                         >
                           {t(field.label)}
                         </label>
-                        {/* <select
+                        <select
                           type="text"
                           name={field.name}
                           value={categoryData[field.name]}
@@ -309,7 +309,7 @@ export default function AddModal({
                                   </option>
                                 )
                               )}
-                        </select> */}
+                        </select>
                       </div>
                     );
                 }
