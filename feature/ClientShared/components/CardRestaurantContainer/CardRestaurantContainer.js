@@ -28,7 +28,7 @@ export default function CardRestaurantContainer() {
   const { push } = useRouter();
   return (
 
-      <div className="flex flex-wrap justify-center gap-7 mt-4"> 
+      <div className="flex flex-wrap justify-center gap-7 mt-20 md:mt-4"> 
         {filteredRestaurants?.map((restaurant,index) => (
           <button   onClick={() => push(ROUTER.RESTUARANTS_ID(restaurant.id))}>
              <CardRestaurant

@@ -2,6 +2,7 @@ import styles from "../../../feature/ClientShared/components/BasketModal/BasketM
 import Image from "next/image";
 import add from "../../../public/svg/basket1.svg";
 import deleteItem from "../../../public/svg/delete.svg";
+import empty from "../../../public/svg/empty.svg";
 import { ScrollBarContainer } from "../../../feature/ClientShared/ScrollableTable/ScrollableTable";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import {
@@ -95,11 +96,6 @@ const Basket = () => {
                     {data.count}
                     <span>-</span>
                   </button>
-                </td>
-                <td>
-                  <span className="w-[25px] h-[25px] absolute right-2 top-6">
-                    <Image src={deleteItem} alt="delete" />
-                  </span>
                 </td>
               </tr>
             ))}

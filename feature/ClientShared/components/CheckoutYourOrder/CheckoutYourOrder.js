@@ -22,12 +22,12 @@ const CheckoutYourOrder = () => {
   const totalAmmount = basketData?.result?.data?.total_amount;
 
   return (
-    <div className=" flex justify-center ml-8 w-full">
-      <div className=" h-auto md:bg-[#f2f5fb] bg-[#FFFFFF] text-[#828282]  pt-8 rounded md:shadow-lg shadow-none xl:p-5 lg:p-2  p-1">
-        <h1 className="text-[#4F4F4F] text-[30px] h-8 font-semibold leading-6 text-left block md:hidden ">
+    <div className="flex justify-center ml-8 w-full">
+      <div className=" h-auto md:bg-[#f2f5fb] bg-[#FFFFFF] text-[#828282] w-[70%] pt-8 rounded md:shadow-lg shadow-none xl:p-5 lg:p-2 p-1">
+        <h1 className="text-[#4F4F4F] text-[30px] h-8 font-semibold leading-6 text-left block md:hidden mb-6">
           Checkout
         </h1>
-        <h1 className="md:text-center text-lg font-medium ">Your Order</h1>
+        <h1 className="md:text-center text-lg font-medium mb-4">Your Order</h1>
         <ScrollBarContainer>
           <div className="flex flex-col mt-4 justify-center items-center gap-4 pr-5 w-full  ">
             {basketData?.result?.data?.items.map((data, index) => (
