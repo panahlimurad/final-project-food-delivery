@@ -99,8 +99,8 @@ const ProfilePart = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex w-full">
-        <div className=" sm:px-8 py-12 sm:bg-[#F3F4F6] bg-[#FFFFFF] w-full">
-          <h1 className="text-[#4F4F4F] text-[30px] h-8 font-semibold leading-6 sm:ml-0 ml-8 ">
+        <div className="sm:px-8 py-12 sm:bg-[#F3F4F6] bg-[#FFFFFF] w-full">
+          <h1 className="text-[#4F4F4F] text-[30px] text-center sm:text-left h-8 font-semibold leading-6 mb-8">
             Profile
           </h1>
           <div className="flex justify-center items-center">

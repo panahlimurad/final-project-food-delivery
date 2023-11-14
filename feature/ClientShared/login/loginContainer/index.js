@@ -5,9 +5,9 @@ import LoginForm from "../loginForm";
 
 const LoginContainer = () => {
   return (
-    <div className="px-[34px] py-[30px]">
+    <div className="md:px-[34px] md:py-[30px]">
       <LoginHeader />
-      <div className="lg:flex items-center justify-around">
+      <div className="lg:flex items-center">
         <LoginLeft />
         <LoginForm />
       </div>

@@ -89,7 +89,7 @@ const CheckoutPart = () => {
 
   return (
     <form
-      className="sm:ml-5 mr-2 px-12 py-12 w-full md:bg-[#F3F4F6] bg-[#FFFFFF]"
+      className="sm:ml-5 sm:mr-2 sm:px-12 sm:py-12 w-full md:bg-[#F3F4F6] bg-[#FFFFFF]"
       onSubmit={handleSubmit}>
       <h1 className="text-[#4F4F4F] text-[30px] h-8 font-semibold leading-6 md:ml-0 ml-8 hidden md:block">
         Checkout
