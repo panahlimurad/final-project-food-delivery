@@ -15,7 +15,7 @@ export const dataSlice = createSlice({
     filterItems: (state, action) => {
       const searchTerm = action.payload.toLowerCase();
       state.filteredItems = state.items.filter(item =>
-        item.name.toLowerCase().includes(searchTerm)
+        item.name[0].toLowerCase().includes(searchTerm)
       );
     },
   },
