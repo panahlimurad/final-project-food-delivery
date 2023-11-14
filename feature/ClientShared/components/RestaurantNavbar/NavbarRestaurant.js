@@ -8,13 +8,12 @@ import { useSelector } from "react-redux";
 import { GetCategory } from "../../../adminShared/services/dataApi";
 import { setCategory } from "../../../../redux/features/productDetails/productSlice";
 
-
-
 const NavbarRestaurant = () => {
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
   const { data, isLoading, isError, error } = useQuery(
     "category",
-    GetCategory);
+    GetCategory,
+  );
 
 
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ const NavbarRestaurant = () => {
 
   const handleCategoryChange = (index) => {
     const selectedCategory = dataArray[1]?.data[index]
-    const SelectName=selectedCategory.name
+    const SelectName=selectedCategory.id
     dispatch(setCategory(SelectName));
     // console.log("SelectName", SelectName);
     setActiveLinkIndex(index);

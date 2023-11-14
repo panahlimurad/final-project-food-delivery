@@ -20,9 +20,7 @@ export const dataSlice = createSlice({
     },
   },
 });
-
 export const { setItems, filterItems } = dataSlice.actions;
-
 export const selectItems = state => state.data.items;
 export const selectFilteredItems = state => state.data.filteredItems;
 
