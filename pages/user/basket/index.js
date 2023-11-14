@@ -10,12 +10,11 @@ import {
   PostBasket,
 } from "../../../feature/adminShared/services/dataApi";
 import Link from "next/link";
-import axios from "axios";
 
 const Basket = () => {
   const queryClient = useQueryClient();
 
-  queryClient.invalidateQueries({ queryKey: ["basket"] });
+  queryClient.invalidateQueries({ queryKey: ['basket'] })
 
   const { data, isLoading, isError, error } = useQuery("basket", GetBasket, {
     // queryKey: ['basket'],
@@ -28,28 +27,6 @@ const Basket = () => {
   const totalPrice = dataArray[0]?.total_amount;
   const total_item = dataArray[0]?.total_item;
 
-  const userJSONData = localStorage.getItem("clientData");
-  const userData = JSON.parse(userJSONData);
-  const token = userData?.user?.access_token;
-
-  const { mutate: delProductToBasket } = useMutation({
-    mutationFn: async (productId) =>
-      await axios.delete("/api/basket/delete", {
-        data: {
-          product_id: productId,
-        },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["basket"]);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
   const mutation = useMutation((data) => PostBasket(data), {
     // onSuccess: (responseData) => {
     //   console.log("postBasket", responseData);
@@ -58,10 +35,6 @@ const Basket = () => {
     //   console.log("Error", error);
     // },
   });
-
-  const handleDeleteProduct = (delData) => {
-    delProductToBasket(delData?.id);
-  };
 
   const handleAddToCart = (data) => {
     const updatedCartId = { product_id: data?.id };
@@ -121,10 +94,6 @@ const Basket = () => {
                     className={`${styles["basket-btn"]} `}>
                     <span>+</span>
                     {data.count}
-                  </button>
-                  <button
-                    className={`${styles["basket-btn"]} `}
-                    onClick={() => handleDeleteProduct(data)}>
                     <span>-</span>
                   </button>
                 </td>
