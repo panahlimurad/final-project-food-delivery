@@ -32,7 +32,7 @@ export const Table = ({ setActiveModal, datas }) => {
     product_id: "",
   });
 
-
+// salam
   const userJSONData = localStorage.getItem("clientData");
   const userData = JSON.parse(userJSONData);
   const token = userData?.user?.access_token;
