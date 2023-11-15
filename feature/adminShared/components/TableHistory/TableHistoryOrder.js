@@ -104,6 +104,7 @@ const TableHistoryOrder = () => {
                       </span>
                     </td>
                     <td className=" ">
+                    <td>
                       {new Date(data.created).toLocaleDateString("en-US", {
                         day: "numeric",
                         month: "short",
