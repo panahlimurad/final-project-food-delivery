@@ -10,11 +10,12 @@ import {
   PostBasket,
 } from "../../../feature/adminShared/services/dataApi";
 import Link from "next/link";
+import axios from "axios";
 
 const Basket = () => {
   const queryClient = useQueryClient();
 
-  queryClient.invalidateQueries({ queryKey: ['basket'] })
+  queryClient.invalidateQueries({ queryKey: ["basket"] });
 
   const { data, isLoading, isError, error } = useQuery("basket", GetBasket, {
     // queryKey: ['basket'],
@@ -23,6 +24,32 @@ const Basket = () => {
     // },
   });
   const dataArray = data ? Object.values(data.result) : [];
+
+  const token = null
+
+  if (typeof window !== 'undefined') {
+    const userJSONData = localStorage.getItem("clientData");
+    const userData = JSON.parse(userJSONData);
+    const token = userData?.user?.access_token;
+  }
+
+  const { mutate: delProductToBasket } = useMutation({
+    mutationFn: async (productId) =>
+      await axios.delete("/api/basket/delete", {
+        data: {
+          product_id: productId,
+        },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["basket"]);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   const totalPrice = dataArray[0]?.total_amount;
   const total_item = dataArray[0]?.total_item;
@@ -42,6 +69,10 @@ const Basket = () => {
 
     mutation.mutate(updatedCartId);
     // setActiveModal(true);
+  };
+
+  const handleDeleteProduct = (delData) => {
+    delProductToBasket(delData?.id);
   };
 
   return (
@@ -87,13 +118,17 @@ const Basket = () => {
                     </p>
                   </div>
                 </td>
-                <td className="w-[40px] p-2">
+                <td className="w-[40px] p-2 flex flex-col items-center">
                   {" "}
                   <button
                     onClick={() => handleAddToCart(data)}
                     className={`${styles["basket-btn"]} `}>
                     <span>+</span>
-                    {data.count}
+                  </button>
+                  <span className="text-3xl">{data.count}</span>
+                  <button
+                    className={`${styles["basket-btn"]} `}
+                    onClick={() => handleDeleteProduct(data)}>
                     <span>-</span>
                   </button>
                 </td>
