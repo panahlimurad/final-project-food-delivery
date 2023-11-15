@@ -12,14 +12,13 @@ import { shortText } from "../../../adminShared/helper/shortText";
 
 const YourOrder = () => {
   const queryClient = useQueryClient();
-
   const { data } = useQuery("orders", GetOrder, {
     onSuccess: (res) => {
       // console.log("query", res);
     },
   });
 
-  
+  // console.log("datass", data);
 
   const dataArray = data ? Object.values(data) : [];
   const OrderData = dataArray[1]?.data;
@@ -70,74 +69,18 @@ const YourOrder = () => {
     delUserOrder(id);
   };
   return (
-    <div className="sm:bg-[#F3F4F6] px-8 py-8 h-auto">
-      <h1 className="color-[#4F4F4F] font-semibold text-3xl leading-6 font-sans mb-8 ml-3">
+    <div className="sm:bg-[#F3F4F6] px-8  py-8 h-auto">
+      <h1 className="color-[#4F4F4F] font-semibold text-3xl leading-6  font-sans mb-8 ml-3">
         Your Order
       </h1>
       <div className="w-full bg-[#FFFFFF]  ">
         <ScrollBarContainer bg="#C74FEB">
           <div>
+           
+            
 
-            <table class="w-full text-black text-sm font-light">
-              <thead class="border-b font-semibold leading-5 tracking-wide">
-                <tr className="text-center">
-                  <th>ID</th>
-                  <th>Time</th>
-                  <th>Delivery Adress</th>
-                  <th>Amount</th>
-                  <th>Payment Method</th>
-                  <th>Contact</th>
-                </tr>
-              </thead>
 
-              <tbody>
-                {OrderData?.map((order, index) => (
-                  // console.log("orders", order),
-                  <tr className="border-b text-center" key={order.id}>
-                    <td className="whitespace-nowrap w-[10%] font-medium">
-                   <span className="border-2 rounded-lg p-1">
-
-                      {shortText(5, order.id)}
-                   </span>
-                    </td>
-                    <td className="whitespace-nowrap w-[10%] font-normal leading-5 tracking-wide">
-                      {" "}
-                      {new Date(order.created).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </td>
-                    <td className="whitespace-pre-line  h-auto w-[20%] font-normal leading-5 tracking-wide">
-                      {order.delivery_address},
-                    </td>
-                    <td className="whitespace-nowrap w-[10%] font-normal leading-5 tracking-wide">
-                      {order.amount} $
-                    </td>
-                    <td className="whitespace-nowrap w-[20%] font-normal leading-5 tracking-wide">
-                      {order.payment_method == 0
-                        ? "cash"
-                        : "by credit card"}
-                    </td>
-                    <td className="whitespace-nowrap w-[10%] font-normal leading-5 tracking-wide">
-                      {order.contact}
-                    </td>
-                    <td className="whitespace-nowrap w-[10%] font-normal leading-5 tracking-wide  cursor-pointer">
-                      <button onClick={() => openModal(order.id)}>
-                        <Image src={eyes} alt=".." />
-                      </button>
-                    </td>
-                    <td
-                      className="whitespace-nowrap w-[10%] px-4 py-4 font-normal leading-5 tracking-wide  cursor-pointer"
-                      onClick={() => handleDelete(order?.id)}>
-                      <Image src={deleteBtn} alt=".." />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-<table class=" text-sm text-left rtl:text-right text-black  font-light ">
+    <table class=" text-sm text-left rtl:text-right text-black  font-light ">
         <thead class="text-xs border-b font-semibold leading-5 tracking-wide uppercase">
             <tr>
                 <th scope="col" class=" py-3 text-center lg:px-2 px-10 ">
@@ -219,28 +162,29 @@ const YourOrder = () => {
         </tbody>
     </table>
 </div>
+
+        
         </ScrollBarContainer>
       </div>
 
       <Modal isOpen={isModalOpen} onClose={closeModal} className="w-full">
-
-        <div className=" bg-[#FFFFFF]">
-          <table class="text-left w-full text-black text-sm font-light">
-            <thead class="border-b font-semibold leading-5 tracking-wide">
+        <div className=" sm:overflow-x-hidden  overflow-x-auto  bg-[#FFFFFF]  ">
+          <table class="text-left text-black text-sm font-light">
+            <thead class="border-b font-semibold leading-5 tracking-wide font-['Open_Sans']  ">
               <tr className="text-center">
-                <th scope="col">
+                <th scope="col" className="px-6 py-3">
                   Image
                 </th>
-                <th scope="col">
+                <th scope="col" className="px-6 py-3">
                   Name
                 </th>
-                <th scope="col">
-                  Price
+                <th scope="col" className="px-6 py-3">
+                  Price $
                 </th>
-                <th scope="col">
+                <th scope="col" className="px-6 py-3">
                   Count
                 </th>
-                <th scope="col">
+                <th scope="col" className="px-6 py-3">
                   Amount
                 </th>
               </tr>
@@ -248,7 +192,7 @@ const YourOrder = () => {
             <tbody>
               {newFilterData?.products.map((product) => (
                 <tr className="border-b  text-center" key={product.id}>
-                  <td className="whitespace-nowrap px-6 py-4 font-medium flex justify-center">
+                  <td className="whitespace-nowrap px-6 py-4 font-medium  ">
                     {" "}
                     <Image
                       src={product.img_url}
@@ -257,16 +201,16 @@ const YourOrder = () => {
                       height={100}
                     />{" "}
                   </td>
-                  <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide">
+                  <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide  font-['Open_Sans'] ">
                     {product.name}
                   </td>
-                  <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide">
+                  <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">
                     {product.price}
                   </td>
-                  <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide">
+                  <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">
                     {product.count}
                   </td>
-                  <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide">
+                  <td className="whitespace-nowrap px-6 py-4 font-normal leading-5 tracking-wide font-['Open_Sans'] ">
                     {Number(product.price) * product.count}
                   </td>
                 </tr>
