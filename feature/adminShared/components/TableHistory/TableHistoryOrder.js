@@ -103,14 +103,14 @@ const TableHistoryOrder = () => {
                         {shortText(5, data.customer_id)}
                       </span>
                     </td>
-                    <TextDecoderStrea>
+                    <td>
                       {new Date(data.created).toLocaleDateString("en-US", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
                       })}
-                    </TextDecoderStrea>
-                    <td className="whitespace-pre-line">{data.delivery_address},</td>
+                    </td>
+                    <td className=" whitespace-pre-line">{data.delivery_address},</td>
                     <td>{data.amount} $</td>
                     <td >
                       {data.payment_method == 0 ? "cash" : "by credit card"}
