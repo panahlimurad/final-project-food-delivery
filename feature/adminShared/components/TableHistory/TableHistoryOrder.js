@@ -80,13 +80,13 @@ const TableHistoryOrder = () => {
             <table className="w-full text-left text-black text-sm font-light">
               <thead className="border-b font-normal dark:border-neutral-500">
                 <tr className="text-center">
-                  <th scope="col">ID</th>
-                  <th scope="col">Customer ID</th>
-                  <th scope="col">Time</th>
-                  <th scope="col">Delivery Adress</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Payment Method</th>
-                  <th scope="col">Contact</th>
+                  <td scope="col">ID</td>
+                  <td scope="col">Customer ID</td>
+                  <td scope="col">Time</td>
+                  <td scope="col">Delivery Adress</td>
+                  <td scope="col">Amount</td>
+                  <td scope="col">Payment Metdod</td>
+                  <td scope="col">Contact</td>
                 </tr>
               </thead>
               <tbody>
@@ -138,11 +138,11 @@ const TableHistoryOrder = () => {
           <table class="text-left w-full text-black text-sm font-light">
             <thead class="border-b font-semibold leading-5 tracking-wide">
               <tr className="text-center">
-                <th scope="col">Image</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Count</th>
-                <th scope="col">Amount</th>
+                <td scope="col">Image</td>
+                <td scope="col">Name</td>
+                <td scope="col">Price</td>
+                <td scope="col">Count</td>
+                <td scope="col">Amount</td>
               </tr>
             </thead>
             <tbody>
