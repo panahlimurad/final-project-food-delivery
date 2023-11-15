@@ -284,6 +284,7 @@ export const GetOffer = async () => {
     throw error;
   }
 };
+
 export const GetOrder = async () => {
   const userJSONData = localStorage.getItem("clientData");
   const userData = JSON.parse(userJSONData);
