@@ -75,7 +75,6 @@ const TableHistoryOrder = () => {
 
   return (
     <>
-      <ScrollBarContainer bg="#C74FEB">
         <div className="overflow-x-auto md:overflow-x-hidden w-full flex flex-col bg-slate-50">
           <div>
             <table className="w-full text-left text-black text-sm font-light">
@@ -110,9 +109,11 @@ const TableHistoryOrder = () => {
                         year: "numeric",
                       })}
                     </td>
-                    <td className=" whitespace-pre-line">{data.delivery_address},</td>
+                    <td className=" whitespace-pre-line">
+                      {data.delivery_address},
+                    </td>
                     <td>{data.amount} $</td>
-                    <td >
+                    <td>
                       {data.payment_method == 0 ? "cash" : "by credit card"}
                     </td>
                     <td>{data.contact}</td>
@@ -132,7 +133,6 @@ const TableHistoryOrder = () => {
             </table>
           </div>
         </div>
-      </ScrollBarContainer>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <div className="sm:overflow-x-hidden w-[100%] h-full overflow-x-auto bg-[#FFFFFF]">
           <table class="text-left w-full text-black text-sm font-light">
