@@ -225,7 +225,7 @@ const Header = () => {
             onChange={(e) => handleSearch(e.target.value)}
           />
           {searchTerm !== "" && (
-            <div className="z-50 absolute w-[30%] ">
+            <div className="z-50 absolute lg:w-[30%] w-[50%]">
               {filteredItems.length > 0 ? (
                 <div className="mt-5 rounded-2xl ">
                   {filteredItems.map((item) => (
