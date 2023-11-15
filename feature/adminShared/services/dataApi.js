@@ -93,6 +93,24 @@ export const PutProducts = async (productId, updatedData) => {
   }
 };
 
+export const PutCategory = async (id, updatedData) => {
+  try {
+    const response = await instanceAxiosAdmin.put(`/api/category/${id}`, updatedData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const PutOffer = async (id, updatedData) => {
+  try {
+    const response = await instanceAxiosAdmin.put(`/api/offer/${id}`, updatedData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 export const DeleteRestaurants = async (id) => {
   try {
@@ -105,6 +123,24 @@ export const DeleteRestaurants = async (id) => {
 export const DeleteProduct = async (id) => {
   try {
     const response = await instanceAxiosAdmin.delete(`/api/products/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const DeleteCategory = async (id) => {
+  try {
+    const response = await instanceAxiosAdmin.delete(`/api/category/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const DeleteOffer = async (id) => {
+  try {
+    const response = await instanceAxiosAdmin.delete(`/api/offer/${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -142,6 +178,16 @@ export const GetCategory = async () => {
     throw error;
   }
 };
+
+export const GetCategoryID = async (id) => {
+  try {
+    const response = await instanceAxiosAdmin.get(`/api/category/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const GetUser = async () => {
   const userJSONData = localStorage.getItem("clientData");
   const userData = JSON.parse(userJSONData);

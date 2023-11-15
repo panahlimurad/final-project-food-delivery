@@ -6,6 +6,7 @@ import Table from "../../../feature/adminShared/components/Table";
 import { useQuery } from "react-query";
 import { GetOffer } from "../../../feature/adminShared/services/dataApi";
 import EditModal from "../../../feature/adminShared/components/EditModal/EditModal";
+import { useRouter } from "next/router";
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
@@ -15,6 +16,9 @@ export const getStaticProps = async ({ locale }) => ({
 
 const Offers = () => {
   const title = ["ID", "image", "Title", "Description"];
+
+  const router = useRouter();
+    const routerPath = router.pathname;
 
   const { data, isLoading, isError, error } = useQuery("offers", GetOffer, {
     onSuccess: (res) => {
@@ -29,7 +33,7 @@ const Offers = () => {
           <Head>
             <title>Offers</title>
           </Head>
-          <Table data={dataArray} headers={title} />
+          <Table data={dataArray} headers={title} routerPath="/admin/offer"/>
           
         </div>
       </LayoutAdmin>
