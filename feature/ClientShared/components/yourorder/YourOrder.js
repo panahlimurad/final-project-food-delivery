@@ -9,7 +9,7 @@ import Modal from "./Modal";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { shortText } from "../../../adminShared/helper/shortText";
-
+// salam
 const YourOrder = () => {
   const queryClient = useQueryClient();
 
@@ -87,7 +87,6 @@ const YourOrder = () => {
               </thead>
               <tbody>
                 {OrderData?.map((order, index) => (
-                  // console.log("orders", order),
                   <tr className="border-b text-center" key={order.id}>
                     <td className="whitespace-nowrap w-[10%] font-medium">
                       <span className="border-2 rounded-lg p-1">
