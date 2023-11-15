@@ -19,18 +19,15 @@ const YourOrder = () => {
     },
   });
 
-  
-
   const dataArray = data ? Object.values(data) : [];
   const OrderData = dataArray[1]?.data;
-  // console.log("jd", OrderData);
+  
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const openModal = (order) => {
     setIsModalOpen(true);
     setSelectedOrder(order);
-    // console.log("productId", order)
   };
 
   const closeModal = () => {
@@ -74,7 +71,7 @@ const YourOrder = () => {
       <h1 className="color-[#4F4F4F] font-semibold text-3xl leading-6 font-sans mb-8 ml-3">
         Your Order
       </h1>
-      <div className="w-full bg-[#FFFFFF]  ">
+      <div className="w-full bg-[#FFFFFF]">
         <ScrollBarContainer bg="#C74FEB">
           <div>
             <table class="w-full text-black text-sm font-light">
@@ -88,16 +85,14 @@ const YourOrder = () => {
                   <th>Contact</th>
                 </tr>
               </thead>
-
               <tbody>
                 {OrderData?.map((order, index) => (
                   // console.log("orders", order),
                   <tr className="border-b text-center" key={order.id}>
                     <td className="whitespace-nowrap w-[10%] font-medium">
-                   <span className="border-2 rounded-lg p-1">
-
-                      {shortText(5, order.id)}
-                   </span>
+                      <span className="border-2 rounded-lg p-1">
+                        {shortText(5, order.id)}
+                      </span>
                     </td>
                     <td className="whitespace-nowrap w-[10%] font-normal leading-5 tracking-wide">
                       {" "}
@@ -114,9 +109,7 @@ const YourOrder = () => {
                       {order.amount} $
                     </td>
                     <td className="whitespace-nowrap w-[20%] font-normal leading-5 tracking-wide">
-                      {order.payment_method == 0
-                        ? "cash"
-                        : "by credit card"}
+                      {order.payment_method == 0 ? "cash" : "by credit card"}
                     </td>
                     <td className="whitespace-nowrap w-[10%] font-normal leading-5 tracking-wide">
                       {order.contact}
@@ -138,28 +131,16 @@ const YourOrder = () => {
           </div>
         </ScrollBarContainer>
       </div>
-
       <Modal isOpen={isModalOpen} onClose={closeModal} className="w-full">
-
         <div className=" bg-[#FFFFFF]">
           <table class="text-left w-full text-black text-sm font-light">
             <thead class="border-b font-semibold leading-5 tracking-wide">
               <tr className="text-center">
-                <th scope="col">
-                  Image
-                </th>
-                <th scope="col">
-                  Name
-                </th>
-                <th scope="col">
-                  Price
-                </th>
-                <th scope="col">
-                  Count
-                </th>
-                <th scope="col">
-                  Amount
-                </th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Count</th>
+                <th scope="col">Amount</th>
               </tr>
             </thead>
             <tbody>
