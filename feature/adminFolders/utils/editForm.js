@@ -93,7 +93,7 @@ export const EditFORM = {
       {
         id: nanoid(),
         label: "Category",
-        name: "category",
+        name: "category_id",
         type: "select",
         
       },

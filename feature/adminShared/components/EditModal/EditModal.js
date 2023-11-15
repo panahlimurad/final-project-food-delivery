@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import UploadImage from "../AddModal/UploadImage";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { fileStorage } from "../../../../server/configs/firebase";
@@ -6,15 +6,15 @@ import {
   GetCategory,
   GetProducts,
   GetRestaurants,
+  PutCategory,
+  PutOffer,
   PutProducts,
   PutRestaurants,
 } from "../../services/dataApi";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import Image from "next/image";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
-
-
 
 const EditModal = ({
   isEditModalOpen,
@@ -26,74 +26,125 @@ const EditModal = ({
   const { title, infoImg, description, initialValues, inputs, buttonTitle } =
     form;
 
-    
-    const [selectedImage, setSelectedImage] = useState(null);
-    const fileInputRef = useRef(null);
-    const [lastProductImage, setLastProductImage] = useState(null);
-    const [updatedImage, setUpdatedImage] = useState(null)
-    const [initialImage, setInitialImage] = useState(dataFromCard.img_url)
-    const router = useRouter();
-    const routerPath = router.pathname;
+  const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
+  const [lastProductImage, setLastProductImage] = useState(null);
+  
 
-  const [editedData, setEditedData] = useState(dataFromCard)
+  const router = useRouter();
+  const routerPath = router.pathname;
 
-  const { item_id, ...dataToUpdate } = editedData
+  useEffect(() => {
+    console.log('Initial Image:', dataFromCard?.img_url)
+    setInitialImage(dataFromCard?.img_url)
+    setEditedData(dataFromCard);
+  }, [dataFromCard, dataFromCard?.img_url]);
+  const [initialImage, setInitialImage] = useState(dataFromCard?.img_url);
+  const [updatedImage, setUpdatedImage] = useState(null);
 
-// console.log("edited data rest_id", dataFromCard);
+  const [editedData, setEditedData] = useState(dataFromCard);
 
-//   console.log("edit olunmus data", dataToUpdate);
+  const { item_id, ...dataToUpdate } = editedData || {};
 
-const handleInputChange = (e) => {
-  const { name, value } = e.target;
-  setEditedData((prevData) => ({
-    ...prevData,
-    [name]: value,
-  }));
-};
+  // useEffect(() => {
+  //   console.log('dataFromCard:', dataFromCard);
+  //   console.log('editedData:', editedData);
+  // }, [dataFromCard, editedData]);
 
-  // console.log("id-miz gelirmi?", editedData.item_id);
+  //console.log("edited data",editedData.item_id);
 
-  const mutationProduct = useMutation((data) => PutProducts(editedData.item_id, dataToUpdate), {
-    onError: (error) => {
-      console.log("Error", error);
-    },
-    onSuccess: (data, variables) => {
-      console.log("Product Updated:", data); 
-      console.log("Variables passed:", variables); 
-      
-    },
-  });
+  console.log("edit olunmus data", initialImage);
 
-  const mutationRestaurant = useMutation((data) => PutRestaurants(editedData.item_id, dataToUpdate), {
-    onError: (error) => {
-      console.log("Error", error);
-    },
-    onSuccess: (data, variables) => {
-      console.log("Product Updated:", data); 
-      console.log("Variables passed:", variables); 
-      
-    },
-  });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setEditedData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    // console.log("fixing category", editedData);
+  };
+
+  const queryClient = useQueryClient();
+
+  const mutationProduct = useMutation(
+    (data) => PutProducts(editedData.item_id, dataToUpdate),
+    {
+      onError: (error) => {
+        console.log("Error", error);
+      },
+      onSuccess: (data, variables) => {
+        console.log("Product Updated:", data);
+        console.log("Variables passed:", variables);
+      },
+    }
+  );
+
+  const mutationCategory = useMutation(
+    (data) => PutCategory(editedData?.item_id, dataToUpdate),
+    {
+      onError: (error) => {
+        console.log("Error", error);
+      },
+      onSuccess: (data, variables) => {
+        console.log("Product Updated:", data);
+        console.log("Variables passed:", variables);
+        queryClient.invalidateQueries({ queryKey: ["category"] });
+      },
+    }
+  );
+
+  const mutationOffer = useMutation(
+    (data) => PutOffer(editedData?.item_id, dataToUpdate),
+    {
+      onError: (error) => {
+        console.log("Error", error);
+      },
+      onSuccess: (data, variables) => {
+        console.log("Product Updated:", data);
+        console.log("Variables passed:", variables);
+        queryClient.invalidateQueries({ queryKey: ["offer"] });
+      },
+    }
+  );
+
+  const mutationRestaurant = useMutation(
+    (data) => PutRestaurants(editedData.item_id, dataToUpdate),
+    {
+      onError: (error) => {
+        console.log("Error", error);
+      },
+      onSuccess: (data, variables) => {
+        console.log("Product Updated:", data);
+        console.log("Variables passed:", variables);
+      },
+    }
+  );
   // console.log("reouter nedir?", routerPath);
   const handleProductUpdate = (e) => {
-    e.preventDefault()
-   
-    // console.log("yeni datalarimiz gelirmi?",dataToUpdate);
-    
+    e.preventDefault();
+
+    console.log("yeni datalarimiz gelirmi?", dataToUpdate);
 
     {
       routerPath === "/admin/products" && mutationProduct.mutate(dataToUpdate);
     }
 
     {
-      routerPath === "/admin/restaurants" && mutationRestaurant.mutate(dataToUpdate)
-      
+      routerPath === "/admin/restaurants" &&
+        mutationRestaurant.mutate(dataToUpdate);
     }
 
-    
-    closeEditModal()
+    {
+      routerPath === "/admin/category" && mutationCategory.mutate(dataToUpdate);
+    }
+
+    {
+      routerPath === "/admin/offers" && mutationOffer.mutate(dataToUpdate);
+    }
+
+    closeEditModal();
   };
-  
 
   const handleNewProductImage = (e) => {
     const selectedFile = e.target.files[0];
@@ -105,7 +156,11 @@ const handleInputChange = (e) => {
         getDownloadURL(snapshot.ref)
           .then((downloadURL) => {
             console.log("New image URL:", downloadURL);
-            setUpdatedImage(downloadURL); 
+            setUpdatedImage(downloadURL);
+            setEditedData((prevData) => ({
+              ...prevData,
+              img_url: downloadURL,
+            }));
             console.log("Image successfully uploaded:", downloadURL);
           })
           .catch((error) => {
@@ -175,39 +230,38 @@ const handleInputChange = (e) => {
             &times;
           </div>
         )}
-        <form >
+        <form>
           <div className="title font-medium text-2xl mb-2"> {title}</div>
           <div className="lg:flex justify-between gap-24">
             <div className="mb-4">
               {" "}
               <div className="text-lg mb-4">{infoImg}</div>
-              {updatedImage ? ( 
-        <div className="w-40 h-20 ">
-          <Image
-            src={updatedImage} 
-            value={updatedImage}
-            alt="Selected"
-            width={80}
-            height={40}
-            className="w-full h-full"
-          />
-        </div>
-      ) : initialImage ? (
-        <div className="w-40 h-20">
-          <Image
-            src={initialImage}
-            alt="Selected"
-            width={80}
-            height={40}
-            className="w-full h-full"
-          />
-        </div>
-      ) : (
-        
-        <div className="w-40 h-20">
-          <p>No image available</p>
-        </div>
-      )}
+              {updatedImage ? (
+                <div className="w-40 h-20 ">
+                  <Image
+                    src={updatedImage}
+                    value={updatedImage}
+                    alt="Selected"
+                    width={80}
+                    height={40}
+                    className="w-full h-full"
+                  />
+                </div>
+              ) : initialImage ? (
+                <div className="w-40 h-20">
+                  <Image
+                    src={initialImage}
+                    alt="Selected"
+                    width={80}
+                    height={40}
+                    className="w-full h-full"
+                  />
+                </div>
+              ) : (
+                <div className="w-40 h-20">
+                  <p>No image available</p>
+                </div>
+              )}
             </div>
             <div className="flex-1">
               <UploadImage
@@ -305,10 +359,15 @@ const handleInputChange = (e) => {
                               </option>
                             ))}
                           {title === "Edit product" &&
-                          
                             restaurantList[1]?.data?.map(
                               (restaurant, index) => (
-                                <option value={restaurant.id} key={index} selected={restaurant.id === editedData.rest_id}>
+                                <option
+                                  value={restaurant.id}
+                                  key={index}
+                                  selected={
+                                    restaurant.id === editedData.rest_id
+                                  }
+                                >
                                   {restaurant.name}
                                 </option>
                               )
