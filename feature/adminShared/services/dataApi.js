@@ -143,7 +143,7 @@ export const DeleteCategory = async (id) => {
 
 export const DeleteOffer = async (id) => {
   try {
-    const response = await instanceAxiosAdmin.delete(`/api/offers/${id}`);
+    const response = await instanceAxiosAdmin.delete(`/api/offer/${id}`);
     return response.data;
   } catch (error) {
     throw error;

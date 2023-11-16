@@ -10,13 +10,13 @@ const CategoryTable = () => {
   const router = useRouter();
     const routerPath = router.pathname;
 
-  const { data, isLoading, isError, error } = useQuery(
+  const { data, isLoading, isError, error, refetch } = useQuery(
     "category",
     GetCategory
   );
   const dataArray = data ? Object.values(data) : [];
 
-  return <Table data={dataArray} headers={title} routerPath="/admin/category"/>;
+  return <Table data={dataArray} refetch={refetch} headers={title} routerPath="/admin/category"/>;
 };
 
 export default CategoryTable;

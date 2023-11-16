@@ -13,7 +13,7 @@ import { useMutation, useQuery } from "react-query";
 import { DeleteCategory, DeleteOffer, GetCategoryID } from "../../services/dataApi";
 
 
-function Table({ data, headers }) {
+function Table({ data, headers, refetch }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCategoryId, setIsCategoryId] = useState()
   
@@ -43,6 +43,34 @@ function Table({ data, headers }) {
 
   // const catArray = dataArray[1]?.data
   
+  const deleteMutation = useMutation(
+    async () => {
+      if (routerPath === "/admin/category") {
+        await DeleteCategory(isCategoryId);
+      } else if (routerPath === "/admin/offers") {
+        await DeleteOffer(isCategoryId);
+      } else {
+        throw new Error("Unsupported route path.");
+      }
+      refetch();
+    },
+    {
+      onSuccess: () => {
+        Swal.fire("Deleted!", `Your ${routerPath === "/admin/category" ? "category" : "offer"} has been deleted.`, "success");
+
+      },
+      onError: (error) => {
+        Swal.fire(
+          "Error",
+          `An error occurred while deleting the ${
+            routerPath === "/admin/category" ? "category" : "offer"
+          }. ${error.message}`,
+          "error"
+        );
+      },
+    }
+  );
+
   
 
   const router = useRouter();
@@ -76,30 +104,9 @@ function Table({ data, headers }) {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        try {
-          if (routerPath === "/admin/category") {
-            await DeleteCategory(isCategoryId);
-            console.log("delete id", isCategoryId);
-            Swal.fire("Deleted!", "Your category has been deleted.", "success");
-          } else if (routerPath === "/admin/offers") {
-            await DeleteOffer(isCategoryId)
-            
-            Swal.fire("Deleted!", "Your offer has been deleted.", "success");
-          } else {
-           
-            Swal.fire("Error", "Unsupported route path.", "error");
-          }
-        } catch (error) {
-          Swal.fire(
-            "Error",
-            `An error occurred while deleting the ${
-              routerPath === "/admin/category" ? "category" : "offer"
-            }.`,
-            "error"
-          );
-        }
+        deleteMutation.mutate();
       }
     });
   };
@@ -108,7 +115,7 @@ function Table({ data, headers }) {
     <ScrollBarContainer bg="#C74FEB">
       <div
         className="w-100 mb-10"
-        style={{ maxHeight: "600px", overflowY: "auto" }}
+        
       >
         <table className="table-fixed w-full text-center bg-white text-[#00072B]">
           <thead className="max-[420px]:text-sm">

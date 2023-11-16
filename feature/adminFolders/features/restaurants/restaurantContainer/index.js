@@ -21,7 +21,7 @@ const RestaurantContainer = () => {
 
   const queryClient = useQueryClient()  
 
-  const { data, isLoading, isError, error } = useQuery(
+  const { data, isLoading, isError, error, refetch } = useQuery(
     "restaurant",
     GetRestaurants
   );
@@ -70,6 +70,7 @@ const RestaurantContainer = () => {
             item_id={restaurant.id}
             category={restaurant.category_id}
             address={restaurant.address}
+            refetch={refetch}
           />
         </motion.div>
       ))}
