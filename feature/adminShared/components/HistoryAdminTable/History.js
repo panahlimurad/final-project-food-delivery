@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import deleteBtn from "../../../../feature/adminFolders/assets/image/orders/delete.svg";
 import eyes from "../../../../feature/adminFolders/assets/image/orders/eyes.svg";
+import { ScrollBarContainer } from "../../../ClientShared/Scroll/Scroll";
 import Image from "next/image";
 const HistoryOrder = () => {
     const { data } = useQuery({
@@ -17,6 +18,8 @@ const HistoryOrder = () => {
         <div className="overflow-x-auto md:overflow-x-hidden w-full flex flex-col bg-slate-50">
             <div>
                 <table className="w-full text-left text-black text-sm font-light">
+                    <ScrollBarContainer bg={'#C74FEB'}>
+
                     <thead className="border-b font-normal dark:border-neutral-500">
                         <tr className="text-center">
                             <td scope="col">ID</td>
@@ -57,14 +60,15 @@ const HistoryOrder = () => {
                                 </td>
                                 <td>{data.contact}</td>
                                
-                                <td
+                                {/* <td
                                     onClick={() => handleDelete(data?.id)}
                                     className="whitespace-nowrap px-6 py-4 cursor-pointer">
                                     <Image src={deleteBtn} alt=".." />
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                     </tbody>
+                                </ScrollBarContainer>
                 </table>
             </div>
         </div>

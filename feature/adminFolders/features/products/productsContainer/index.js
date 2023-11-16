@@ -46,10 +46,13 @@ const queryClient = useQueryClient()
 
   const filteredRestaurants = selectedCategory
     ? dataArray[1]?.data?.filter(
-        (restaurant) => restaurant.rest_id === selectedCategory
+        (restaurant) => restaurant.rest_id === selectedCategory.id
+        
       
       )
     : dataArray[1]?.data;
+
+  // console.log("filtered products", selectedCategory);
  
 
   return (

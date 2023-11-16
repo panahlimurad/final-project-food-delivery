@@ -34,10 +34,12 @@ const RestaurantContainer = () => {
 
   const filteredRestaurants = selectedCategory
     ? dataArray[1]?.data?.filter(
-        (restaurant) => restaurant.category_id === selectedCategory
+        (restaurant) => restaurant.category_id === selectedCategory.id
       
       )
     : dataArray[1]?.data;
+
+    console.log("filtered products", filteredRestaurants);
 // console.log("reduxdan gelen", filteredRestaurants);
 
 //console.log("bu nedir?", filteredRestaurants);
