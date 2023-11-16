@@ -33,7 +33,7 @@ const ProductsContainer = () => {
 
 const queryClient = useQueryClient()  
 
-  const { data, isLoading, isError, error } = useQuery(
+  const { data, isLoading, isError, error, refetch } = useQuery(
     "products",
     GetProducts
   );
@@ -71,6 +71,7 @@ const queryClient = useQueryClient()
                 price={product.price}
                 item_id={product.id}
                 description={product.description}
+                refetch={refetch}
               />
             </motion.div>
           ))}

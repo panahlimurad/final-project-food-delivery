@@ -7,6 +7,7 @@ import { DeleteProduct } from "../../../../adminShared/services/dataApi";
 import EditModal from "../../../../adminShared/components/EditModal/EditModal";
 import { useState } from "react";
 import { EditFORM } from "../../../utils/editForm";
+import { useMutation } from "react-query";
 
 // import CustomScrollbar from "shared/hooks/customScrollBar/customScrollBar";
 // import "react-loading-skeleton/dist/skeleton.css";
@@ -17,6 +18,7 @@ const ProductCard = ({
   price,
   description,
   item_id,
+  refetch,
   isLoading,
 }) => {
   // const { img_url, name, price } = product;
@@ -33,6 +35,26 @@ const ProductCard = ({
     setIsEditModalOpen(false);
   };
 
+  const deleteMutation = useMutation(
+    async () => {
+        await DeleteProduct(item_id);
+        refetch();
+    },
+    {
+      onSuccess: () => {
+        Swal.fire("Deleted!", 'Your product has been deleted.', "success");
+
+      },
+      onError: (error) => {
+        Swal.fire(
+          "Error",
+          `An error occurred while deleting the product. ${error.message}`,
+          "error"
+        );
+      },
+    }
+  );
+
   // delete product button modal
   const handleDeleteClick = () => {
     Swal.fire({
@@ -43,18 +65,9 @@ const ProductCard = ({
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        try {
-          await DeleteProduct(item_id);
-          Swal.fire("Deleted!", "Your product has been deleted.", "success");
-        } catch (error) {
-          Swal.fire(
-            "Error",
-            "An error occurred while deleting the restaurant.",
-            "error"
-          );
-        }
+        deleteMutation.mutate();
       }
     });
   };

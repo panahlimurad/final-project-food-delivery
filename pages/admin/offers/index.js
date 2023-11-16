@@ -20,7 +20,7 @@ const Offers = () => {
   const router = useRouter();
     const routerPath = router.pathname;
 
-  const { data, isLoading, isError, error } = useQuery("offers", GetOffer, {
+  const { data, isLoading, isError, error, refetch } = useQuery("offers", GetOffer, {
     onSuccess: (res) => {
       console.log(res);
     },
@@ -33,7 +33,7 @@ const Offers = () => {
           <Head>
             <title>Offers</title>
           </Head>
-          <Table data={dataArray} headers={title} routerPath="/admin/offer"/>
+          <Table data={dataArray} headers={title} refetch={refetch} routerPath="/admin/offer"/>
           
         </div>
       </LayoutAdmin>

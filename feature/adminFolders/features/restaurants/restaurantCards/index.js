@@ -7,12 +7,13 @@ import { DeleteRestaurants } from "../../../../adminShared/services/dataApi";
 import EditModal from "../../../../adminShared/components/EditModal/EditModal";
 import { useState } from "react";
 import { EditFORM } from "../../../utils/editForm";
+import { useMutation } from "react-query";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
 
 
-const RestaurantCards = ({ name, img_url, category, delivery_min, delivery_price, cuisine, item_id, address,isLoading}) => {
+const RestaurantCards = ({ name, img_url, category, delivery_min, delivery_price, cuisine, item_id, address,refetch,isLoading}) => {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -25,7 +26,25 @@ const RestaurantCards = ({ name, img_url, category, delivery_min, delivery_price
   };
 
 
+  const deleteMutation = useMutation(
+    async () => {
+        await DeleteRestaurants(item_id);
+        refetch();
+    },
+    {
+      onSuccess: () => {
+        Swal.fire("Deleted!", 'Your restaurant has been deleted.', "success");
 
+      },
+      onError: (error) => {
+        Swal.fire(
+          "Error",
+          `An error occurred while deleting the restaurant. ${error.message}`,
+          "error"
+        );
+      },
+    }
+  );
 
 
   const handleDeleteClick = () => {
@@ -37,17 +56,9 @@ const RestaurantCards = ({ name, img_url, category, delivery_min, delivery_price
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        try {
-          await DeleteRestaurants(item_id);
-          // console.log("restoran id-si", item_id);
-          Swal.fire("Deleted!", "Your restaurant has been deleted.", "success");
-          
-        } catch (error) {
-          
-          Swal.fire("Error", "An error occurred while deleting the restaurant.", "error");
-        }
+        deleteMutation.mutate();
       }
     });
   };
