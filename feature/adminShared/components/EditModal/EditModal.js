@@ -76,6 +76,7 @@ const EditModal = ({
       onSuccess: (data, variables) => {
         console.log("Product Updated:", data);
         console.log("Variables passed:", variables);
+        queryClient.invalidateQueries({ queryKey: ["products"] });
       },
     }
   );
@@ -87,8 +88,8 @@ const EditModal = ({
         console.log("Error", error);
       },
       onSuccess: (data, variables) => {
-        console.log("Product Updated:", data);
-        console.log("Variables passed:", variables);
+        // console.log("Product Updated:", data);
+        // console.log("Variables passed:", variables);
         queryClient.invalidateQueries({ queryKey: ["category"] });
       },
     }

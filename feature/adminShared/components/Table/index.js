@@ -13,7 +13,7 @@ import { useMutation, useQuery } from "react-query";
 import { DeleteCategory, DeleteOffer, GetCategoryID } from "../../services/dataApi";
 
 
-function Table({ data, headers, refetch }) {
+function  Table({ data, headers, refetch }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCategoryId, setIsCategoryId] = useState()
   
