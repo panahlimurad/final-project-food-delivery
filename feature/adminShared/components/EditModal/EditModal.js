@@ -115,7 +115,9 @@ const EditModal = ({
       onError: (error) => {
         console.log("Error", error);
       },
-      onSuccess: (data) => {
+      onSuccess: (data, variables) => {
+        console.log("Restaurant Updated:", data);
+        console.log("Variables passed:", variables);
         queryClient.invalidateQueries({ queryKey: ["restaurant"] })
       }
     }
