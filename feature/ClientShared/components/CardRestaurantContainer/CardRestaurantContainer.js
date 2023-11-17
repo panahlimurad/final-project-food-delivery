@@ -13,6 +13,7 @@ export default function CardRestaurantContainer() {
     GetRestaurants,
   );
   
+  
   // console.log("datass", data);
 
   const dataArray = data ? Object.values(data) : [];
