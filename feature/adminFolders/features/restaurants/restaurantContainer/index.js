@@ -70,7 +70,7 @@ const RestaurantContainer = () => {
             delivery_min={restaurant.delivery_min}
             delivery_price={restaurant.delivery_price}
             item_id={restaurant.id}
-            category={restaurant.category_id}
+            category_id={restaurant.category_id}
             address={restaurant.address}
             refetch={refetch}
           />

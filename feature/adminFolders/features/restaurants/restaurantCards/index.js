@@ -13,7 +13,7 @@ import { useMutation } from "react-query";
 
 
 
-const RestaurantCards = ({ name, img_url, category, delivery_min, delivery_price, cuisine, item_id, address,refetch,isLoading}) => {
+const RestaurantCards = ({ name, img_url, category_id, delivery_min, delivery_price, cuisine, item_id, address,refetch,isLoading}) => {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -93,7 +93,7 @@ const RestaurantCards = ({ name, img_url, category, delivery_min, delivery_price
                 isEditModalOpen={isEditModalOpen}
                 openEditModal={openEditModal}
                 closeEditModal={closeEditModal}
-                dataFromCard={{ name, img_url, delivery_min, delivery_price, address, cuisine, category, item_id }}/>
+                dataFromCard={{ name, img_url, delivery_min, delivery_price, address, cuisine, category_id, item_id }}/>
       </div>
     </div>
   </div>
