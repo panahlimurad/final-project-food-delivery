@@ -1,8 +1,24 @@
 import React from "react";
 import Image from "next/image";
+import { useQuery } from "react-query";
+import { GetRestaurantsById } from "../../../adminShared/services/dataApi";
 
-const CardRestaurant = ({name, img, cuisine, delivery_min,category_id , delivery_price, item_id,isLoading}) => {
+const CardRestaurant = ({name, img, cuisine, delivery_min,category_id , delivery_price, item_id}) => {
   // console.log("name", name);
+
+  console.log('testing')
+  // const { data, isLoading, isError, error } = useQuery(
+  //   ['restaurant', item_id], 
+  //   async () => {
+  //     try {
+  //       return await GetRestaurantsById(item_id);
+  //     } catch (error) {
+  //       throw error;
+  //     }
+  //   }
+  // );
+
+  // console.log("data from id", data);
   
   return (
     <div
