@@ -80,7 +80,7 @@ const RestaurantCards = ({ name, img_url, category, delivery_min, delivery_price
         {name} 
       </div>
       <div className="font-medium text-center text-sm text-gray-600">
-       {category}
+       {cuisine}
       </div>
     </div>
     <div className="flex flex-col gap-5">

@@ -21,9 +21,7 @@ const Offers = () => {
     const routerPath = router.pathname;
 
   const { data, isLoading, isError, error, refetch } = useQuery("offers", GetOffer, {
-    onSuccess: (res) => {
-      console.log(res);
-    },
+   
   });
   const dataArray = data ? Object.values(data) : [];
   return (

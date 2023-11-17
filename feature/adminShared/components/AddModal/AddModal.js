@@ -51,6 +51,8 @@ export default function AddModal({
       });
   };
 
+  const queryClient = useQueryClient();
+
   const [categoryData, setCategoryData] = useState(initialValues);
 
   const handleInputChange = (e) => {
@@ -95,24 +97,36 @@ export default function AddModal({
     onError: (error) => {
       console.log("Error", error);
     },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["category"] })
+    }
   });
 
   const mutationProduct = useMutation((data) => PostProduct(data), {
     onError: (error) => {
       console.log("Error", error);
     },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["products"] })
+    }
   });
 
   const mutationRestaurant = useMutation((data) => PostRestaurants(data), {
     onError: (error) => {
       console.log("Error", error);
     },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["restaurant"] })
+    }
   });
 
   const mutationOffer = useMutation((data) => PostOffer(data), {
     onError: (error) => {
       console.log("Error", error);
     },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["offers"] })
+    }
   });
 
   function handleSubmit(event) {
