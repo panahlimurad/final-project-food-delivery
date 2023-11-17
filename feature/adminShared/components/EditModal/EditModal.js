@@ -115,10 +115,9 @@ const EditModal = ({
       onError: (error) => {
         console.log("Error", error);
       },
-      onSuccess: (data, variables) => {
-        console.log("Product Updated:", data);
-        console.log("Variables passed:", variables);
-      },
+      onSuccess: (data) => {
+        queryClient.invalidateQueries({ queryKey: ["restaurant"] })
+      }
     }
   );
   // console.log("reouter nedir?", routerPath);
