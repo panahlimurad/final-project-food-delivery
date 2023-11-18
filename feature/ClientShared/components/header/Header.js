@@ -29,7 +29,7 @@ const Header = () => {
   const { push } = useRouter();
   const dispatch = useDispatch();
   const filteredItems = useSelector(selectFilteredItems);
-  
+  const { pathname } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     const fetchDataFromFirebase = async () => {
@@ -43,7 +43,10 @@ const Header = () => {
     };
 
     fetchDataFromFirebase();
-  }, [dispatch]);
+
+    const initialIndex = links.findIndex((link) => link.href === pathname);
+    setActiveLinkIndex(initialIndex);
+  }, [dispatch, pathname]);
 
   const handleSearch = (searchTerm) => {
     setSearchTerm(searchTerm.trim());
@@ -54,9 +57,10 @@ const Header = () => {
     localStorage.removeItem("clientData");
   };
 
-  const { pathname } = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
+
+  console.log("now the router", pathname);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -382,8 +386,7 @@ const Header = () => {
         </div>
 
         <div className="hidden lg:block transition-opacity ease-in-out duration-300 hover:opacity-75">
-          {userToken ? //
-          null : (
+          {userToken ? null : ( //
             <SignButton url="/login" text={t("SignIn")} />
           )}
         </div>
