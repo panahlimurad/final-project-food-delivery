@@ -6,6 +6,7 @@ import deleteBtn from "../../../../feature/adminFolders/assets/image/orders/dele
 import eyes from "../../../../feature/adminFolders/assets/image/orders/eyes.svg";
 import { ScrollBarContainer } from "../../../ClientShared/Scroll/Scroll";
 import Image from "next/image";
+import { motion } from "framer-motion";
 const HistoryOrder = () => {
     const { data } = useQuery({
         queryKey: ["order-history"],
@@ -15,61 +16,81 @@ const HistoryOrder = () => {
         },
       });
     return (
-        <div className="overflow-x-auto md:overflow-x-hidden w-full flex flex-col bg-slate-50">
+        <div className="w-100  bg-slate-50">
             <div>
-                <table className="w-full text-left text-black text-sm font-light">
-                    <ScrollBarContainer bg={'#C74FEB'}>
 
-                    <thead className="border-b font-normal dark:border-neutral-500">
-                        <tr className="text-center">
-                            <td scope="col">ID</td>
-                            <td scope="col">Customer ID</td>
-                            <td scope="col">Time</td>
-                            <td scope="col">Delivery Adress</td>
-                            <td scope="col">Amount</td>
-                            <td scope="col">Payment Metdod</td>
-                            <td scope="col">Contact</td>
+                <ScrollBarContainer bg={'#C74FEB'}>
+            <motion.div
+    className="container"
+      initial={{ opacity: 0, y: -50, x: '-100%' }}
+      animate={{ opacity: 1, y: 0, x: 0 }}
+      transition={{ duration: 0.5 }}
+  >
+
+
+                <table className="w-full text-left sm:text-sm text-xs  rtl:text-right text-black  font-light">
+
+                    <thead className="border-b font-semibold  leading-5 tracking-wide uppercase  ">
+                        <tr >
+                            <th scope="col" className="  text-center py-4  ">ID</th>
+                            <th scope="col" className="  text-center py-4  ">Customer ID</th>
+                            <th scope="col" className="  text-center py-4  ">Time</th>
+                            <th scope="col" className="  text-center py-4  ">Delivery Adress</th>
+                            <th scope="col" className="  text-center py-4  ">Amount</th>
+                            <th scope="col" className="  text-center py-4  ">Payment Method</th>
+                            <th scope="col" className="  text-center py-4  ">Contact</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data?.result?.data.map((data, index) => (
-                            <tr className="border-b text-center dark:border-neutral-500">
-                                <td className="font-medium">
+                            <motion.tr
+                            key={data.id}
+                            initial={{ opacity: 0, y: -10, x: 0 }}
+                            animate={{ opacity: 1, y: 0, x: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="border-b text-center dark:border-neutral-500"
+                          >
+
+
+                            {/* <tr className="border-b text-center dark:border-neutral-500"> */}
+                                <motion.td className="whitespace-nowrap  font-medium py-4">
                                     <span className="border-2 rounded-lg p-1">
                                         {shortText(5, data.id)}
                                     </span>
-                                </td>
-                                <td>
+                                </motion.td>
+                                <motion.td className="whitespace-nowrap  font-medium  py-4">
                                     <span className="border-2 rounded-lg p-1">
                                         {shortText(5, data.customer_id)}
                                     </span>
-                                </td>
-                                <td>
+                                </motion.td>
+                                <motion.td className="whitespace-nowrap  font-normal leading-5 tracking-wide  py-4">
                                     {new Date(data.created).toLocaleDateString("en-US", {
                                         day: "numeric",
                                         month: "short",
                                         year: "numeric",
                                     })}
-                                </td>
-                                <td className=" whitespace-pre-line">
+                                </motion.td>
+                                <motion.td className=" whitespace-pre-line h-auto sm:w-[10%] font-normal leading-5 tracking-wide  py-4">
                                     {data.delivery_address},
-                                </td>
-                                <td>{data.amount} $</td>
-                                <td>
+                                </motion.td>
+                                <motion.td className="whitespace-nowrap  font-normal leading-5 tracking-wide  py-4">{data.amount} $</motion.td>
+                                <motion.td className="whitespace-nowrap  font-normal leading-5 tracking-wide  py-4">
                                     {data.payment_method == 0 ? "cash" : "by credit card"}
-                                </td>
-                                <td>{data.contact}</td>
+                                </motion.td>
+                                <motion.td className="whitespace-nowrap  font-normal leading-5 tracking-wide  py-4">{data.contact}</motion.td>
                                
-                                {/* <td
+                                {/* <motion.td
                                     onClick={() => handleDelete(data?.id)}
                                     className="whitespace-nowrap px-6 py-4 cursor-pointer">
                                     <Image src={deleteBtn} alt=".." />
-                                </td> */}
-                            </tr>
+                                </motion.td> */}
+                            {/* </tr> */}
+                          </motion.tr>
                         ))}
                     </tbody>
-                                </ScrollBarContainer>
                 </table>
+  </motion.div>
+                                </ScrollBarContainer>
             </div>
         </div>
     )

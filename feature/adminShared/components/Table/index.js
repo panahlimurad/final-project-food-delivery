@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "react-query";
 import { DeleteCategory, DeleteOffer, GetCategoryID } from "../../services/dataApi";
-
+import { motion } from "framer-motion";
 
 function  Table({ data, headers, refetch }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -117,11 +117,12 @@ function  Table({ data, headers, refetch }) {
         className="w-100 mb-10"
         
       >
+        
         <table className="table-fixed w-full text-center bg-white text-[#00072B]">
           <thead className="max-[420px]:text-sm">
             <tr>
               {headers.map((text, index) => (
-                <th key={index} className="sticky top-0 bg-white">
+                <th key={index} className="sticky top-0 py-4 bg-white">
                   {text}
                 </th>
               ))}

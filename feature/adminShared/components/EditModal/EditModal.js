@@ -239,24 +239,24 @@ const EditModal = ({
               {" "}
               <div className="text-lg mb-4">{infoImg}</div>
               {updatedImage ? (
-                <div className="w-40 h-20 ">
+                <div className="w-40 h-32 ">
                   <Image
                     src={updatedImage}
                     value={updatedImage}
                     alt="Selected"
-                    width={80}
-                    height={40}
-                    className="w-full h-full"
+                    width={160}
+                    height={120}
+                    className="w-full h-full rounded-lg"
                   />
                 </div>
               ) : initialImage ? (
-                <div className="w-40 h-20">
+                <div className="w-40 h-32">
                   <Image
                     src={initialImage}
                     alt="Selected"
-                    width={80}
-                    height={40}
-                    className="w-full h-full"
+                    width={160}
+                    height={120}
+                    className="w-full h-full rounded-lg"
                   />
                 </div>
               ) : (
