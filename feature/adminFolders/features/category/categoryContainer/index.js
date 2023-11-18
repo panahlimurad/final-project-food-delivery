@@ -20,6 +20,7 @@ const CategoryContainer = () => {
   // }, [dispatch]);
   return (
     <>
+    
       <CategoryTable/>
     </>
   );

@@ -49,7 +49,7 @@ const PageHeader = () => {
       <div className="page-title capitalize text-[#C7C7C7] text-xl font-medium ">
         {headerText}
       </div>
-      <div className="flex gap-6 items-center">
+      <div className="flex sm:gap-6 gap-2 items-center">
         {pathName === "/admin/products" || pathName === "/admin/restaurants" ? (
           <Select />
         ) : null}
@@ -58,7 +58,7 @@ const PageHeader = () => {
         pathName === "/admin/offers" ? (
           <button
             onClick={openAddModal}
-            className=" h-[35px] sm:w-auto w-full  sm:capitalize uppercase cursor-pointer text-center px-5 flex items-center justify-center font-bold text-sm text-white bg-[#C035A2] hover:bg-[#C74FEB]  transition-all duration-300 ease-in-out sm:rounded-[14px] rounded-md shadow"
+            className=" h-[35px] sm:w-auto  sm:capitalize uppercase cursor-pointer text-center px-1 sm:px-3 flex items-center justify-center font-bold text-sm text-white bg-[#C035A2] hover:bg-[#C74FEB]  transition-all duration-300 ease-in-out sm:rounded-[14px] rounded-md shadow"
           >
             <AddIcon
               sx={{ fontSize: 25 }}

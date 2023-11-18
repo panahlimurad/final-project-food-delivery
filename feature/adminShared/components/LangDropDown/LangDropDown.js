@@ -35,9 +35,9 @@ const LangDropDown = ({ backgroundColor, bgFlags }) => {
 
   return (
     <div
-      className="relative inline-block"
+      className="relative inline-block "
       style={{ backgroundColor: `${bgFlags}` }}>
-      <button onClick={toggleDropdown} className="px-4 py-2">
+      <button onClick={toggleDropdown} className="px-4 py-3">
         <Image
           src={
             selectedLanguage === "az" ? az : selectedLanguage === "en" ? en : fr

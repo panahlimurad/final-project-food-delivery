@@ -27,7 +27,7 @@ const Offers = () => {
   return (
     <>
       <LayoutAdmin>
-        <div className="text-white bg-gray-400">
+        <div className="text-white ">
           <Head>
             <title>Offers</title>
           </Head>

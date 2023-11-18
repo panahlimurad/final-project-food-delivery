@@ -211,13 +211,13 @@ export default function AddModal({
               {" "}
               <div className="text-lg mb-4">{t(infoImg)}</div>
               {addProductImage && (
-                <div className="w-40 h-20 ">
+                <div className="w-40 h-32 ">
                   <Image
                     src={addProductImage}
                     alt="Selected"
-                    width={80}
-                    height={40}
-                    className="w-full h-full"
+                    width={160}
+                    height={120}
+                    className="w-full h-full rounded-lg "
                   />
                 </div>
               )}

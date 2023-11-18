@@ -50,7 +50,7 @@ const Navbar = ({toggleMenu}) => {
           <Image
             src={adminAvatar}
             alt="adminAvatar"
-            className="rounded-full w-12"
+            className="rounded-full w-10"
           />
           <span className="font-medium text-white  mx-3  text-xl hidden md:block">
             Admin
