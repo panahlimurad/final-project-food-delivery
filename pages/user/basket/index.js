@@ -55,12 +55,13 @@ const Basket = () => {
   const total_item = dataArray[0]?.total_item;
 
   const mutation = useMutation((data) => PostBasket(data), {
-    // onSuccess: (responseData) => {
-    //   console.log("postBasket", responseData);
-    // },
-    // onError: (error) => {
-    //   console.log("Error", error);
-    // },
+    onSuccess: (responseData) => {
+      console.log("postBasket", responseData);
+      queryClient.invalidateQueries(["basket"]);
+    },
+    onError: (error) => {
+      console.log("Error", error);
+    },
   });
 
   const handleAddToCart = (data) => {
@@ -149,3 +150,13 @@ const Basket = () => {
   );
 };
 export default Basket;
+
+
+
+
+
+
+
+
+
+
