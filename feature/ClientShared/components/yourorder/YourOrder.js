@@ -38,7 +38,7 @@ const YourOrder = () => {
   };
 
   const newFilterData = OrderData?.find((item) => item.id === selectedOrder);
-
+  console.log("newFilterData", newFilterData);
   const userJSONData = localStorage.getItem("clientData");
   const userData = JSON.parse(userJSONData);
   const token = userData?.user?.access_token;
@@ -99,10 +99,12 @@ const YourOrder = () => {
                   </th>
                   <th
                     scope="col"
-                    class=" py-3 lg:text-center lg:px-2 px-10"></th>
+                    class=" py-3 lg:text-center lg:px-2 px-10"
+                  ></th>
                   <th
                     scope="col"
-                    class=" py-3 lg:text-center lg:px-2 px-10"></th>
+                    class=" py-3 lg:text-center lg:px-2 px-10"
+                  ></th>
                 </tr>
               </thead>
               <tbody>
@@ -133,14 +135,15 @@ const YourOrder = () => {
                     <td className="whitespace-nowrap w-[10%] font-normal leading-5 tracking-wide  lg:px-0 px-4 py-4">
                       {order.contact}
                     </td>
-                    <td className="whitespace-nowrap w-[10%] font-normal leading-5 tracking-wide lg:px-0 px-4  py-4  cursor-pointer">
+                    <td className="whitespace-nowrap w-[10%] relative font-normal leading-5 tracking-wide lg:px-0 px-4  py-4  cursor-pointer">
                       <button onClick={() => openModal(order.id)}>
                         <Image src={eyes} alt=".." />
                       </button>
                     </td>
                     <td
                       className="whitespace-nowrap w-[10%]  py-4 font-normal leading-5 lg:px-0 px-4 tracking-wide  cursor-pointer"
-                      onClick={() => handleDelete(order?.id)}>
+                      onClick={() => handleDelete(order?.id)}
+                    >
                       <Image src={deleteBtn} alt=".." />
                     </td>
                   </tr>
@@ -151,11 +154,15 @@ const YourOrder = () => {
         </ScrollBarContainer>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} className="w-full">
-        <div className=" sm:overflow-x-hidden  overflow-x-auto  bg-[#FFFFFF]  ">
-          <table class="text-left text-black text-sm font-light">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        className="w-full absolute"
+      >
+        <div className=" sm:overflow-x-hidden  overflow-x-auto p-6  bg-[#FFFFFF]  ">
+          <table class="text-center text-black  font-light  ">
             <thead class="border-b font-semibold leading-5 tracking-wide font-['Open_Sans']  ">
-              <tr className="text-center">
+              <tr className="text-center  text-lg ">
                 <th scope="col" className="px-6 py-3">
                   Image
                 </th>
@@ -175,7 +182,7 @@ const YourOrder = () => {
             </thead>
             <tbody>
               {newFilterData?.products.map((product) => (
-                <tr className="border-b  text-center" key={product.id}>
+                <tr className="border-b  text-center text-2xl">
                   <td className="whitespace-nowrap px-6 py-4 font-medium  ">
                     {" "}
                     <Image
