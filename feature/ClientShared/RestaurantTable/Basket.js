@@ -8,6 +8,7 @@ import { GetBasket, PostBasket } from "../../adminShared/services/dataApi";
 import Link from "next/link";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { motion } from 'framer-motion';
 export const Basket = ({ datas }) => {
   const queryClient = useQueryClient();
 
@@ -119,10 +120,19 @@ export const Basket = ({ datas }) => {
         </thead>
         <tbody>
           {dataArray[0]?.items?.map((data, index) => (
-            <tr key={index} className=" relative ">
-              <Td size="sm" className="flex gap-6 justify-between h-[140px]">
+            <motion.tr key={index} className=" relative  " 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}>
+               {/* <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      > */}
+
+              <Td size="sm" className="flex gap-6 justify-between ">
                 <div className="flex items-center justify-center ">
-                  <div className="w-[65px] h-[45px] mr-5 ">
+                  <div className="w-[65px] mr-5 ">
                     <Image
                       src={data.img_url}
                       alt="pizza"
@@ -154,7 +164,7 @@ export const Basket = ({ datas }) => {
                   </div>
                 </div>
               </Td>
-            </tr>
+            </motion.tr>
           ))}
         </tbody>
       </ScrollableTable>

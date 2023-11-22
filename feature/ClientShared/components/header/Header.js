@@ -12,6 +12,7 @@ import LangDropDown from "../../../adminShared/components/LangDropDown/LangDropD
 import { useTranslation } from "next-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery, useQueryClient } from "react-query";
+import { ScrollBarContainer } from "../../Scroll/Scroll";
 import {
   GetBasket,
   GetRestaurants,
@@ -223,7 +224,7 @@ const Header = () => {
             initial={{ width: 0 }}
             animate={{ width: showInput ? "90%" : "80%" }}
             transition={{ duration: 0.2 }}
-            className="sm:w-[300px] sm:h-[35px] rounded-lg p-4 ml-6"
+            className="sm:w-[300px] sm:h-[35px] rounded-lg p-4 ml-6 "
             type="text"
             placeholder={t("common:Search")}
             onChange={(e) => handleSearch(e.target.value)}
@@ -232,49 +233,66 @@ const Header = () => {
             <div className="z-50 absolute lg:w-[30%] w-[50%]">
               {filteredItems.length > 0 ? (
                 <div className="mt-5 rounded-2xl ">
-                  {filteredItems.map((item) => (
-                    <div className="z-50 ">
+                  {filteredItems.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="card z-50 "
+                    >
                       <div
                         key={item.id}
                         className="bg-white  p-3 z-50 hover:bg-slate-300 "
                       >
-                        <button
-                          onClick={() => push(ROUTER.RESTUARANTS_ID(item.id))}
-                          className="flex justify-start items-center"
+                        <motion.div
+                          whileHover={{ scale: 1.05 }} // Optional: Add a hover effect
+                          whileTap={{ scale: 0.95 }} // Optional: Add a tap effect
+                          transition={{ duration: 0.3 }} // Set the duration of the transition
                         >
-                          <Image
-                            src={item.img_url}
-                            alt="images"
-                            width={50}
-                            height={40}
-                            objectFit="cover"
-                            className="rounded-full"
-                          />
-                          <div className="color-[#2B3043] text-sm font-semibold ml-3 text-left leading-4">
-                            <h1 className="font-bold">{item.name}</h1>
-                            <p>{item.cuisine}</p>
-                          </div>
-                        </button>
+                          <button
+                            onClick={() => push(ROUTER.RESTUARANTS_ID(item.id))}
+                            className="flex justify-start items-center"
+                          >
+                            <Image
+                              src={item.img_url}
+                              alt="images"
+                              width={50}
+                              height={40}
+                              objectFit="cover"
+                              className="rounded-full"
+                            />
+                            <div className="color-[#2B3043] text-sm font-semibold ml-3 text-left leading-4">
+                              <h1 className="font-bold">{item.name}</h1>
+                              <p>{item.cuisine}</p>
+                            </div>
+                          </button>
+                        </motion.div>
                         {/* Render other properties of each item here */}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               ) : (
-                <div className="  mt-3 p-5 text-lg font-bold bg-white">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="card mt-3 p-5 text-lg font-bold bg-white"
+                >
                   <p>No results found</p>
-                </div>
+                </motion.div>
               )}
             </div>
           )}
         </div>
-        <div className="flex items-center">
-          <div className="bg-[#D63626] w-[41px] h-[41px] rounded-full text-white sm:hidden">
+        <div className="flex  items-center ">
+          <div className="bg-[#D63626]  w-[41px] h-[41px] rounded-full text-white sm:hidden">
             <button
-              className="flex justify-center items-center w-[41px] h-[41px] cursor-pointer"
+              className="flex absolute justify-center items-center w-[41px] h-[41px] cursor-pointer"
               onClick={toggleFoodyText}
             >
-              <RiSearch2Line size={25} />
+              <RiSearch2Line size={25} className="absolute" />
             </button>
           </div>
           <div className="z-20 transition-transform transform hover:scale-95">
@@ -284,39 +302,46 @@ const Header = () => {
           {userToken ? (
             <div className="flex gap-4">
               <Link className="text-link" href={"/user?page=basket"}>
-                <div className="w-[44px] relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757] transition-transform transform hover:scale-95">
-                  <span className="absolute bg-[#D63626] text-white top-[-10px] w-6 text-center right-[-4px] rounded-full text-">
-                    {basketCount}
-                  </span>
-                  <Image src={basket} />
+                <div className="hidden sm:block">
+                  <div className="w-[44px]  relative h-[44px] text-center cursor-pointer flex justify-center items-center rounded-full bg-[#EB5757] transition-transform transform hover:scale-95">
+                    <span className="absolute bg-[#D63626] text-white top-[-10px] w-6 text-center right-[-4px] rounded-full text-">
+                      {basketCount}
+                    </span>
+                    <Image src={basket} />
+                  </div>
                 </div>
               </Link>
 
               {userToken ? (
-                <div className="w-[44px] relative h-[44px] text-white text-xl cursor-pointer flex justify-center items-center rounded-full bg-[#F178B6] transition-transform transform hover:scale-95">
-                  <button
-                    onClick={toggleMenu}
-                    url="/login"
-                    removeToken={removeToken}
-                  >
-                    <Image
-                      className="rounded-full"
-                      width={120}
-                      height={120}
-                      src={
-                        userData?.user?.img_url
-                          ? userData?.user?.img_url
-                          : profile
-                      }
-                    />
-                  </button>
+                <div className="hidden sm:block">
+                  <div className="w-[44px]   relative h-[44px] text-white text-xl cursor-pointer flex justify-center items-center rounded-full bg-[#F178B6] transition-transform transform hover:scale-95">
+                    <button
+                      onClick={toggleMenu}
+                      url="/login"
+                      removeToken={removeToken}
+                    >
+                      <Image
+                        className="rounded-full"
+                        width={120}
+                        height={120}
+                        src={
+                          userData?.user?.img_url
+                            ? userData?.user?.img_url
+                            : profile
+                        }
+                      />
+                    </button>
+                  </div>
                 </div>
               ) : null}
 
               {isMenuOpen && (
-                <div
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
                   ref={menuRef}
-                  className="menu right-3 sm:right-5 lg:right-16 mt-16 bg-white z-50 px-10 pt-4 absolute"
+                  className=" card menu right-3 sm:right-5 lg:right-16 mt-16 bg-white z-50 px-10 pt-4 absolute"
                 >
                   <ul>
                     <li
@@ -379,7 +404,7 @@ const Header = () => {
                       </Link>
                     </li>
                   </ul>
-                </div>
+                </motion.div>
               )}
             </div>
           ) : null}
@@ -400,68 +425,76 @@ const Header = () => {
             : "hidden"
         }`}
       ></div>
-      <div
-        className={`${
-          showMenu
-            ? "mobile-menu  h-full fixed top-0 left-0 bg-white w-[256px] z-[111] p-4"
-            : "hidden"
-        }`}
-      >
-        <AiOutlineClose onClick={closeMenu} size={28} />
-        <div className="text-center mt-12 flex gap-10 flex-col">
-          <div className="relative h-[44px] text-white text-xl cursor-pointer gap-6 flex justify-center items-center rounded-full bg-[#F178B6] transition-transform transform hover:scale-95">
-            <Image
-              className="rounded-full"
-              width={50}
-              height={50}
-              src={userData?.user?.img_url ? userData?.user?.img_url : profile}
-            />
-            <p>{userData?.user?.username}</p>
+
+      <ScrollBarContainer bg="#C74FEB">
+        <motion.div
+          className={`${
+            showMenu
+              ? "mobile-menu show-menu h-full fixed top-0 left-0 bg-white w-[256px] z-[111] p-4 "
+              : "hidden -menu"
+          }`}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: showMenu ? 1 : 0, x: showMenu ? 0 : -100 }}
+          transition={{ duration: 0.3 }}
+        >
+          <AiOutlineClose onClick={closeMenu} size={28} />
+          <div className="text-center mt-12 flex gap-10 flex-col">
+            <div className="relative h-[44px] text-white text-xl cursor-pointer gap-6 flex justify-center items-center rounded-full bg-[#F178B6] transition-transform transform hover:scale-95">
+              <Image
+                className="rounded-full"
+                width={50}
+                height={50}
+                src={
+                  userData?.user?.img_url ? userData?.user?.img_url : profile
+                }
+              />
+              <p>{userData?.user?.username}</p>
+            </div>
+            {userToken ? (
+              <SignButton
+                url="/login"
+                removeToken={removeToken}
+                text={t("Log Out")}
+              />
+            ) : (
+              <SignButton url="/login" text={t("SignIn")} />
+            )}
           </div>
           {userToken ? (
-            <SignButton
-              url="/login"
-              removeToken={removeToken}
-              text={t("Log Out")}
-            />
+            <ul className="font-medium text-lg mt-24 text-[#828282] ">
+              {signInLinks.map((link, index) => (
+                <li
+                  key={index}
+                  className={`cursor-pointer mb-4 ${
+                    index === activeLinkIndex ? "text-[#D63626]" : ""
+                  }`}
+                  onClick={() => handleLinkClick(index)}
+                >
+                  <Link className="text-lg" href={link.href}>
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           ) : (
-            <SignButton url="/login" text={t("SignIn")} />
+            <ul className="font-medium text-lg mt-24 text-[#828282]">
+              {links.map((link, index) => (
+                <li
+                  key={index}
+                  className={`cursor-pointer mb-4 ${
+                    index === activeLinkIndex ? "text-[#D63626]" : ""
+                  }`}
+                  onClick={() => handleLinkClick(index)}
+                >
+                  <Link className="text-lg" href={link.href}>
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           )}
-        </div>
-        {userToken ? (
-          <ul className="font-medium text-lg mt-24 text-[#828282]">
-            {signInLinks.map((link, index) => (
-              <li
-                key={index}
-                className={`cursor-pointer mb-4 ${
-                  index === activeLinkIndex ? "text-[#D63626]" : ""
-                }`}
-                onClick={() => handleLinkClick(index)}
-              >
-                <Link className="text-lg" href={link.href}>
-                  {link.text}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <ul className="font-medium text-lg mt-24 text-[#828282]">
-            {links.map((link, index) => (
-              <li
-                key={index}
-                className={`cursor-pointer mb-4 ${
-                  index === activeLinkIndex ? "text-[#D63626]" : ""
-                }`}
-                onClick={() => handleLinkClick(index)}
-              >
-                <Link className="text-lg" href={link.href}>
-                  {link.text}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+        </motion.div>
+      </ScrollBarContainer>
     </>
   );
 };

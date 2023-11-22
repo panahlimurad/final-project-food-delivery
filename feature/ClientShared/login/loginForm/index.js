@@ -56,20 +56,25 @@ const LoginForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="lg:w-[640px] w-full md:px-10">
+      <form
+        onSubmit={handleSubmit}
+        className="lg:w-[640px] w-full md:px-10 px-4"
+      >
         <div className="flex justify-center lg:text-3xl text-2xl gap-10 mb-14">
           <Link
             href="/login"
             className={`${
               pathname === "/login" ? "text-primary " : "text-gray_1"
-            } hover:text-gray`}>
+            } hover:text-gray`}
+          >
             Login
           </Link>
           <Link
             href="/register"
             className={`${
               pathname === "/register" ? "text-primary " : "text-gray_1"
-            } hover:text-primary`}>
+            } hover:text-primary`}
+          >
             Register
           </Link>
         </div>
@@ -98,7 +103,8 @@ const LoginForm = () => {
           <button
             type="button"
             onClick={togglePassword}
-            className="absolute xl:top-[70px] lg:top-[60px] top-[56px] right-[10px]">
+            className="absolute xl:top-[70px] lg:top-[60px] top-[56px] right-[10px]"
+          >
             {passwordType === "password" ? (
               <AiFillEye color="#EB5757" size={24} />
             ) : (
