@@ -7,7 +7,7 @@ const Footer = () => {
   const {pathname} = useRouter()
 
   return (
-    <footer className='relative mt-72'>
+    <footer className='relative mt-72 '>
    {pathname == "/" &&  <FooterTop/>  } 
       <FooterBottom/>
     </footer>

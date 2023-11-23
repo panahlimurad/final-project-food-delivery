@@ -18,16 +18,13 @@ import { useSelector } from "react-redux";
 // import { setCategory } from "../../../../../redux/features/productDetails/productSlice";
 
 const RestaurantContainer = () => {
-
-  const queryClient = useQueryClient()  
+  const queryClient = useQueryClient();
 
   const { data, isLoading, isError, error, refetch } = useQuery(
     "restaurant",
     GetRestaurants
   );
 
-  
-  
   const dataArray = data ? Object.values(data) : [];
 
   const selectedCategory = useSelector((state) => state.category);
@@ -35,14 +32,13 @@ const RestaurantContainer = () => {
   const filteredRestaurants = selectedCategory
     ? dataArray[1]?.data?.filter(
         (restaurant) => restaurant.category_id === selectedCategory.id
-      
       )
     : dataArray[1]?.data;
 
-    console.log("filtered products", filteredRestaurants);
-// console.log("reduxdan gelen", filteredRestaurants);
+  console.log("filtered products", filteredRestaurants);
+  // console.log("reduxdan gelen", filteredRestaurants);
 
-//console.log("bu nedir?", filteredRestaurants);
+  //console.log("bu nedir?", filteredRestaurants);
 
   // const restaurantList = useSelector(selRestaurantList);
   // const isLoading = useSelector(selIsLoading);
