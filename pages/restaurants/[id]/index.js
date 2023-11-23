@@ -1,4 +1,4 @@
-"use client";
+
 import Image from "next/image";
 import styles from "./AboutRestaurants.module.css";
 import { ButtonStyle } from "../../../feature/ClientShared/Button/Button";
@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { GetRestaurantsById } from "../../../feature/adminShared/services/dataApi";
+import { motion } from "framer-motion";
 
 import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 import { useTranslation } from "react-i18next";
@@ -22,7 +23,8 @@ const AboutRestaurants = () => {
   console.log("translate", t("common:GoBack"));
 
 
-import { motion } from "framer-motion";
+
+
 
 
   const router = useRouter();
@@ -31,14 +33,16 @@ import { motion } from "framer-motion";
   const [activeModal, setActiveModal] = useState(false);
 
 
+
   //console.log("id", id);
   const { data, isLoading, isError, error } = useQuery(
     ["restaurant", id],
     () => GetRestaurantsById(id));
 
+
   const dataArray = data ? Object.values(data.result) : [];
 
-  console.log("kakkak", dataArray);
+  // console.log("kakkak", dataArray);
 
 
   return (
