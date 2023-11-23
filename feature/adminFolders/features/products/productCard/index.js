@@ -73,8 +73,8 @@ const ProductCard = ({
   };
 
   return (
-    <div className="bg-white rounded-[5px] flex flex-col gap-1 p-3 md:w-auto w-[236px] mx-auto">
-      <div className="w-[160px] h-[160px] mx-auto">
+    <div className="bg-white rounded-[5px] flex flex-col gap-1 p-2  md:w-auto w-[236px] mx-auto">
+      <div className="w-[140px] h-[140px] mx-auto">
         <Image
           src={img_url}
           width={100}

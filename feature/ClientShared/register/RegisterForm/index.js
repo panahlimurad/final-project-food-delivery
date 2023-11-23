@@ -6,6 +6,7 @@ import { useMutation } from "react-query";
 import { Register } from "../../../adminShared/services/dataApi";
 import { useRouter } from "next/router";
 import LoaderClient from "../../components/Loader/Loader";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const pathname = usePathname();
@@ -21,10 +22,12 @@ const LoginForm = () => {
 
   const mutation = useMutation((data) => Register("/api/auth/signup", data), {
     onSuccess: (responseData) => {
+      toast.success("You are successfully registered", { autoClose: 2000 });
       console.log(responseData);
       router.push("/login");
     },
     onError: (error) => {
+      toast.error("Your registration was unsuccessful");
       console.log("error", error);
       router.push("/register");
 

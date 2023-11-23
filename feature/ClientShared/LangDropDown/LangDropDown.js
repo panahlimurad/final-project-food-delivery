@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+
 import { useRouter } from "next/router";
 
 const LangDropDown = () => {
@@ -10,6 +11,8 @@ const LangDropDown = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("en"); 
   const { i18n } = useTranslation();
   const router = useRouter();
+  const { id } = router.query;
+  // console.log('selected language', selectedLanguage);
 
   useEffect(() => {
     
@@ -20,20 +23,23 @@ const LangDropDown = () => {
   }, []);
 
   const toggleDropdown = () => {
+   
     setIsOpen(!isOpen);
   };
 
+  console.log('selected language', selectedLanguage);
+
   const changeLanguage = (newLanguage) => {
-    
-  
     router.push(router.pathname, router.asPath, { locale: newLanguage });
     i18n.changeLanguage(newLanguage);
     localStorage.setItem("selectedLanguage", newLanguage);
     setIsOpen(false);
     setSelectedLanguage(newLanguage);
   };
+  
+  
 
-
+console.log("is langdrop worjing?");
   return (
     <div className="relative inline-block">
       <button onClick={toggleDropdown} className="px-4 py-2">

@@ -13,6 +13,7 @@ const LangDropDown = ({ backgroundColor, bgFlags }) => {
   const { i18n } = useTranslation();
   const router = useRouter();
 //  update 
+// console.log('selected language', selectedLanguage);
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem("selectedLanguage");

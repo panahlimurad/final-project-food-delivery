@@ -19,11 +19,11 @@ const CardRestaurant = ({item_id}) => {
     }
   );
 
-  console.log("rest id", item_id);
+  // console.log("rest id", item_id);
 
   const dataArray = data ? Object.values(data) : [];
 
-  console.log("checkin client data", dataArray);
+  // console.log("checkin client data", dataArray);
 
   return (
     <div

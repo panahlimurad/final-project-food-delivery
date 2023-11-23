@@ -8,7 +8,7 @@ import SignButton from "../signInButton/SignInButton";
 import { RiSearch2Line } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import { motion } from "framer-motion";
-import LangDropDown from "../../../adminShared/components/LangDropDown/LangDropDown";
+
 import { useTranslation } from "next-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useQuery, useQueryClient } from "react-query";
@@ -25,12 +25,17 @@ import {
   selectFilteredItems,
   setItems,
 } from "../../../../redux/features/dataDetails/dataSlice";
+import LangDropDown from "../../../ClientShared/LangDropDown/LangDropDown";
 const Header = () => {
   const { push } = useRouter();
   const dispatch = useDispatch();
   const filteredItems = useSelector(selectFilteredItems);
   const { pathname } = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+  const { id } = router.query;
+
+  console.log("id in header", id);
   useEffect(() => {
     const fetchDataFromFirebase = async () => {
       try {
@@ -43,6 +48,8 @@ const Header = () => {
     };
 
     fetchDataFromFirebase();
+
+    console.log("pathname from headerjs", pathname);
 
     const initialIndex = links.findIndex((link) => link.href === pathname);
     setActiveLinkIndex(initialIndex);
@@ -60,7 +67,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef();
 
-  console.log("now the router", pathname);
+  // console.log("now the router", pathname);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -87,6 +94,8 @@ const Header = () => {
     setShowFoodyText(!showFoodyText);
     setShowInput(!showInput);
   };
+
+  console.log("translate", t("common:Home"));
 
   const selUserData = useSelector((state) => state.user.data);
 
@@ -155,6 +164,7 @@ const Header = () => {
     { text: "AboutUs", href: "/about" },
     { text: "HowItworks", href: "/howItWorks" },
     { text: "FAQs", href: "/FAQs" },
+    
   ];
 
   const signInLinks = [
@@ -167,6 +177,8 @@ const Header = () => {
     { text: "AboutUs", href: "/about" },
     { text: "HowItworks", href: "/howItWorks" },
     { text: "FAQs", href: "/FAQs" },
+    
+    
   ];
 
   return (

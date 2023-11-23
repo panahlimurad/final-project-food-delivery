@@ -9,23 +9,51 @@ import BasketModal from "../../../feature/ClientShared/components/BasketModal";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import { GetRestaurantsById } from "../../../feature/adminShared/services/dataApi";
+import { GetRestaurants, GetRestaurantsById } from "../../../feature/adminShared/services/dataApi";
+import {serverSideTranslations} from "next-i18next/serverSideTranslations"
+
+// export const getStaticPaths = async () => {
+//   // The `params` argument is not passed here
+//   // Instead, you can directly access `router.query` within the function
+//   const router = useRouter();
+//   const { id } = router.query;
+
+//   const validId = typeof id === 'string' ? id : '';
+
+//   if (!validId) {
+//     return { paths: [], fallback: false };
+//   }
+
+//   const paths = [{ params: { id: validId } }];
+
+//   return { paths, fallback: false };
+// };
+
+// export const getStaticProps = async ({locale})=>({
+//   props:{
+//       ...(await serverSideTranslations(locale, ["common"]))
+//   }
+// })
+
 
 
 const AboutRestaurants = () => {
+
+
 
   const router = useRouter();
   const { id } = router.query;
   const { back } = useRouter();
   const [activeModal, setActiveModal] = useState(false);
 
-  // console.log("id", id);
+  //console.log("id", id);
   const { data, isLoading, isError, error } = useQuery(
     ["restaurant", id],
     () => GetRestaurantsById(id));
   const dataArray = data ? Object.values(data.result) : [];
 
   // console.log("kakkak", dataArray);
+
 
   return (
     <LayoutClient>
@@ -87,4 +115,14 @@ const AboutRestaurants = () => {
     </LayoutClient>
   );
 };
+
+
+
 export default AboutRestaurants;
+
+
+export const getServerSideProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common"])),
+  },
+});
