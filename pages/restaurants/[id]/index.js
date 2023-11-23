@@ -1,4 +1,4 @@
-"use client";
+
 import Image from "next/image";
 import styles from "./AboutRestaurants.module.css";
 import { ButtonStyle } from "../../../feature/ClientShared/Button/Button";
@@ -18,7 +18,7 @@ const AboutRestaurants = () => {
 
   const { t } = useTranslation();
 
-  console.log("translate", t("common:GoBack"));
+  // console.log("translate", t("common:GoBack"));
 
   const router = useRouter();
   const { id } = router.query;
