@@ -9,37 +9,16 @@ import BasketModal from "../../../feature/ClientShared/components/BasketModal";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import { GetRestaurants, GetRestaurantsById } from "../../../feature/adminShared/services/dataApi";
+import { GetRestaurantsById } from "../../../feature/adminShared/services/dataApi";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations"
-
-// export const getStaticPaths = async () => {
-//   // The `params` argument is not passed here
-//   // Instead, you can directly access `router.query` within the function
-//   const router = useRouter();
-//   const { id } = router.query;
-
-//   const validId = typeof id === 'string' ? id : '';
-
-//   if (!validId) {
-//     return { paths: [], fallback: false };
-//   }
-
-//   const paths = [{ params: { id: validId } }];
-
-//   return { paths, fallback: false };
-// };
-
-// export const getStaticProps = async ({locale})=>({
-//   props:{
-//       ...(await serverSideTranslations(locale, ["common"]))
-//   }
-// })
-
+import { useTranslation } from "react-i18next";
 
 
 const AboutRestaurants = () => {
 
+  const { t } = useTranslation();
 
+  console.log("translate", t("common:GoBack"));
 
   const router = useRouter();
   const { id } = router.query;
@@ -92,7 +71,7 @@ const AboutRestaurants = () => {
                   $ {restaurant.delivery_min} Delivery
                 </ButtonStyle>
                 <ButtonStyle size="sm" color="#FFF" bg="#D63626" onClick={back}>
-                  Go Back
+                {t("common:GoBack")}
                 </ButtonStyle>
               </div>
             </div>

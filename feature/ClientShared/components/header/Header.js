@@ -95,7 +95,7 @@ const Header = () => {
     setShowInput(!showInput);
   };
 
-  console.log("translate", t("common:Home"));
+  //console.log("translate", t("common:Home"));
 
   const selUserData = useSelector((state) => state.user.data);
 
