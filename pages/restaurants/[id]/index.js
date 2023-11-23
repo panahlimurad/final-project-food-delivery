@@ -10,22 +10,40 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { GetRestaurantsById } from "../../../feature/adminShared/services/dataApi";
+import { motion } from "framer-motion";
+
+import {serverSideTranslations} from "next-i18next/serverSideTranslations"
+import { useTranslation } from "react-i18next";
 
 
 const AboutRestaurants = () => {
+
+  const { t } = useTranslation();
+
+  console.log("translate", t("common:GoBack"));
+
+
+
+
+
 
   const router = useRouter();
   const { id } = router.query;
   const { back } = useRouter();
   const [activeModal, setActiveModal] = useState(false);
 
-  // console.log("id", id);
+
+
+  //console.log("id", id);
   const { data, isLoading, isError, error } = useQuery(
     ["restaurant", id],
     () => GetRestaurantsById(id));
+
+
   const dataArray = data ? Object.values(data.result) : [];
 
   // console.log("kakkak", dataArray);
+
 
   return (
     <LayoutClient>
