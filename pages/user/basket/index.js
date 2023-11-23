@@ -55,12 +55,13 @@ const Basket = () => {
   const total_item = dataArray[0]?.total_item;
 
   const mutation = useMutation((data) => PostBasket(data), {
-    // onSuccess: (responseData) => {
-    //   console.log("postBasket", responseData);
-    // },
-    // onError: (error) => {
-    //   console.log("Error", error);
-    // },
+    onSuccess: (responseData) => {
+      console.log("postBasket", responseData);
+      queryClient.invalidateQueries(["basket"]);
+    },
+    onError: (error) => {
+      console.log("Error", error);
+    },
   });
 
   const handleAddToCart = (data) => {
@@ -101,7 +102,7 @@ const Basket = () => {
               <tr
                 className={`${styles.tableRow} relative  border-b-[1px] border-[#E0E0E0]`}>
                 <td className="w-[68px] pr-8  pl-8 max-[981px]:pr-4 max-[380px]:pr-2 max-[380px]:w-[40px] max-[380px]:pl-2 ">
-                  <div className="w-[68px] h-[68px] max-[683px]:w-[48px] max-[683px]:h-[48px] max-[380px]:w-[38px] max-[380px]:h-[38px] ">
+                  <div className="w-[68px] h-[68px] max-[683px]:w-[48px] max-[683px]:h-[48px] max-[380px]:w-[38px] max-[380px]:h-[38px] flex items-center">
                     <Image
                       src={data.img_url}
                       width={100}
@@ -149,3 +150,13 @@ const Basket = () => {
   );
 };
 export default Basket;
+
+
+
+
+
+
+
+
+
+

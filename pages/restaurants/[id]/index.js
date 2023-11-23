@@ -10,22 +10,16 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { GetRestaurantsById } from "../../../feature/adminShared/services/dataApi";
-import {serverSideTranslations} from "next-i18next/serverSideTranslations"
-import { useTranslation } from "react-i18next";
 
 
 const AboutRestaurants = () => {
-
-  const { t } = useTranslation();
-
-  // console.log("translate", t("common:GoBack"));
 
   const router = useRouter();
   const { id } = router.query;
   const { back } = useRouter();
   const [activeModal, setActiveModal] = useState(false);
 
-  //console.log("id", id);
+  // console.log("id", id);
   const { data, isLoading, isError, error } = useQuery(
     ["restaurant", id],
     () => GetRestaurantsById(id));
@@ -33,23 +27,35 @@ const AboutRestaurants = () => {
 
   // console.log("kakkak", dataArray);
 
-
   return (
     <LayoutClient>
       {dataArray?.map((restaurant, index) => (
         <div
           key={index}
-          className={`${styles["top-content"]} mt-6 pl-6 pr-6 mb-10 bg-[#FFF]`}>
-          <div className={`${styles["content-image"]} flex justify-center`}>
+          className={`${styles["top-content"]} mt-6 pl-6 pr-6 mb-10 bg-[#FFF]`}
+        >
+          <motion.div
+            className={`${styles["content-image"]} flex justify-center card`}
+            key={restaurant.id}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
             <Image
               src={restaurant.img_url}
               alt="restaurant"
               width={500}
+              quality={100}
               height={500}
-              className="object-cover"
+              className="object-cover "
             />
-          </div>
-          <div className="mt-4 flex items-center  justify-between max-[873px]:flex-col">
+          </motion.div>
+          <motion.div
+            className="mt-4 flex items-center  justify-between max-[873px]:flex-col"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
             <div className="w-[366px] max-[873px]:mb-8 max-[485px]:w-[320px] max-[380px]:text-center">
               <h4 className={`${styles.restaurantName}`}>{restaurant.name}</h4>
 
@@ -75,7 +81,7 @@ const AboutRestaurants = () => {
                 </ButtonStyle>
               </div>
             </div>
-          </div>
+          </motion.div>
           <div className={`${styles.line}`}></div>
           <div className="mt-12 pl-4 pr-4 flex  max-[487px]:pl-0 max-[487px]:pr-0">
             <Table

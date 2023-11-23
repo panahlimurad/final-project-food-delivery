@@ -5,7 +5,7 @@ import LayoutClient from "../../layoutClient/LayoutClient";
 import {serverSideTranslations} from "next-i18next/serverSideTranslations"
 import { useTranslation } from "next-i18next";
 import {NextUIProvider} from "@nextui-org/react";
-
+import { motion } from "framer-motion";
 export const getStaticProps = async ({locale})=>({
   props:{
       ...(await serverSideTranslations(locale, ["common"]))
@@ -24,7 +24,9 @@ const Fags = () => {
     <LayoutClient>
        <NextUIProvider>
 
-      <div className="mt-20">
+      <motion.div className="mt-20 card" initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5}}>
         <h1 className="text-center text-[#000000] text-5xl  font-medium leading-8">
         {t("common:FAQs")}
         </h1>
@@ -53,7 +55,7 @@ const Fags = () => {
             </AccordionItem>
           </Accordion>
         </div>
-      </div>
+      </motion.div>
        </NextUIProvider>
     </LayoutClient>
   );

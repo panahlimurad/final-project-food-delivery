@@ -117,7 +117,7 @@ export const Table = ({ setActiveModal, datas }) => {
           {datas?.map((data, index) => (
             <tr key={index}>
               <Td>
-                <div className="w-[57px] h-[53px] max-[380px]:w-[46px] max-[380px]:h-[42px]">
+                <div className="w-[57px] h-[53px] max-[380px]:w-[46px] flex items-center max-[380px]:h-[42px]">
                   <Image
                     src={data.img_url}
                     width={100}
