@@ -23,10 +23,10 @@ const Restaurants = () => {
 export default Restaurants;
 
 
-export const getServerSideProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ["common"])),
-  },
-});
+export const getStaticProps = async ({locale})=>({
+  props:{
+      ...(await serverSideTranslations(locale, ["common"]))
+  }
+})
 
 
