@@ -109,7 +109,7 @@ const CheckoutPart = () => {
                 type="text"
                 id="inputField"
                 className="mt-1 p-2 border text-[#828282] leading-6 font-normal rounded text-xl  w-[260px] h-[53px] sm:w-[320px] xl:w-[360px] md:bg-[#FFFFFF] bg-[#F3F4F6] "
-                placeholder={address}
+                value={address}
                 onChange={(event) => {
                   setAddress(event.target.value);
                   setUserData({
@@ -131,7 +131,7 @@ const CheckoutPart = () => {
                 type="tel"
                 id="inputField"
                 className="mt-1 p-2 border text-[#828282] leading-6 font-normal rounded text-xl  sm:w-[320px] xl:w-[360px]  h-[53px] w-[260px]  md:bg-[#FFFFFF] bg-[#F3F4F6] "
-                placeholder={phone}
+                value={phone}
                 onChange={(event) => {
                   setPhone(event.target.value);
                   setUserData({
