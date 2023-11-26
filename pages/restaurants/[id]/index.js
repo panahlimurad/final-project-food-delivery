@@ -20,7 +20,6 @@ const AboutRestaurants = () => {
 
   const { t } = useTranslation();
 
-  console.log("translate", t("common:GoBack"));
 
 
 
@@ -34,7 +33,7 @@ const AboutRestaurants = () => {
 
 
 
-  //console.log("id", id);
+
   const { data, isLoading, isError, error } = useQuery(
     ["restaurant", id],
     () => GetRestaurantsById(id));
@@ -42,7 +41,7 @@ const AboutRestaurants = () => {
 
   const dataArray = data ? Object.values(data.result) : [];
 
-  // console.log("kakkak", dataArray);
+
 
 
   return (
@@ -87,7 +86,7 @@ const AboutRestaurants = () => {
                   {restaurant.cuisine}
                 </h4>
                 <p className={`${styles["restaurant-paragraf"]}`}>
-                  {restaurant?.category_id}
+                  {restaurant?.name}
                 </p>
               </div>
               <div className="flex items-center gap-9  max-[380px]:flex-col max-[380px]:gap-2">

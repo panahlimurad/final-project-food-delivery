@@ -91,7 +91,7 @@ const ProductCard = ({
         <div className="font-medium text-sm leading-6 text-gray_2">{name}</div>
         <div className="flex justify-between items-center">
           <div className="font-medium leading-6 text-green text-sm">
-            {price}
+            {price} $
           </div>
           <div className=" flex gap-2">
             <button className="cursor-pointer">

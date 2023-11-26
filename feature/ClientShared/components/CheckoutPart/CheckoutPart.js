@@ -11,12 +11,7 @@ import { toast } from "react-toastify";
 
 const CheckoutPart = () => {
   const { data, isLoading, isError, error } = useQuery("user", GetUser, {
-    // onSuccess: (res) => {
-    //   console.log("user", res);
-    // },
-    // onError: (err) => {
-    //   console.log(err);
-    // },
+  
   });
 
   const {
@@ -25,15 +20,10 @@ const CheckoutPart = () => {
     isError: isBasketError,
     error: basketError,
   } = useQuery("basket", GetBasket, {
-    // onSuccess: (res) => {
-    //   console.log("basket", res);
-    // },
-    // onError: (err) => {
-    //   console.log(err);
-    // },
+ 
   });
 
-  // console.log(basketData.result.data.id);
+ 
   
   const dispatch = useDispatch();
   const basketId = basketData?.result?.data?.id;
@@ -41,14 +31,6 @@ const CheckoutPart = () => {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
 
-  // const handleAddressChange = (event) => {
-
-  //   setAddress(event.target.value);
-  // };
-
-  // const handlePhoneChange = (event) => {
-  //   setPhone(event.target.value);
-  // };
 
   useEffect(() => {
     if (data && data.user) {
@@ -69,23 +51,27 @@ const CheckoutPart = () => {
     onSuccess: (responseData) => {
       toast.success("You have successfully created a order",{autoClose:2000})
       dispatch(setCheckOrderTrue())
-      // router.push("/")
-      console.log(responseData);
+
+ 
     },
     onError: (error) => {
-      console.log("Error", error);
+      toast.error("Please add product your basket or try again");
+    
     },
   });
 
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (!userData.delivery_address || !userData.contact || userData.payment_method === null) {
+ 
+    toast.error("Please fill in all the required fields");
+    return;
+  }
     mutation.mutate(newData);
   }
 
-  // const handleInput = (event) => {
-  //   setProfileData({ ...userData, [event.target.name]: event.target.value });
-  // };
+
 
   return (
     <form
@@ -109,7 +95,6 @@ const CheckoutPart = () => {
                 type="text"
                 id="inputField"
                 className="mt-1 p-2 border text-[#828282] leading-6 font-normal rounded text-xl  w-[260px] h-[53px] sm:w-[320px] xl:w-[360px] md:bg-[#FFFFFF] bg-[#F3F4F6] "
-                value={address}
                 onChange={(event) => {
                   setAddress(event.target.value);
                   setUserData({
@@ -131,7 +116,6 @@ const CheckoutPart = () => {
                 type="tel"
                 id="inputField"
                 className="mt-1 p-2 border text-[#828282] leading-6 font-normal rounded text-xl  sm:w-[320px] xl:w-[360px]  h-[53px] w-[260px]  md:bg-[#FFFFFF] bg-[#F3F4F6] "
-                value={phone}
                 onChange={(event) => {
                   setPhone(event.target.value);
                   setUserData({
@@ -191,7 +175,7 @@ const CheckoutPart = () => {
             </div>
 
             <div>
-              <button className="bg-[#6FCF97]  w-[260px]  sm:w-[320px] xl:w-[360px]  h-[53px] mt-7 rounded text-[#FFFFFF] text-[18px] font-semibold leading-6 hover:bg-[#1b6339]">
+              <button className="bg-[#6FCF97]  w-[260px]  sm:w-[320px] xl:w-[360px]  h-[53px] mt-7 rounded text-[#FFFFFF] text-[18px] font-semibold leading-6 hover:bg-[#379c5f]">
                 Checkout
               </button>
             </div>

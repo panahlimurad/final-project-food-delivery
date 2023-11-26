@@ -67,6 +67,19 @@ const ProfilePart = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+     
+  if (
+    !profileData.name ||
+    !profileData.phone ||
+    !profileData.fullname ||
+    !profileData.username ||
+    !email
+  ) {
+
+    toast.error("Please fill in all the fields");
+    return;
+  }
     mutation.mutate(newData);
   }
 
@@ -192,7 +205,7 @@ const ProfilePart = () => {
               </div>
 
               <div className="lg:ml-3">
-                <button className="bg-[#6FCF97]  w-[250px]  sm:w-[370px] h-[53px] mt-7 rounded text-[#FFFFFF] text-[18px] font-semibold leading-6">
+                <button className="bg-[#6FCF97] hover:bg-[#379c5f]  w-[250px]  sm:w-[370px] h-[53px] mt-7 rounded text-[#FFFFFF] text-[18px] font-semibold leading-6">
                   Save
                 </button>
               </div>

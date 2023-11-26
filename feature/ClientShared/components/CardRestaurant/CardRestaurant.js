@@ -37,8 +37,12 @@ const CardRestaurant = ({item_id}) => {
        <Image
        className="w-[100%] h-[100%]"
        src={dataArray[1]?.data?.img_url}
+      //  quality={100}
        width={100}
        height={100}
+       style={{
+        objectFit: 'cover',
+      }}
        alt="Res"/>
       </div>
       <div className="font-bold text-xl text-[#4F4F4F]">{dataArray[1]?.data?.name}</div>
