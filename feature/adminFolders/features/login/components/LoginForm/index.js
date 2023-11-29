@@ -6,6 +6,7 @@ import LoginImg from "../LoginImg";
 import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import Loader from "../../../../../adminShared/components/Loader/Loader";
+import { toast } from "react-toastify";
 
 
 const LoginForm = () => {
@@ -24,6 +25,7 @@ const LoginForm = () => {
       router.push("/admin");
     },
     onError: (error) => {
+      toast.error("Please fill the fields!")
       console.log("Error", error);
     },
   });

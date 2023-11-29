@@ -132,6 +132,8 @@ const Header = () => {
     // },
   });
 
+  console.log("client user", userData);
+
   const basketCount = basketData?.result?.data?.items?.length;
 
   const removeToken = () => {

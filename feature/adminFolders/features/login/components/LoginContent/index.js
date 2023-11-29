@@ -1,8 +1,13 @@
 import React from "react";
 import LoginForm from "../LoginForm";
 import LoginHeader from "../LoginHeader";
+import { useRouter } from "next/router";
 
 const LoginContent = () => {
+
+  const router = useRouter();
+console.log("dash", router);
+
   return (
     <div className="flex flex-col bg-[#1e1e30]" style={{ minHeight: '100vh' }}>
       <LoginHeader />
