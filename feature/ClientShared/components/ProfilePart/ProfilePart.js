@@ -27,31 +27,55 @@ const ProfilePart = () => {
     }
   });
 
+  const userData = data ? Object.values(data) : [];
+
+
+
+  console.log("check user", userData);
 
   // const dispatch = useDispatch()
   const fileInputRef = useRef(null);
   const [email, setEmail] = useState("");
+  const [fullname, setFullname] = useState("")
+  const [phone, setPhone] = useState("")
+  const [address, setAddress] = useState("")
+  const [username, setUsername] = useState("")
   const [addProductImage, setAddProductImage] = useState(null);
   const [lastProductImage, setlastProductImage] = useState(null);
 
   useEffect(() => {
     if (data && data.user) {
       setEmail(data?.user?.email);
+      setFullname(data?.user?.fullname)
+      setPhone(data?.user?.phone)
+      setAddress(data?.user?.name)
+      setUsername(data?.user?.username)
     }
   }, [data]);
 
+  console.log("kimsen?", data);
+
   const [profileData, setProfileData] = useState({
-    name: "",
+    address: "",
     phone: "",
     fullname: "",
     username: "",
+    email: "",
   });
 
-  const newData = { ...profileData, email, img_url: lastProductImage };
+  const newData = { ...profileData, img_url: lastProductImage };
+
+  
 
   const handleInput = (event) => {
-    setProfileData({ ...profileData, [event.target.name]: event.target.value });
+    setProfileData((prevData) => ({
+      ...prevData,
+      [event.target.name]: event.target.value,
+    }));
   };
+
+  console.log("newData", newData);
+  console.log("profilData", profileData);
 
   const mutation = useMutation((data) => PutUser(data), {
     onSuccess: (responseData) => {
@@ -61,6 +85,7 @@ const ProfilePart = () => {
       console.log(responseData);
     },
     onError: (error) => {
+      toast.error("Please fill the fields!")
       console.log("Error", error);
     },
   });
@@ -125,6 +150,7 @@ const ProfilePart = () => {
                   type="tel"
                   onChange={handleInput}
                   id="inputField"
+                  value={phone}
                   className="mt-1 sm:bg-[#FFFFFF] bg-[#F3F4F6] p-2 border text-[#828282] leading-6 font-normal rounded  text-lg sm:w-[370px] h-[53px] w-[260px]  "
                   placeholder="+994"
                 />
@@ -157,6 +183,7 @@ const ProfilePart = () => {
                   type="text"
                   onChange={handleInput}
                   id="inputField"
+                  value={username}
                   className="mt-1 p-2 border sm:bg-[#FFFFFF] bg-[#F3F4F6] text-[#828282] leading-6 font-normal rounded  text-lg w-[250px] h-[53px] sm:w-[370px] "
                 />
               </div>
@@ -172,6 +199,8 @@ const ProfilePart = () => {
                   type="text"
                   onChange={handleInput}
                   id="inputField"
+                  value={address}
+                  
                   className="mt-1 p-2 border sm:bg-[#FFFFFF]  bg-[#F3F4F6] text-[#828282] leading-6 font-normal rounded  text-lg w-[250px] h-[53px] sm:w-[370px] "
                 />
               </div>
@@ -187,6 +216,7 @@ const ProfilePart = () => {
                   type="text"
                   onChange={handleInput}
                   id="inputField"
+                  value={fullname}
                   className="mt-1 p-2 border sm:bg-[#FFFFFF] bg-[#F3F4F6] text-[#828282] leading-6 font-normal rounded  text-lg  w-[250px] sm:w-[370px] h-[53px] "
                 />
               </div>
